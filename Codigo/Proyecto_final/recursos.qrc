@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/escenario">
+        <file>escenario/escenario.png</file>
+        <file>escenario/muro1.png</file>
+        <file>escenario/muro2.png</file>
+        <file>escenario/muro3.png</file>
+    </qresource>
+</RCC>
