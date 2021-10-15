@@ -23,12 +23,16 @@ void MainWindow::set_window()
     ui->graphicsView->setScene(scene);
     ui->graphicsView->setBackgroundBrush(QImage(":/escenario/escenario/escenario.png").scaled(tam*50,tam*(14+2)));
     scene->setSceneRect(0,0,tam*50,tam*(14+2));//tamanio de la escena
+
     setFixedSize(tam*50+2,tam*(14+2)+2);
+
+
     setWindowTitle("Poison Run");
 }
 
 void MainWindow::generar_mapa()
 {
+
     for(int i=0;i<14;i++){
         for(int j=0;j<50;j++){
             if(nivel1[i][j]==1){
@@ -51,4 +55,3 @@ void MainWindow::generar_mapa()
         }        
     }
 }
-
