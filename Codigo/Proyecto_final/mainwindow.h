@@ -5,7 +5,6 @@
 #include <QGraphicsScene>
 
 #include "escenario.h"
-//#include "matriz.h"
 
 #define tam 40
 
@@ -24,7 +23,6 @@ public:
 
 private:
     void generar_mapa();
-    void inicializar();
 
     short int nivel1[14][50]=
     {
@@ -48,8 +46,5 @@ private:
     Ui::MainWindow *ui;
     QGraphicsScene *scene;
     escenario *plataforma;
-    //escenario ***bloques;
-   // matriz *m;
-    //int **map;
 };
 #endif // MAINWINDOW_H
