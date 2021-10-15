@@ -72,12 +72,10 @@ void MainWindow::generar_mapa()
 {
     m=new matriz(14,16);
     bloques = new escenario**[14];
-
     for (int f=0;f<14;f++){
         bloques[f] = new escenario*[50];
         for(int c=0;c<50;c++){
             bloques[f][c]=new escenario();
         }
     }
-
 }*/
