@@ -3,8 +3,10 @@
 
 #include <QMainWindow>
 #include <QGraphicsScene>
+#include <QKeyEvent>
 
 #include "escenario.h"
+#include "personaje.h"
 
 #define tam 40
 
@@ -20,9 +22,11 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     void set_window();
+    void keyPressEvent(QKeyEvent *i);
 
 private:
     void generar_mapa();
+    void jugador();
 
     short int nivel1[14][50]=
     {
@@ -46,5 +50,6 @@ private:
     Ui::MainWindow *ui;
     QGraphicsScene *scene;
     escenario *plataforma;
+    personaje *player;
 };
 #endif // MAINWINDOW_H

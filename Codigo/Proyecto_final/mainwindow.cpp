@@ -8,6 +8,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     set_window();
     generar_mapa();
+    jugador();
 }
 
 MainWindow::~MainWindow()
@@ -52,3 +53,23 @@ void MainWindow::generar_mapa()
     }
 }
 
+void MainWindow::keyPressEvent(QKeyEvent *i)
+{
+    int X=player->x(),Y=player->y();
+
+    if(i->key()==Qt::Key_A && nivel1[(Y/tam)-2][(X-8)/tam]==0 && nivel1[((Y+tam-1)/tam)-2][(X-8)/tam]==0){
+        //player->cambio_imagen('a');
+        player->setX(player->x()-8);
+    }
+    else if(i->key()==Qt::Key_D && nivel1[(Y/tam)-2][(X+tam-1+8)/tam]==0 && nivel1[((Y+tam-1)/tam)-2][(X+tam-1+8)/tam]==0){
+       // player->cambio_imagen('d');
+        player->setX(player->x()+8);
+    }
+}
+
+void MainWindow::jugador()
+{
+    player=new personaje();
+    player->setPos(tam,14*tam);
+    scene->addItem(player);
+}

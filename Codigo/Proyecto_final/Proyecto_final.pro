@@ -11,11 +11,13 @@ CONFIG += c++11
 SOURCES += \
     escenario.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    personaje.cpp
 
 HEADERS += \
     escenario.h \
-    mainwindow.h
+    mainwindow.h \
+    personaje.h
 
 FORMS += \
     mainwindow.ui
