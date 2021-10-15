@@ -1,28 +1,15 @@
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
-
-#include <QMainWindow>
-#include <QGraphicsScene>
+#ifndef MATRIZ_H
+#define MATRIZ_H
 
 #include "escenario.h"
 
-#define tam 40
-
-QT_BEGIN_NAMESPACE
-namespace Ui { class MainWindow; }
-QT_END_NAMESPACE
-
-class MainWindow : public QMainWindow
+class matriz
 {
-    Q_OBJECT
-
 public:
-    MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
-    void set_window();
-
-private:
+    matriz(int a, int b);
     void generar_mapa();
+    int ** get_matriz();
+    ~matriz();
 
     short int nivel1[14][50]=
     {
@@ -42,9 +29,10 @@ private:
         {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,5,5,5,5,5,5,5,5,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
     };
 
+private:
 
-    Ui::MainWindow *ui;
-    QGraphicsScene *scene;
-    escenario *plataforma;
+    int **mat, fil, col, px;
+    escenario *muro;
 };
-#endif // MAINWINDOW_H
+
+#endif // MATRIZ_H

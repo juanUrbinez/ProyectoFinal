@@ -1,6 +1,6 @@
 #ifndef ESCENARIO_H
 #define ESCENARIO_H
-#include <QString>
+
 #include <QPixmap>
 #include <QObject>
 #include <QGraphicsPixmapItem>

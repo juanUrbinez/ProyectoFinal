@@ -2,8 +2,7 @@
 
 escenario::escenario()
 {
-    //original.load(link);
-    //setPixmap(original.scaled(scalex,scaley));
+
 }
 
 void escenario::set_scale(int a, int b)
