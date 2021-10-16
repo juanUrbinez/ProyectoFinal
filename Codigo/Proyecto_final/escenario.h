@@ -10,7 +10,9 @@ public:
     escenario();
     void set_scale(int a, int b);
     void CambiarOriginal(QString link);
-    void set_imagen(int a);    
+    void set_imagen(int a);
+    void set_money(int a);
+    void set_orbe(int a);
 
 private:
     QPixmap original,img;

@@ -11,10 +11,12 @@ class personaje : public QObject, public QGraphicsPixmapItem
 public:
     personaje();
     void cambio_imagen(short a);
-    int peso=40;
+    int sprite=0;;
+    bool live=true;
 
 private:
-    QPixmap per;
+    int peso=40;
+    QPixmap per,cam,img;
     int scaleperx=peso,scalepery=peso;
 };
 

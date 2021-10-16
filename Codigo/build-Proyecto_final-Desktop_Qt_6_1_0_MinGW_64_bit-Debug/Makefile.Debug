@@ -116,6 +116,10 @@ debug/qrc_recursos.cpp: ../Proyecto_final/recursos.qrc \
 		../Proyecto_final/escenario/escenario.png \
 		../Proyecto_final/escenario/muro2.png \
 		../Proyecto_final/escenario/muro3.png \
+		../Proyecto_final/Bonos/moneda.png \
+		../Proyecto_final/Bonos/orbes\ de\ energia.png \
+		../Proyecto_final/Personaje/corriendoizq.png \
+		../Proyecto_final/Personaje/corriendo.png \
 		../Proyecto_final/Personaje/Quieto.png
 	D:\QT\6.1.0\mingw81_64\bin\rcc.exe -name recursos ..\Proyecto_final\recursos.qrc -o debug\qrc_recursos.cpp
 

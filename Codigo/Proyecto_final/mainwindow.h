@@ -23,6 +23,7 @@ public:
     ~MainWindow();
     void set_window();
     void keyPressEvent(QKeyEvent *i);
+    bool colisiones(QGraphicsItem *item, QGraphicsItem *item2);
 
 private:
     void generar_mapa();

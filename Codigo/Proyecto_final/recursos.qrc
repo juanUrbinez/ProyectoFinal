@@ -4,8 +4,12 @@
         <file>escenario/muro1.png</file>
         <file>escenario/muro2.png</file>
         <file>escenario/muro3.png</file>
+        <file>Bonos/moneda.png</file>
+        <file>Bonos/orbes de energia.png</file>
     </qresource>
     <qresource prefix="/personaje">
         <file>Personaje/Quieto.png</file>
+        <file>Personaje/corriendo.png</file>
+        <file>Personaje/corriendoizq.png</file>
     </qresource>
 </RCC>
