@@ -1,9 +1,28 @@
 #include "personaje.h"
 
-personaje::personaje()
+personaje::personaje(int x,int y)
 {
     per.load(":/personaje/Personaje/Quieto.png");
     setPixmap(per.scaled(scaleperx,scalepery));
+
+    Px=x;
+    Py=y;
+    //Vx=20;
+   // Vy=-50;
+   // v_caida=0;
+    angulo=(45/180)*pi;
+    vel=200;
+    //H=12*40;
+    //Pbase=true;
+    //caida=false;
+
+    timesalto=new QTimer;
+    //timecaida=new QTimer;
+    connect(timesalto,SIGNAL(timeout()),this,SLOT(salto()));
+    //connect(timecaida,SIGNAL(timeout()),this,SLOT(caida_libre()));
+
+    setPos(Px,Py);
+    //timesalto->start();
 }
 
 void personaje::cambio_imagen(short a)
@@ -28,5 +47,187 @@ void personaje::cambio_imagen(short a)
 
         break;
 
+        case 'j':
+
+            cam.load(":/personaje/Personaje/Quieto.png");
+            setPixmap(per.scaled(scaleperx,scalepery));
+
+        break;
+
     }
 }
+
+/*void personaje::salto(int width, int heigth)
+{
+    QPixmap cam(":/personaje/Personaje/Quieto.png");
+    h=heigth;
+    w=width;
+    setPixmap(cam.scaled(w,h));
+}*/
+
+/*int personaje::get_h()
+{
+    return h;
+}*/
+
+personaje::~personaje()
+{
+    //delete timecaida;
+    delete timesalto;
+}
+
+int personaje::get_Px()
+{
+    return Px;
+}
+
+int personaje::get_Py()
+{
+    return Py;
+}
+
+int personaje::get_Vx()
+{
+    return Vx;
+}
+
+int personaje::get_Vy()
+{
+    return Vy;
+}
+
+void personaje::posicion(int a, int b)
+{
+    Px=a;
+    Py=b;
+    Px=Px+Vx*t;
+    Py=Py+Vy*t-(0.5*g*t*t);
+}
+
+void personaje::salto()
+//meter un mov retilinep uniforme
+//space salta con un angulo inicial
+// solo dar una veloci al movimiento
+// mov rec univ y caida libre
+//determinar el angulo con el que va a saltar y la aceleracion
+{
+   // timesalto->start(10);
+    Vx=vel*cos(angulo);
+    Vy=-vel*sin(angulo)+g*t;
+    angulo=atan2(Vx,Vy);
+    //angulo=(atan2(Vx,Vy)*180)/pi;
+    //angulo=pow(tan(Vy/Vx),-1);
+    vel=sqrt(pow(Vx,2)+pow(Vy,2));
+    Px=Px+Vx*t;
+    Py=Py+Vy*t+(0.5*g*pow(t,2));
+
+    /*if(Py>14*40){
+        timesalto->stop();
+        Py=-40*14*40;
+
+    }*/
+
+    setPos(Px,Py);
+    timesalto->start(100);
+   /* timesalto->start(18);
+    Pbase=false;
+
+    if(Vy>=0) {
+        caida=true;
+    }
+    if(Vy<0) {
+        caida=false;
+        Pb=523;
+    }
+    Vy+=g*t;
+    Py += Vy*t;
+    setY(Py);
+
+    if(Py>=Pb){ // donde queda despues del salto
+
+        timesalto->stop(); // despues de que salte le digo que deje de saltar, sino queda saltando y saltando.
+        Py=Pb;
+        Pbase=true;
+        setY(Py);
+        Vy=-50;
+    }*/
+}
+
+/*void personaje::caida_libre()
+{
+    timecaida->start(18);
+    v_caida+=g*t;
+    Pbase=false;
+    Py+=v_caida*t;
+    setY(Py);
+
+    if(Py>=Pb) // donde queda despues del salto
+    {
+        timecaida->stop();
+        Py=Pb;
+        Pbase=true;
+        setY(Py);
+        v_caida=0;
+    }
+}*/
+
+//mov parabolico
+/*pelota::pelota(int width, int heigth)
+{
+    QPixmap j(":/Pelota.jpeg");
+    h = heigth;
+    w = width;
+    setPixmap(j.scaled(w,h));
+}
+
+int pelota::get_h()
+{
+    return h;
+}*/
+
+
+/*void Jugador::salto()
+{
+
+    timerSalto->start(18);
+    EstadoPosicionBase=false;
+
+    if(velY>=0) {
+        falling=true;
+    }
+    if(velY<0) {
+        falling=false;
+        Pos_Base=523;
+    }
+    velY+=G*Dt;
+    Pos_Y += velY*Dt;
+    setY(Pos_Y);
+
+    if(Pos_Y>=Pos_Base){ // donde queda despues del salto
+
+        timerSalto->stop(); // despues de que salte le digo que deje de saltar, sino queda saltando y saltando.
+        Pos_Y=Pos_Base;
+        EstadoPosicionBase=true;
+        setY(Pos_Y);
+        velY=-50;
+    }
+}*/
+
+/*void Jugador::caidaLibre()
+{
+    timerCaida->start(18);
+    velCaida+=G*Dt;
+    EstadoPosicionBase=false;
+    Pos_Y+=velCaida*Dt;
+    setY(Pos_Y);
+
+    if(Pos_Y>=Pos_Base) // donde queda despues del salto
+    {
+        timerCaida->stop();
+        Pos_Y=Pos_Base;
+        EstadoPosicionBase=true;
+        setY(Pos_Y);
+        velCaida=0;
+    }
+
+}*/

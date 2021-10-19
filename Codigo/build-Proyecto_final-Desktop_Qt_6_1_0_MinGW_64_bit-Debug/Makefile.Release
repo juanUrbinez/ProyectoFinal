@@ -112,6 +112,7 @@ compiler_rcc_clean:
 	-$(DEL_FILE) release\qrc_recursos.cpp
 release/qrc_recursos.cpp: ../Proyecto_final/recursos.qrc \
 		D:/QT/6.1.0/mingw81_64/bin/rcc.exe \
+		../Proyecto_final/escenario/puerta.png \
 		../Proyecto_final/escenario/muro1.png \
 		../Proyecto_final/escenario/escenario.png \
 		../Proyecto_final/escenario/muro2.png \
@@ -266,6 +267,9 @@ release/moc_mainwindow.cpp: ../Proyecto_final/mainwindow.h \
 		D:/QT/6.1.0/mingw81_64/include/QtWidgets/qgraphicsscene.h \
 		D:/QT/6.1.0/mingw81_64/include/QtGui/qpen.h \
 		D:/QT/6.1.0/mingw81_64/include/QtGui/QKeyEvent \
+		D:/QT/6.1.0/mingw81_64/include/QtCore/QTimer \
+		D:/QT/6.1.0/mingw81_64/include/QtCore/qtimer.h \
+		D:/QT/6.1.0/mingw81_64/include/QtCore/qbasictimer.h \
 		../Proyecto_final/escenario.h \
 		D:/QT/6.1.0/mingw81_64/include/QtGui/QPixmap \
 		D:/QT/6.1.0/mingw81_64/include/QtWidgets/QGraphicsPixmapItem \
@@ -540,6 +544,9 @@ release/main.o: ../Proyecto_final/main.cpp ../Proyecto_final/mainwindow.h \
 		D:/QT/6.1.0/mingw81_64/include/QtWidgets/qgraphicsscene.h \
 		D:/QT/6.1.0/mingw81_64/include/QtGui/qpen.h \
 		D:/QT/6.1.0/mingw81_64/include/QtGui/QKeyEvent \
+		D:/QT/6.1.0/mingw81_64/include/QtCore/QTimer \
+		D:/QT/6.1.0/mingw81_64/include/QtCore/qtimer.h \
+		D:/QT/6.1.0/mingw81_64/include/QtCore/qbasictimer.h \
 		../Proyecto_final/escenario.h \
 		D:/QT/6.1.0/mingw81_64/include/QtGui/QPixmap \
 		D:/QT/6.1.0/mingw81_64/include/QtWidgets/QGraphicsPixmapItem \
@@ -689,6 +696,9 @@ release/mainwindow.o: ../Proyecto_final/mainwindow.cpp ../Proyecto_final/mainwin
 		D:/QT/6.1.0/mingw81_64/include/QtWidgets/qgraphicsscene.h \
 		D:/QT/6.1.0/mingw81_64/include/QtGui/qpen.h \
 		D:/QT/6.1.0/mingw81_64/include/QtGui/QKeyEvent \
+		D:/QT/6.1.0/mingw81_64/include/QtCore/QTimer \
+		D:/QT/6.1.0/mingw81_64/include/QtCore/qtimer.h \
+		D:/QT/6.1.0/mingw81_64/include/QtCore/qbasictimer.h \
 		../Proyecto_final/escenario.h \
 		D:/QT/6.1.0/mingw81_64/include/QtGui/QPixmap \
 		D:/QT/6.1.0/mingw81_64/include/QtWidgets/QGraphicsPixmapItem \
@@ -824,7 +834,10 @@ release/personaje.o: ../Proyecto_final/personaje.cpp ../Proyecto_final/personaje
 		D:/QT/6.1.0/mingw81_64/include/QtGui/qimage.h \
 		D:/QT/6.1.0/mingw81_64/include/QtGui/qpixelformat.h \
 		D:/QT/6.1.0/mingw81_64/include/QtGui/QPixmap \
-		D:/QT/6.1.0/mingw81_64/include/QtCore/QObject
+		D:/QT/6.1.0/mingw81_64/include/QtCore/QObject \
+		D:/QT/6.1.0/mingw81_64/include/QtCore/QTimer \
+		D:/QT/6.1.0/mingw81_64/include/QtCore/qtimer.h \
+		D:/QT/6.1.0/mingw81_64/include/QtCore/qbasictimer.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\personaje.o ..\Proyecto_final\personaje.cpp
 
 release/qrc_recursos.o: release/qrc_recursos.cpp 

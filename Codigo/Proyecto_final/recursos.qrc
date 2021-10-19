@@ -6,6 +6,7 @@
         <file>escenario/muro3.png</file>
         <file>Bonos/moneda.png</file>
         <file>Bonos/orbes de energia.png</file>
+        <file>escenario/puerta.png</file>
     </qresource>
     <qresource prefix="/personaje">
         <file>Personaje/Quieto.png</file>
