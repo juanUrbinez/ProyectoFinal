@@ -1,4 +1,4 @@
-#ifndef MAINWINDOW_H
+﻿#ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
 #include <QJsonArray>
@@ -6,9 +6,13 @@
 #include <QGraphicsScene>
 #include <iostream>
 #include "fstream"
+#include <string>
+#include <QKeyEvent>
+#include <QList>
 using namespace std;
 
 #include "escenario.h"
+#include "personaje.h"
 
 #define tam 40
 
@@ -27,9 +31,7 @@ public:
 
 private:
     void generar_mapa();
-
-    ifstream archivo {"../Proyecto_final/Mapa/mapa1.txt"};
-
+    string mapa1="../Proyecto_final/Mapa/mapa1.txt";
     short int nivel1[14][50]=
     {
         {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
@@ -47,10 +49,17 @@ private:
         {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,5,5,5,5,5,5,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6,6,1},
         {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,5,5,5,5,5,5,5,5,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
     };
+    //presionar tecla
+    void keyPressEvent(QKeyEvent * event) override;
+    //soltar tecla
+    void keyReleaseEvent(QKeyEvent *event) override;
 
+    bool EvaluaColision();
 
     Ui::MainWindow *ui;
     QGraphicsScene *scene;
     escenario *plataforma;
+    QList<escenario*>plataformas;
+    personaje * player;
 };
 #endif // MAINWINDOW_H

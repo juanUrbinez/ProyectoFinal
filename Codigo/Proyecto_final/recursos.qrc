@@ -5,4 +5,9 @@
         <file>escenario/muro2.png</file>
         <file>escenario/muro3.png</file>
     </qresource>
+    <qresource prefix="/Personaje">
+        <file>Personaje/corriendo.png</file>
+        <file>Personaje/corriendoizq.png</file>
+        <file>Personaje/Quieto.png</file>
+    </qresource>
 </RCC>

@@ -32,26 +32,62 @@ void MainWindow::set_window()
 
 void MainWindow::generar_mapa()
 {
-
+    player = new personaje();
+    player->setPos(100,500);
+    scene->addItem(player);
     for(int i=0;i<14;i++){
         for(int j=0;j<50;j++){
             if(nivel1[i][j]==1){
-                plataforma=new escenario();
-                plataforma->CambiarOriginal(":/escenario/escenario/muro1.png");
-                plataforma->set_scale(tam,tam);
-                plataforma->set_imagen(0);
-                plataforma->setPos(j*tam,(2+i)*tam);
-                scene->addItem(plataforma);
+                plataformas.push_back(new escenario());
+                plataformas.back()->CambiarOriginal(":/escenario/escenario/muro1.png");
+                plataformas.back()->set_scale(tam,tam);
+                plataformas.back()->set_imagen(0);
+                plataformas.back()->setPos(j*tam,(2+i)*tam);
+                scene->addItem(plataformas.back());
             }
             else if(nivel1[i][j]==2){
-                plataforma=new escenario();
-                plataforma->CambiarOriginal(":/escenario/escenario/muro1.png");
-                plataforma->set_scale(tam,tam);
-                plataforma->set_imagen(0);
-                plataforma->setPos(j*tam,(2+i)*tam);
-                scene->addItem(plataforma);
+                plataformas.push_back(new escenario());
+                plataformas.back()->CambiarOriginal(":/escenario/escenario/muro1.png");
+                plataformas.back()->set_scale(tam,tam);
+                plataformas.back()->set_imagen(0);
+                plataformas.back()->setPos(j*tam,(2+i)*tam);
+                scene->addItem(plataformas.back());
 
             }
         }        
     }
+}
+
+void MainWindow::keyPressEvent(QKeyEvent *event)
+{
+    if (event->key() == Qt::Key_Left)
+    {
+        Mover_A_Derecha(true);
+    }
+    else if (event->key() == Qt::Key_Right)
+    {
+        //Mover_A_Izquierda(true);
+    }
+}
+
+void MainWindow::keyReleaseEvent(QKeyEvent *event)
+{
+
+}
+
+bool MainWindow::EvaluaColision()
+{
+    bool colision=false;
+    QList<escenario*>::Iterator it;
+    for (it=plataformas.begin();it!=plataformas.end() ;it++ )
+    {
+        if ((*it)->collidesWithItem(player))
+        {
+            colision=true;
+        }
+    }
+
+    return colision;
+
+
 }
