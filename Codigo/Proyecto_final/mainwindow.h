@@ -28,9 +28,19 @@ public:
     //void timeEvent(QTimerEvent);
 
 private slots:
-    //void simulacion();
+    void simulacion();
     void temporizador();
     void Mov_per();
+
+    void on_anterior_clicked();
+
+    //void on_siguiente_clicked();
+
+    void on_inicio_clicked();
+
+    void on_salir_clicked();
+
+    void on_partida_clicked();
 
 private:
     void generar_mapa();
@@ -57,13 +67,18 @@ private:
 
 
     Ui::MainWindow *ui;
-    QGraphicsScene *scene;
+    QGraphicsScene *scene, *menu,*option;
+    //QGraphicsScene *scene, *scene2;
+    QMainWindow *now;
+    QGraphicsView *news;
+
     QList<escenario *>plataforma;
     personaje *player;
     int tecla;
-    QTimer *time,*tempo;
+    //int w_limite;
+    QTimer *time,*tempo,*timfis;
     int T=10;
-    float vxo=10,vyo=10,g=9.8;
+    float vxo,vyo,Py,g=9.8;
     float x,y;
     unsigned long long n=0;
 

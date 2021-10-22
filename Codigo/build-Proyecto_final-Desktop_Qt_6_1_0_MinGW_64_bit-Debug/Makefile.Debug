@@ -117,11 +117,14 @@ debug/qrc_recursos.cpp: ../Proyecto_final/recursos.qrc \
 		../Proyecto_final/escenario/escenario.png \
 		../Proyecto_final/escenario/muro2.png \
 		../Proyecto_final/escenario/muro3.png \
+		../Proyecto_final/escenario/menu.png \
+		../Proyecto_final/escenario/option.png \
 		../Proyecto_final/Bonos/moneda.png \
 		../Proyecto_final/Bonos/orbes\ de\ energia.png \
 		../Proyecto_final/Personaje/corriendoizq.png \
 		../Proyecto_final/Personaje/corriendo.png \
-		../Proyecto_final/Personaje/Quieto.png
+		../Proyecto_final/Personaje/Quieto.png \
+		../Proyecto_final/Personaje/icon.png
 	D:\QT\6.1.0\mingw81_64\bin\rcc.exe -name recursos ..\Proyecto_final\recursos.qrc -o debug\qrc_recursos.cpp
 
 compiler_moc_predefs_make_all: debug/moc_predefs.h
@@ -275,6 +278,9 @@ debug/moc_mainwindow.cpp: ../Proyecto_final/mainwindow.h \
 		D:/QT/6.1.0/mingw81_64/include/QtWidgets/QGraphicsPixmapItem \
 		D:/QT/6.1.0/mingw81_64/include/QtWidgets/qgraphicsitem.h \
 		D:/QT/6.1.0/mingw81_64/include/QtGui/qpainterpath.h \
+		D:/QT/6.1.0/mingw81_64/include/QtGui/QPainter \
+		D:/QT/6.1.0/mingw81_64/include/QtGui/qpainter.h \
+		D:/QT/6.1.0/mingw81_64/include/QtGui/qtextoption.h \
 		../Proyecto_final/personaje.h \
 		debug/moc_predefs.h \
 		D:/QT/6.1.0/mingw81_64/bin/moc.exe
@@ -407,7 +413,15 @@ debug/escenario.o: ../Proyecto_final/escenario.cpp ../Proyecto_final/escenario.h
 		D:/QT/6.1.0/mingw81_64/include/QtCore/qstringconverter.h \
 		D:/QT/6.1.0/mingw81_64/include/QtCore/qset.h \
 		D:/QT/6.1.0/mingw81_64/include/QtCore/qcontiguouscache.h \
-		D:/QT/6.1.0/mingw81_64/include/QtGui/qpainterpath.h
+		D:/QT/6.1.0/mingw81_64/include/QtGui/qpainterpath.h \
+		D:/QT/6.1.0/mingw81_64/include/QtGui/QPainter \
+		D:/QT/6.1.0/mingw81_64/include/QtGui/qpainter.h \
+		D:/QT/6.1.0/mingw81_64/include/QtGui/qtextoption.h \
+		D:/QT/6.1.0/mingw81_64/include/QtGui/qpen.h \
+		D:/QT/6.1.0/mingw81_64/include/QtGui/qbrush.h \
+		D:/QT/6.1.0/mingw81_64/include/QtGui/qfontinfo.h \
+		D:/QT/6.1.0/mingw81_64/include/QtGui/qfont.h \
+		D:/QT/6.1.0/mingw81_64/include/QtGui/qfontmetrics.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\escenario.o ..\Proyecto_final\escenario.cpp
 
 debug/main.o: ../Proyecto_final/main.cpp ../Proyecto_final/mainwindow.h \
@@ -552,6 +566,9 @@ debug/main.o: ../Proyecto_final/main.cpp ../Proyecto_final/mainwindow.h \
 		D:/QT/6.1.0/mingw81_64/include/QtWidgets/QGraphicsPixmapItem \
 		D:/QT/6.1.0/mingw81_64/include/QtWidgets/qgraphicsitem.h \
 		D:/QT/6.1.0/mingw81_64/include/QtGui/qpainterpath.h \
+		D:/QT/6.1.0/mingw81_64/include/QtGui/QPainter \
+		D:/QT/6.1.0/mingw81_64/include/QtGui/qpainter.h \
+		D:/QT/6.1.0/mingw81_64/include/QtGui/qtextoption.h \
 		../Proyecto_final/personaje.h \
 		D:/QT/6.1.0/mingw81_64/include/QtWidgets/QApplication \
 		D:/QT/6.1.0/mingw81_64/include/QtWidgets/qapplication.h \
@@ -704,6 +721,9 @@ debug/mainwindow.o: ../Proyecto_final/mainwindow.cpp ../Proyecto_final/mainwindo
 		D:/QT/6.1.0/mingw81_64/include/QtWidgets/QGraphicsPixmapItem \
 		D:/QT/6.1.0/mingw81_64/include/QtWidgets/qgraphicsitem.h \
 		D:/QT/6.1.0/mingw81_64/include/QtGui/qpainterpath.h \
+		D:/QT/6.1.0/mingw81_64/include/QtGui/QPainter \
+		D:/QT/6.1.0/mingw81_64/include/QtGui/qpainter.h \
+		D:/QT/6.1.0/mingw81_64/include/QtGui/qtextoption.h \
 		../Proyecto_final/personaje.h \
 		ui_mainwindow.h \
 		D:/QT/6.1.0/mingw81_64/include/QtCore/QVariant \
@@ -716,15 +736,22 @@ debug/mainwindow.o: ../Proyecto_final/mainwindow.cpp ../Proyecto_final/mainwindo
 		D:/QT/6.1.0/mingw81_64/include/QtCore/qlocale.h \
 		D:/QT/6.1.0/mingw81_64/include/QtWidgets/QGraphicsView \
 		D:/QT/6.1.0/mingw81_64/include/QtWidgets/qgraphicsview.h \
-		D:/QT/6.1.0/mingw81_64/include/QtGui/qpainter.h \
-		D:/QT/6.1.0/mingw81_64/include/QtGui/qtextoption.h \
 		D:/QT/6.1.0/mingw81_64/include/QtWidgets/qscrollarea.h \
 		D:/QT/6.1.0/mingw81_64/include/QtWidgets/qabstractscrollarea.h \
 		D:/QT/6.1.0/mingw81_64/include/QtWidgets/qframe.h \
+		D:/QT/6.1.0/mingw81_64/include/QtWidgets/QLCDNumber \
+		D:/QT/6.1.0/mingw81_64/include/QtWidgets/qlcdnumber.h \
+		D:/QT/6.1.0/mingw81_64/include/QtWidgets/QLabel \
+		D:/QT/6.1.0/mingw81_64/include/QtWidgets/qlabel.h \
+		D:/QT/6.1.0/mingw81_64/include/QtGui/qpicture.h \
+		D:/QT/6.1.0/mingw81_64/include/QtGui/qtextdocument.h \
 		D:/QT/6.1.0/mingw81_64/include/QtWidgets/QMenuBar \
 		D:/QT/6.1.0/mingw81_64/include/QtWidgets/qmenubar.h \
 		D:/QT/6.1.0/mingw81_64/include/QtWidgets/qmenu.h \
 		D:/QT/6.1.0/mingw81_64/include/QtGui/qaction.h \
+		D:/QT/6.1.0/mingw81_64/include/QtWidgets/QPushButton \
+		D:/QT/6.1.0/mingw81_64/include/QtWidgets/qpushbutton.h \
+		D:/QT/6.1.0/mingw81_64/include/QtWidgets/qabstractbutton.h \
 		D:/QT/6.1.0/mingw81_64/include/QtWidgets/QStatusBar \
 		D:/QT/6.1.0/mingw81_64/include/QtWidgets/qstatusbar.h \
 		D:/QT/6.1.0/mingw81_64/include/QtWidgets/QWidget
@@ -837,7 +864,15 @@ debug/personaje.o: ../Proyecto_final/personaje.cpp ../Proyecto_final/personaje.h
 		D:/QT/6.1.0/mingw81_64/include/QtCore/QObject \
 		D:/QT/6.1.0/mingw81_64/include/QtCore/QTimer \
 		D:/QT/6.1.0/mingw81_64/include/QtCore/qtimer.h \
-		D:/QT/6.1.0/mingw81_64/include/QtCore/qbasictimer.h
+		D:/QT/6.1.0/mingw81_64/include/QtCore/qbasictimer.h \
+		D:/QT/6.1.0/mingw81_64/include/QtGui/QPainter \
+		D:/QT/6.1.0/mingw81_64/include/QtGui/qpainter.h \
+		D:/QT/6.1.0/mingw81_64/include/QtGui/qtextoption.h \
+		D:/QT/6.1.0/mingw81_64/include/QtGui/qpen.h \
+		D:/QT/6.1.0/mingw81_64/include/QtGui/qbrush.h \
+		D:/QT/6.1.0/mingw81_64/include/QtGui/qfontinfo.h \
+		D:/QT/6.1.0/mingw81_64/include/QtGui/qfont.h \
+		D:/QT/6.1.0/mingw81_64/include/QtGui/qfontmetrics.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\personaje.o ..\Proyecto_final\personaje.cpp
 
 debug/qrc_recursos.o: debug/qrc_recursos.cpp 
