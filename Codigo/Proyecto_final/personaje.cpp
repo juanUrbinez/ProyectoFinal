@@ -24,6 +24,11 @@ void personaje::Mover_A_Izquierda(bool flag)
 
 }
 
+void personaje::setVx(float valor)
+{
+    Vx=valor;
+}
+
 float personaje::getVx()
 {
     return Vx;

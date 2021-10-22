@@ -20,6 +20,7 @@ public:
 
 
     void ActualizarMovimiento();
+    void setVx(float valor);
     float getVx();
     void AumentarVelocidadDerecha();
     void AumentarVelocidadIzquierda();

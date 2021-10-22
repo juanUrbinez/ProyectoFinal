@@ -72,11 +72,13 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
 {
     if (event->key() == Qt::Key_A)
     {
+        if(!EvaluaColision())
         getPlayer()->Mover_A_Izquierda(true);
 
     }
     else if (event->key() == Qt::Key_D)
     {
+        if(!EvaluaColision())
         getPlayer()->Mover_A_Derecha(true);
     }
 
@@ -93,7 +95,6 @@ void MainWindow::keyReleaseEvent(QKeyEvent *event)
 }
 
 
-
 bool MainWindow::EvaluaColision()
 {
     bool colision=false;
@@ -102,6 +103,7 @@ bool MainWindow::EvaluaColision()
     {
         if ((*it)->collidesWithItem(player))
         {
+            getPlayer()->setVx(0);
             colision=true;
         }
     }
