@@ -11,11 +11,13 @@ CONFIG += c++11
 SOURCES += \
     escenario.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    personaje.cpp
 
 HEADERS += \
     escenario.h \
-    mainwindow.h
+    mainwindow.h \
+    personaje.h
 
 FORMS += \
     mainwindow.ui
@@ -26,4 +28,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 RESOURCES += \
+    recursos.qrc \
     recursos.qrc
