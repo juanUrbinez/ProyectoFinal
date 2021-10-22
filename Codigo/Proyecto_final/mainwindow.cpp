@@ -8,11 +8,18 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     set_window();
     generar_mapa();
+    refreshTimer = new QTimer(this);
+    connect(refreshTimer,SIGNAL(timeout()),this,SLOT(ActualizarPosicionPersonaje()));
+    refreshTimer->start(1000/60);
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+    delete scene;
+    delete player;
+    refreshTimer->stop();
+
 }
 
 void MainWindow::set_window()
@@ -32,6 +39,7 @@ void MainWindow::set_window()
 
 void MainWindow::generar_mapa()
 {
+
     player = new personaje();
     player->setPos(100,500);
     scene->addItem(player);
@@ -56,24 +64,35 @@ void MainWindow::generar_mapa()
             }
         }        
     }
+
+
 }
 
 void MainWindow::keyPressEvent(QKeyEvent *event)
 {
-    if (event->key() == Qt::Key_Left)
+    if (event->key() == Qt::Key_A)
     {
-        Mover_A_Derecha(true);
+        getPlayer()->Mover_A_Izquierda(true);
+
     }
-    else if (event->key() == Qt::Key_Right)
+    else if (event->key() == Qt::Key_D)
     {
-        //Mover_A_Izquierda(true);
+        getPlayer()->Mover_A_Derecha(true);
     }
+
 }
 
 void MainWindow::keyReleaseEvent(QKeyEvent *event)
 {
-
+    if (event->key() == Qt::Key_A){
+        getPlayer()->Mover_A_Izquierda(false);
+    }
+    else if (event->key() == Qt::Key_D){
+        getPlayer()->Mover_A_Derecha(false);
+    }
 }
+
+
 
 bool MainWindow::EvaluaColision()
 {
@@ -89,5 +108,37 @@ bool MainWindow::EvaluaColision()
 
     return colision;
 
+
+}
+
+void MainWindow::ActualizarPosicionPersonaje()
+{
+    int next_x = getPlayer()->x();
+    int next_y = getPlayer()->y();
+
+    if(getPlayer()->getMoviendo_Derecha())
+    {
+        getPlayer()->AumentarVelocidadDerecha();
+         //player->setPos(500,500);
+
+    }
+    else if(getPlayer()->getMoviendo_Izquierda())
+    {
+        getPlayer()->AumentarVelocidadIzquierda();
+         //player->setPos(500,500);
+    }
+    else
+    {
+        getPlayer()->BajarVelocidadX();
+
+    }
+    next_x += getPlayer()->getVx();
+    getPlayer()->setPos(next_x,next_y);
+
+}
+
+personaje *MainWindow::getPlayer() const
+{
+    return player;
 
 }

@@ -9,6 +9,9 @@
 #include <string>
 #include <QKeyEvent>
 #include <QList>
+#include <QTimer>
+
+
 using namespace std;
 
 #include "escenario.h"
@@ -28,6 +31,9 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     void set_window();
+
+private slots:
+    void ActualizarPosicionPersonaje();
 
 private:
     void generar_mapa();
@@ -56,10 +62,13 @@ private:
 
     bool EvaluaColision();
 
+
     Ui::MainWindow *ui;
     QGraphicsScene *scene;
     escenario *plataforma;
     QList<escenario*>plataformas;
     personaje * player;
+    personaje *getPlayer() const;
+    QTimer * refreshTimer;
 };
 #endif // MAINWINDOW_H
