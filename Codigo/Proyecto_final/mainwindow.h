@@ -70,6 +70,8 @@ private:
 
     QList<escenario*>plataformas;
 
+
+
     personaje * player;
     personaje *getPlayer() const;
     QTimer * refreshTimer;

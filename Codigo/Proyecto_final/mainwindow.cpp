@@ -99,7 +99,6 @@ void MainWindow::EvaluaColision()
 {
     int next_x = getPlayer()->x();
     //int next_y = getPlayer()->y();
-    qDebug() << next_x;
     int bloc_x;
     //int bloc_y;
 
@@ -107,6 +106,7 @@ void MainWindow::EvaluaColision()
 
     escenario *BloqueColision;
 
+    QList<escenario*>plataformasColicion;
 
     QList<escenario*>::Iterator it;
     for (it=plataformas.begin();it!=plataformas.end() ;it++ )
@@ -114,26 +114,27 @@ void MainWindow::EvaluaColision()
         if ((*it)->collidesWithItem(player))
         {
             //getPlayer()->setVx(0);
+            plataformasColicion.append(*it);
             colision=true;
-            qDebug() << colision;
+
         }
     }
+
     if (colision)
     {
         QList<escenario*>::Iterator it;
         for (it=plataformas.begin();it!=plataformas.end() ;it++ )
-        //for(int i = 0 ; i < plataformas.count() ; i ++)
+        for(int i = 0 ; i < plataformasColicion.count() ; i ++)
         {
-            BloqueColision=(*it);
-            //qDebug() << ;
+            BloqueColision=plataformasColicion[i];
+
             bloc_x = BloqueColision->x();
             //bloc_y = BloqueColision->y();
-            //qDebug() << "Posicion x"<< bloc_x <<" Bloque ";
+
             //bool cArriba = false;
             //bool cAbajo = false;
             bool cDerecha = false;
             bool cIzquierda = false;
-
             if( getPlayer()->x() + getPlayer()->getWidth() <= (*it)->x())
             {
                 cIzquierda = true;
@@ -144,24 +145,31 @@ void MainWindow::EvaluaColision()
                 cDerecha = true;
             }
 
-
+            qDebug()<<"izquierda: " << cIzquierda;
+            qDebug()<<"derecha: " << cDerecha;
             if(cDerecha)
             {
-                next_x = (*it)->x() + (*it)->getWidth() + 1;
+                next_x = bloc_x + getPlayer()->getWidth()+1+40;
                 getPlayer()->setVx(0);
+                //qDebug() <<"1" <<next_x;
+
 
             }
             else if(cIzquierda)
             {
-                next_x = (*it)->x() - getPlayer()->getWidth() - 1;
+                next_x = bloc_x - getPlayer()->getWidth()+1;
                 getPlayer()->setVx(0);
                 //qDebug() << "Posicion x"<< next_x <<" Bloque "<<(*it)->getWidth() ;
+                //qDebug() <<"2" <<next_x;
             }
 
 
 
         }
+
         getPlayer()->setPos(next_x,500);
+
+        plataformasColicion.pop_back();
     }
 
 
