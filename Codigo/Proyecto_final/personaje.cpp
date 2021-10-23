@@ -4,6 +4,8 @@ personaje::personaje()
 {
     per.load(":/Personaje/Personaje/Quieto.png");
     setPixmap(per.scaled(40,40));
+    width=40;
+    height=40;
     Vx=0;
     Vy=0;
     maxVx=10;
@@ -21,7 +23,6 @@ void personaje::Mover_A_Derecha(bool flag)
 void personaje::Mover_A_Izquierda(bool flag)
 {
     Moviendo_Izquierda=flag;
-
 }
 
 void personaje::setVx(float valor)
@@ -69,4 +70,14 @@ bool personaje::getMoviendo_Derecha()
 bool personaje::getMoviendo_Izquierda()
 {
     return Moviendo_Izquierda;
+}
+
+int personaje::getHeight()
+{
+    return height;
+}
+
+int personaje::getWidth()
+{
+    return width;
 }

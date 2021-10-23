@@ -41,7 +41,7 @@ void MainWindow::generar_mapa()
 {
 
     player = new personaje();
-    player->setPos(100,500);
+    player->setPos(500,500);
     scene->addItem(player);
     for(int i=0;i<14;i++){
         for(int j=0;j<50;j++){
@@ -72,13 +72,13 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
 {
     if (event->key() == Qt::Key_A)
     {
-        if(!EvaluaColision())
+        //if(!EvaluaColision())
         getPlayer()->Mover_A_Izquierda(true);
 
     }
     else if (event->key() == Qt::Key_D)
     {
-        if(!EvaluaColision())
+        //if(!EvaluaColision())
         getPlayer()->Mover_A_Derecha(true);
     }
 
@@ -95,26 +95,84 @@ void MainWindow::keyReleaseEvent(QKeyEvent *event)
 }
 
 
-bool MainWindow::EvaluaColision()
+void MainWindow::EvaluaColision()
 {
+    int next_x = getPlayer()->x();
+    //int next_y = getPlayer()->y();
+    qDebug() << next_x;
+    int bloc_x;
+    //int bloc_y;
+
     bool colision=false;
+
+    escenario *BloqueColision;
+
+
     QList<escenario*>::Iterator it;
     for (it=plataformas.begin();it!=plataformas.end() ;it++ )
     {
         if ((*it)->collidesWithItem(player))
         {
-            getPlayer()->setVx(0);
+            //getPlayer()->setVx(0);
             colision=true;
+            qDebug() << colision;
         }
     }
+    if (colision)
+    {
+        QList<escenario*>::Iterator it;
+        for (it=plataformas.begin();it!=plataformas.end() ;it++ )
+        //for(int i = 0 ; i < plataformas.count() ; i ++)
+        {
+            BloqueColision=(*it);
+            //qDebug() << ;
+            bloc_x = BloqueColision->x();
+            //bloc_y = BloqueColision->y();
+            //qDebug() << "Posicion x"<< bloc_x <<" Bloque ";
+            //bool cArriba = false;
+            //bool cAbajo = false;
+            bool cDerecha = false;
+            bool cIzquierda = false;
 
-    return colision;
+            if( getPlayer()->x() + getPlayer()->getWidth() <= (*it)->x())
+            {
+                cIzquierda = true;
+            }
+
+            if( getPlayer()->x() >= (*it)->x() + (*it)->getWidth() )
+            {
+                cDerecha = true;
+            }
+
+
+            if(cDerecha)
+            {
+                next_x = (*it)->x() + (*it)->getWidth() + 1;
+                getPlayer()->setVx(0);
+
+            }
+            else if(cIzquierda)
+            {
+                next_x = (*it)->x() - getPlayer()->getWidth() - 1;
+                getPlayer()->setVx(0);
+                //qDebug() << "Posicion x"<< next_x <<" Bloque "<<(*it)->getWidth() ;
+            }
+
+
+
+        }
+        getPlayer()->setPos(next_x,500);
+    }
+
 
 
 }
 
+
 void MainWindow::ActualizarPosicionPersonaje()
 {
+    EvaluaColision();
+
     int next_x = getPlayer()->x();
     int next_y = getPlayer()->y();
 
@@ -136,6 +194,7 @@ void MainWindow::ActualizarPosicionPersonaje()
     }
     next_x += getPlayer()->getVx();
     getPlayer()->setPos(next_x,next_y);
+
 
 }
 

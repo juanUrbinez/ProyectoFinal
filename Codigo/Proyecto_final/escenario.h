@@ -11,7 +11,8 @@ public:
     void set_scale(int a, int b);
     void CambiarOriginal(QString link);
     void set_imagen(int a);
-
+    int getWidth();
+    int width;
 private:
     QPixmap original,img;
     int scalex=1,scaley=1;

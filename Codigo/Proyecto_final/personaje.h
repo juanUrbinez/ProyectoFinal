@@ -35,12 +35,19 @@ public:
     bool Moviendo_Derecha;
     bool Moviendo_Izquierda;
 
+    int getHeight();
+    int getWidth();
+
 protected:
 
     float Vx;
     float Vy;
     float aceleracionX;
     int maxVx;
+
+    int height;
+    int width;
+
 
 
 private:

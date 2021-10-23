@@ -10,6 +10,7 @@
 #include <QKeyEvent>
 #include <QList>
 #include <QTimer>
+#include <QDebug>
 
 
 using namespace std;
@@ -32,7 +33,7 @@ public:
     ~MainWindow();
     void set_window();
 
-private slots:
+private  slots:
     void ActualizarPosicionPersonaje();
 
 private:
@@ -60,13 +61,15 @@ private:
     //soltar tecla
     void keyReleaseEvent(QKeyEvent *event) override;
 
-    bool EvaluaColision();
+    void EvaluaColision();
 
 
     Ui::MainWindow *ui;
     QGraphicsScene *scene;
     escenario *plataforma;
+
     QList<escenario*>plataformas;
+
     personaje * player;
     personaje *getPlayer() const;
     QTimer * refreshTimer;
