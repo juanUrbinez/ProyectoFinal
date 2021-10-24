@@ -150,6 +150,8 @@ void MainWindow::EvaluaColision()
                 cArriba = true;
             }
 
+            if( getPlayer()->y() - 40 >= (*it)->y())
+                cAbajo = true;
 
             if( getPlayer()->x() + getPlayer()->getWidth() <= (*it)->x())
             {
@@ -170,6 +172,12 @@ void MainWindow::EvaluaColision()
             {
                 next_y = bloc_y - getPlayer()->getHeight() ;
                 getPlayer()->setVy(0);
+            }
+            else if (cAbajo)
+            {
+                next_y = bloc_y + 40 ;
+                getPlayer()->setVy( - getPlayer()->getVy() );
+
             }
 
 

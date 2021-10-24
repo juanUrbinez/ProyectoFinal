@@ -43,13 +43,11 @@ void personaje::ActualizarMovimiento()
     }
     if(Vy == 0){
         EnElAire = false;
-        // better grip on the floor
-        //xAcceleration = 1;
+
     }
     else{
         EnElAire = true;
-        // lower grip in the air
-        //xAcceleration = 0.5;
+
     }
 }
 
