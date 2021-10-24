@@ -12,6 +12,9 @@ personaje::personaje()
     aceleracionX=0.5;
     Moviendo_Derecha=false;
     Moviendo_Izquierda=false;
+    cayendo=false;
+    saltando=false;
+    EnElAire=false;
 
 }
 
@@ -23,6 +26,31 @@ void personaje::Mover_A_Derecha(bool flag)
 void personaje::Mover_A_Izquierda(bool flag)
 {
     Moviendo_Izquierda=flag;
+}
+
+void personaje::ActualizarMovimiento()
+{
+    if(Vy > 0 )
+        cayendo = true;
+    else
+        cayendo = false;
+
+    if(Vy < 0){
+        saltando = true;
+    }
+    else{
+        saltando = false;
+    }
+    if(Vy == 0){
+        EnElAire = false;
+        // better grip on the floor
+        //xAcceleration = 1;
+    }
+    else{
+        EnElAire = true;
+        // lower grip in the air
+        //xAcceleration = 0.5;
+    }
 }
 
 void personaje::setVx(float valor)
@@ -49,12 +77,27 @@ void personaje::AumentarVelocidadIzquierda()
     }
 }
 
+void personaje::Saltar()
+{
+    if(EnElAire == false)
+    {
+        Vy = -900;
+        ActualizarMovimiento();
+    }
+}
+
 void personaje::BajarVelocidadX()
 {
     if(Vx > 0)
         Vx -= 1 * aceleracionX;
     if(Vx < 0)
         Vx += 1 * aceleracionX;
+}
+
+void personaje::setVy(float valor)
+{
+    Vy=valor;
+    ActualizarMovimiento();
 }
 
 float personaje::getVy()
@@ -72,6 +115,9 @@ bool personaje::getMoviendo_Izquierda()
     return Moviendo_Izquierda;
 }
 
+
+
+
 int personaje::getHeight()
 {
     return height;
@@ -80,4 +126,9 @@ int personaje::getHeight()
 int personaje::getWidth()
 {
     return width;
+}
+
+bool personaje::getEnElAire()
+{
+    return EnElAire;
 }
