@@ -8,7 +8,7 @@ personaje::personaje()
     width=40;
     height=40;
     Vx=0;
-    Vy=0;
+    Vy=1;
     maxVx=10;
     aceleracionX=0.5;
     Moviendo_Derecha=false;

@@ -73,8 +73,15 @@ private:
 
 
 
+
     personaje * player;
     personaje *getPlayer() const;
+
     QTimer * refreshTimer;
+
+
+
+    //colision
+    bool colision;
 };
 #endif // MAINWINDOW_H

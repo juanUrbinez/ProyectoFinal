@@ -44,6 +44,8 @@ public:
     bool getEnElAire();
 
 
+
+
 protected:
 
     bool Moviendo_Derecha;
