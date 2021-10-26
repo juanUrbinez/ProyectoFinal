@@ -19,8 +19,8 @@
      <rect>
       <x>40</x>
       <y>60</y>
-      <width>381</width>
-      <height>341</height>
+      <width>431</width>
+      <height>271</height>
      </rect>
     </property>
    </widget>
@@ -73,25 +73,12 @@
      </rect>
     </property>
    </widget>
-   <widget class="QPushButton" name="anterior">
-    <property name="geometry">
-     <rect>
-      <x>180</x>
-      <y>140</y>
-      <width>81</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Anterior</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="inicio">
     <property name="geometry">
      <rect>
-      <x>180</x>
-      <y>170</y>
-      <width>75</width>
+      <x>150</x>
+      <y>130</y>
+      <width>158</width>
       <height>23</height>
      </rect>
     </property>
@@ -102,9 +89,9 @@
    <widget class="QPushButton" name="partida">
     <property name="geometry">
      <rect>
-      <x>170</x>
-      <y>200</y>
-      <width>91</width>
+      <x>150</x>
+      <y>160</y>
+      <width>158</width>
       <height>23</height>
      </rect>
     </property>
@@ -112,17 +99,43 @@
      <string>NUEVA PARTIDA</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="anterior">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>190</y>
+      <width>158</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Anterior</string>
+    </property>
+   </widget>
    <widget class="QPushButton" name="salir">
     <property name="geometry">
      <rect>
-      <x>180</x>
-      <y>230</y>
-      <width>75</width>
+      <x>150</x>
+      <y>220</y>
+      <width>158</width>
       <height>23</height>
      </rect>
     </property>
     <property name="text">
      <string>SALIR</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="aceptar">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>270</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>ACEPTAR</string>
     </property>
    </widget>
   </widget>

@@ -31,10 +31,11 @@ public:
     QLCDNumber *lcdNumber;
     QLabel *label_2;
     QLCDNumber *monedas;
-    QPushButton *anterior;
     QPushButton *inicio;
     QPushButton *partida;
+    QPushButton *anterior;
     QPushButton *salir;
+    QPushButton *aceptar;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -47,7 +48,7 @@ public:
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         graphicsView = new QGraphicsView(centralwidget);
         graphicsView->setObjectName(QString::fromUtf8("graphicsView"));
-        graphicsView->setGeometry(QRect(40, 60, 381, 341));
+        graphicsView->setGeometry(QRect(40, 60, 431, 271));
         label = new QLabel(centralwidget);
         label->setObjectName(QString::fromUtf8("label"));
         label->setGeometry(QRect(76, 10, 71, 41));
@@ -61,18 +62,21 @@ public:
         monedas = new QLCDNumber(centralwidget);
         monedas->setObjectName(QString::fromUtf8("monedas"));
         monedas->setGeometry(QRect(300, 12, 81, 31));
-        anterior = new QPushButton(centralwidget);
-        anterior->setObjectName(QString::fromUtf8("anterior"));
-        anterior->setGeometry(QRect(180, 140, 81, 23));
         inicio = new QPushButton(centralwidget);
         inicio->setObjectName(QString::fromUtf8("inicio"));
-        inicio->setGeometry(QRect(180, 170, 75, 23));
+        inicio->setGeometry(QRect(150, 130, 158, 23));
         partida = new QPushButton(centralwidget);
         partida->setObjectName(QString::fromUtf8("partida"));
-        partida->setGeometry(QRect(170, 200, 91, 23));
+        partida->setGeometry(QRect(150, 160, 158, 23));
+        anterior = new QPushButton(centralwidget);
+        anterior->setObjectName(QString::fromUtf8("anterior"));
+        anterior->setGeometry(QRect(150, 190, 158, 23));
         salir = new QPushButton(centralwidget);
         salir->setObjectName(QString::fromUtf8("salir"));
-        salir->setGeometry(QRect(180, 230, 75, 23));
+        salir->setGeometry(QRect(150, 220, 158, 23));
+        aceptar = new QPushButton(centralwidget);
+        aceptar->setObjectName(QString::fromUtf8("aceptar"));
+        aceptar->setGeometry(QRect(190, 270, 75, 23));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
@@ -92,10 +96,11 @@ public:
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
         label->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:12pt;\">TIEMPO</span></p></body></html>", nullptr));
         label_2->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:12pt;\">MONEDAS</span></p></body></html>", nullptr));
-        anterior->setText(QCoreApplication::translate("MainWindow", "Anterior", nullptr));
         inicio->setText(QCoreApplication::translate("MainWindow", "INICIO", nullptr));
         partida->setText(QCoreApplication::translate("MainWindow", "NUEVA PARTIDA", nullptr));
+        anterior->setText(QCoreApplication::translate("MainWindow", "Anterior", nullptr));
         salir->setText(QCoreApplication::translate("MainWindow", "SALIR", nullptr));
+        aceptar->setText(QCoreApplication::translate("MainWindow", "ACEPTAR", nullptr));
     } // retranslateUi
 
 };

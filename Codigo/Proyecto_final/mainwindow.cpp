@@ -10,12 +10,15 @@ MainWindow::MainWindow(QWidget *parent)
     menu=new QGraphicsScene;
     scene = new QGraphicsScene;
     option = new QGraphicsScene;
+    //login = new QGraphicsScene;
 
    //setGeometry(0,0,1002,1002);
     ui->graphicsView->setGeometry(0,0,1900,1005);
     menu->setSceneRect(0,0,1898,1003);
-    menu->setBackgroundBrush(QImage(":/escenario/escenario/menu.png").scaled(1550,820));
+    menu->setBackgroundBrush(QImage(":/escenario/escenario/option.png").scaled(1550,820));
     ui->graphicsView->setScene(menu);
+    setWindowTitle("Poison Run");
+    setWindowIcon(QIcon(":/personaje/Personaje/icon.png"));
 
     time = new QTimer;
     connect(time,SIGNAL(timeout()),this,SLOT(Mov_per()));
@@ -34,6 +37,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->label_2->hide();
     ui->lcdNumber->hide();
     ui->monedas->hide();
+    ui->aceptar->hide();
+
 
    // ui->salir->setStyleSheet("font: 75 18pt ;color: rgb(80,170,58);");
     //QPalette::button(1);
@@ -53,7 +58,12 @@ MainWindow::~MainWindow()
     delete ui;
     delete time;
     delete tempo;
+    delete timfis;
     delete player;
+    delete scene;
+    delete option;
+    delete menu;
+    //delete login;
 }
 
 void MainWindow::set_window()
@@ -68,11 +78,12 @@ void MainWindow::set_window()
     setWindowIcon(QIcon(":/personaje/Personaje/icon.png"));
 
 
+    //generar_mapa();
     //ventana  nueva
    //now=new QMainWindow(this);
-    //scene2=new QGraphicsScene;
+    //login=new QGraphicsScene; ya
 
-   // news=new QGraphicsView(scene2,now);
+   // news=new QGraphicsView(login,now);
    // news->setGeometry(0,0,tam*20,tam*20);
 
     //ventana emergente
@@ -210,6 +221,7 @@ void MainWindow::Mov_per()
             player->sprite++;
             player->setX(player->x()+8);
             player->posicion(player->x(),player->y());
+            ui->graphicsView->focusWidget();
         }
         else if(tecla==Qt::Key_Space){
             player->cambio_imagen('j');
@@ -340,8 +352,10 @@ void MainWindow::on_inicio_clicked()
 
     ui->graphicsView->setGeometry(0,0,1900,1005);
     option->setSceneRect(0,0,1898,1003);
-    option->setBackgroundBrush(QImage(":/escenario/escenario/option.png").scaled(1550,820));
+    option->setBackgroundBrush(QImage(":/escenario/escenario/menu.png").scaled(1550,820));
     ui->graphicsView->setScene(option);
+    setWindowTitle("Poison Run");
+    setWindowIcon(QIcon(":/personaje/Personaje/icon.png"));
 }
 
 
@@ -355,13 +369,97 @@ void MainWindow::on_partida_clicked()
 {
     ui->anterior->hide();
     ui->partida->hide();
+    ui->aceptar->show();
+    ui->aceptar->setEnabled(false);
+   /* ui->label->show();
+    ui->label_2->show();
+    ui->lcdNumber->show();
+    ui->monedas->show();
+
+
+    ui->graphicsView->setScene(scene);
+
+    set_window();
+    generar_mapa();*/
+
+    registro *datos=new registro(0);
+    datos->show();
+ //on_aceptar_clicked();
+
+    if(datos->get_verif()){
+        ui->aceptar->setEnabled(true);
+    }
+
+    /*if(datos->correcto){
+        ui->label->show();
+        ui->label_2->show();
+        ui->lcdNumber->show();
+        ui->monedas->show();
+
+
+        ui->graphicsView->setScene(scene);
+
+        set_window();
+        //generar_mapa();
+    }*/
+   /* ui->label->show();
+    ui->label_2->show();
+    ui->lcdNumber->show();
+    ui->monedas->show();
+    ui->graphicsView->setScene(scene);*/
+   // ui->graphicsView->setScene(login);
+
+    //set_window();
+    //generar_mapa();
+
+    //ventana  nueva
+   //now=new QMainWindow(this);
+    //login=new QGraphicsScene; ya
+
+    //news=new QGraphicsView(login,now);
+    //news->setGeometry(0,0,tam*20,tam*20);
+
+    //ventana emergente
+    //now->setGeometry(600,600,500,500);
+    //now->show();
+
+
+
+}
+
+
+/*void MainWindow::on_cancelar_clicked()
+{
+    //close();
+    ui->graphicsView->setScene(option);
+    ui->partida->show();
+    ui->anterior->show();
+    ui->aceptar->hide();
+    ui->cancelar->hide();
+    ui->login->hide();
+    ui->password->hide();
+    ui->contrasena->hide();
+    ui->usuario->hide();
+
+    //ui->inicio->show();
+    //ui->salir->show();
+}
+*/
+
+void MainWindow::on_aceptar_clicked()
+{
     ui->label->show();
     ui->label_2->show();
     ui->lcdNumber->show();
     ui->monedas->show();
+
+
     ui->graphicsView->setScene(scene);
 
     set_window();
     generar_mapa();
 }
+
+
+
 

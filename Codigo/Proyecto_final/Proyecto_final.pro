@@ -12,15 +12,18 @@ SOURCES += \
     escenario.cpp \
     main.cpp \
     mainwindow.cpp \
-    personaje.cpp
+    personaje.cpp \
+    registro.cpp
 
 HEADERS += \
     escenario.h \
     mainwindow.h \
-    personaje.h
+    personaje.h \
+    registro.h
 
 FORMS += \
-    mainwindow.ui
+    mainwindow.ui \
+    registro.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
