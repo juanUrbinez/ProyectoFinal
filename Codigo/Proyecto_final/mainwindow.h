@@ -29,7 +29,7 @@ public:
     //void timeEvent(QTimerEvent);
 
 private slots:
-    void simulacion();
+   // void simulacion();
     void temporizador();
     void Mov_per();
 
@@ -48,7 +48,7 @@ private slots:
 private:
     void generar_mapa();
     void jugador();
-    void colision();
+    //void colision();
 
     short int nivel1[14][50]=
     {

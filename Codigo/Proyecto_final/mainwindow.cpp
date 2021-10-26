@@ -144,7 +144,7 @@ void MainWindow::jugador()
 
 }
 
-void MainWindow::colision()
+/*void MainWindow::colision()
 {
     //int X=player->x(),Y=player->y();
    //for (int f=0;f<14;f++){
@@ -164,12 +164,12 @@ void MainWindow::colision()
 
                     //nivel1[f][c]=0;
                     //plataforma.clear();
-                    //nivel1[(Y/tam)-2][(X-8)/tam]=0;
+                    //nivel1[(Y/tam)-2][(X-8)/tam]=0;*/
                     //nivel1[((Y+tam-1)/tam)-2][(X-8)/tam]=0;
                     /*if(nivel1[(Y/tam)-2][(X-8)/tam]==4 && nivel1[((Y+tam-1)/tam)-2][(X-8)/tam]==4){
                         nivel1[X][Y]=0;
                     }*/
-                }
+                /*}
                 else if( plataforma.at(i)->collidesWithItem(player) && plataforma.at(i)->getClase()=="orbe"){
                     ui->lcdNumber->display((ui->lcdNumber->intValue())+20);
                     scene->removeItem(plataforma.at(i));
@@ -179,7 +179,7 @@ void MainWindow::colision()
        //}
     //}
 
-}
+}*/
 
 bool MainWindow::colisiones(QGraphicsItem *item, QGraphicsItem *item2){
     QList<QGraphicsItem *> coll=scene->collidingItems(item);
@@ -223,7 +223,15 @@ void MainWindow::Mov_per()
             player->posicion(player->x(),player->y());
             ui->graphicsView->focusWidget();
         }
-        else if(tecla==Qt::Key_Space){
+        if(tecla==Qt::Key_S && nivel1[((Y+tam-1+8)/tam)-2][(X+tam-1)/tam]==0 && nivel1[((Y+tam-1+8)/tam)-2][X/tam]==0){
+            player->cambio_imagen('s');
+            player->setY(player->y()+8);
+        }
+        else if(tecla==Qt::Key_W && nivel1[((Y-8)/tam)-2][X/tam]==0 && nivel1[((Y-8)/tam)-2][(X+tam-1)/tam]==0){
+            player->cambio_imagen('w');
+            player->setY(player->y()-8);
+        }
+        /*else if(tecla==Qt::Key_Space){
             player->cambio_imagen('j');
             //timfis->start(player->Vel_mov);
            // player->salto();
@@ -234,8 +242,8 @@ void MainWindow::Mov_per()
            // Py=-player->y()-(0.5*g*T*T);
             //player->Vel_mov=g*T;
             //player->setY(Py);
-            simulacion();
-        }
+            //simulacion();
+        }*/
         tecla=0;
         time->start(player->Vel_mov);
 
@@ -294,7 +302,7 @@ void MainWindow::Mov_per()
 //}
 
 
-void MainWindow::simulacion()//no funciona
+/*void MainWindow::simulacion()//no funciona
 {
     float x,y;
    // player->setY(player->y()-3*tam);
@@ -308,7 +316,7 @@ void MainWindow::simulacion()//no funciona
         y = yo+vyo*sin(45)*(0.1*T)+0.5*g*(0.1*T)*(0.1*T);
        // T++;
     //y=yo+0.5*g*(0.1*T)*(0.01*T);
-    //x=xo;
+    //x=xo;*/
 
         /*if(y>player->y()-3*tam){
             vxo=-50;
@@ -317,12 +325,12 @@ void MainWindow::simulacion()//no funciona
         }*/
         //yo=player->y();
 
-        player->setPos(int(x),int(y));
+        /*player->setPos(int(x),int(y));
         //n++;
 
     timfis->stop();
 
-}
+}*/
 
 void MainWindow::on_anterior_clicked()
 {
@@ -452,7 +460,7 @@ void MainWindow::on_aceptar_clicked()
     ui->label_2->show();
     ui->lcdNumber->show();
     ui->monedas->show();
-
+    ui->aceptar->hide();
 
     ui->graphicsView->setScene(scene);
 

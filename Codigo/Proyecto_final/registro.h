@@ -22,7 +22,7 @@ class registro : public QWidget
 public:
     explicit registro(QWidget *parent = nullptr);
     ~registro();
-    bool correcto;
+    bool correcto=true;
     bool get_verif();
 
 private slots:
