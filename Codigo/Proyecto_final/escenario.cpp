@@ -2,7 +2,11 @@
 
 escenario::escenario()
 {
-width=40;
+    QPixmap blocSprite = QPixmap(":/escenario/escenario/muro1.png");
+    blocSprite = blocSprite.scaled(40,40);
+    setPixmap(blocSprite);
+    this->setShapeMode(QGraphicsPixmapItem::BoundingRectShape);
+    //width=40;
 }
 
 void escenario::set_scale(int a, int b)

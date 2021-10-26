@@ -11,10 +11,6 @@ class personaje :  public QObject, public QGraphicsPixmapItem
 public:
     personaje();
 
-
-
-
-
     void Mover_A_Derecha(bool flag);
     void Mover_A_Izquierda(bool flag);
 
@@ -22,9 +18,15 @@ public:
     void ActualizarMovimiento();
     void setVx(float valor);
     float getVx();
+
+
     void AumentarVelocidadDerecha();
     void AumentarVelocidadIzquierda();
+    void Saltar();
+
+
     void BajarVelocidadX();
+    void setVy(float valor);
     float getVy();
     void AumentarVelocidadenY();
 
@@ -32,14 +34,22 @@ public:
     bool getMoviendo_Derecha();
     bool getMoviendo_Izquierda();
 
-    bool Moviendo_Derecha;
-    bool Moviendo_Izquierda;
+
 
     int getHeight();
     int getWidth();
 
+    bool getVolando();
+    bool getSaltando();
+    bool getEnElAire();
+
+
+
+
 protected:
 
+    bool Moviendo_Derecha;
+    bool Moviendo_Izquierda;
     float Vx;
     float Vy;
     float aceleracionX;
@@ -47,6 +57,11 @@ protected:
 
     int height;
     int width;
+
+    bool cayendo;
+    bool saltando;
+
+    bool EnElAire;
 
 
 
