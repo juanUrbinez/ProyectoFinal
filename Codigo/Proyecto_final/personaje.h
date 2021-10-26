@@ -11,10 +11,6 @@ class personaje :  public QObject, public QGraphicsPixmapItem
 public:
     personaje();
 
-
-
-
-
     void Mover_A_Derecha(bool flag);
     void Mover_A_Izquierda(bool flag);
 

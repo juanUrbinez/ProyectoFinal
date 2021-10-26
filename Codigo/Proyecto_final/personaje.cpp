@@ -4,6 +4,7 @@ personaje::personaje()
 {
     per.load(":/Personaje/Personaje/Quieto.png");
     setPixmap(per.scaled(40,40));
+    this->setShapeMode(QGraphicsPixmapItem::BoundingRectShape);
     width=40;
     height=40;
     Vx=0;
