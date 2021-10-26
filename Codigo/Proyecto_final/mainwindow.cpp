@@ -148,19 +148,19 @@ void MainWindow::EvaluaColision()
             ////
             qDebug()<<"cArriba "<<getPlayer()->y()<<" "<<bloc_y;
             qDebug()<<"cAbajo "<<getPlayer()->y()<<" "<<bloc_y;
-            if( getPlayer()->y() - 40  <= bloc_y)
+            if( getPlayer()->y()<= bloc_y)
             {
                 cArriba = true;qDebug()<<"cArriba: "<<cArriba;
             }
 
-            if( getPlayer()->y() + 40 >= bloc_y)
+            if( getPlayer()->y() >= bloc_y)
                 cAbajo = true;qDebug()<<"cAbajo: "<<cAbajo;
 
-            if( getPlayer()->x() > bloc_x + 40 )
+            if( getPlayer()->x() > bloc_x )
             {
                 cDerecha = true;
             }
-            if( getPlayer()->x() + getPlayer()->getWidth() <= bloc_x)
+            if( getPlayer()->x()<= bloc_x)
             {
                 cIzquierda = true;
             }
@@ -189,12 +189,12 @@ void MainWindow::EvaluaColision()
 
             else if(cIzquierda)
             {
-                next_x = bloc_x - getPlayer()->getWidth()-1;
+                next_x = bloc_x - getPlayer()->getWidth();
                 getPlayer()->setVx(0);
             }
             else if(cDerecha)
             {
-                next_x = bloc_x + getPlayer()->getWidth()+1;
+                next_x = bloc_x + getPlayer()->getWidth();
                 getPlayer()->setVx(0);
                 //qDebug() <<"1" <<next_x;
 
