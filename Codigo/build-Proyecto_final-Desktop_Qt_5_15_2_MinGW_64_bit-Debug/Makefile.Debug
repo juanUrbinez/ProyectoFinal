@@ -262,18 +262,12 @@ debug/moc_mainwindow.cpp: ../Proyecto_final/mainwindow.h \
 		../../../../Qt/5.15.2/mingw81_64/include/QtWidgets/qgraphicsscene.h \
 		../../../../Qt/5.15.2/mingw81_64/include/QtGui/qpen.h \
 		../../../../Qt/5.15.2/mingw81_64/include/QtGui/QKeyEvent \
-		../../../../Qt/5.15.2/mingw81_64/include/QtCore/QList \
-		../../../../Qt/5.15.2/mingw81_64/include/QtCore/QTimer \
-		../../../../Qt/5.15.2/mingw81_64/include/QtCore/qtimer.h \
-		../../../../Qt/5.15.2/mingw81_64/include/QtCore/qbasictimer.h \
-		../../../../Qt/5.15.2/mingw81_64/include/QtCore/QDebug \
-		../../../../Qt/5.15.2/mingw81_64/include/QtWidgets/QGraphicsItem \
-		../../../../Qt/5.15.2/mingw81_64/include/QtWidgets/qgraphicsitem.h \
-		../../../../Qt/5.15.2/mingw81_64/include/QtGui/qpainterpath.h \
 		../Proyecto_final/escenario.h \
 		../../../../Qt/5.15.2/mingw81_64/include/QtGui/QPixmap \
 		../../../../Qt/5.15.2/mingw81_64/include/QtCore/QObject \
 		../../../../Qt/5.15.2/mingw81_64/include/QtWidgets/QGraphicsPixmapItem \
+		../../../../Qt/5.15.2/mingw81_64/include/QtWidgets/qgraphicsitem.h \
+		../../../../Qt/5.15.2/mingw81_64/include/QtGui/qpainterpath.h \
 		../Proyecto_final/personaje.h \
 		debug/moc_predefs.h \
 		../../../../Qt/5.15.2/mingw81_64/bin/moc.exe
@@ -630,18 +624,12 @@ debug/main.o: ../Proyecto_final/main.cpp ../Proyecto_final/mainwindow.h \
 		../../../../Qt/5.15.2/mingw81_64/include/QtWidgets/qgraphicsscene.h \
 		../../../../Qt/5.15.2/mingw81_64/include/QtGui/qpen.h \
 		../../../../Qt/5.15.2/mingw81_64/include/QtGui/QKeyEvent \
-		../../../../Qt/5.15.2/mingw81_64/include/QtCore/QList \
-		../../../../Qt/5.15.2/mingw81_64/include/QtCore/QTimer \
-		../../../../Qt/5.15.2/mingw81_64/include/QtCore/qtimer.h \
-		../../../../Qt/5.15.2/mingw81_64/include/QtCore/qbasictimer.h \
-		../../../../Qt/5.15.2/mingw81_64/include/QtCore/QDebug \
-		../../../../Qt/5.15.2/mingw81_64/include/QtWidgets/QGraphicsItem \
-		../../../../Qt/5.15.2/mingw81_64/include/QtWidgets/qgraphicsitem.h \
-		../../../../Qt/5.15.2/mingw81_64/include/QtGui/qpainterpath.h \
 		../Proyecto_final/escenario.h \
 		../../../../Qt/5.15.2/mingw81_64/include/QtGui/QPixmap \
 		../../../../Qt/5.15.2/mingw81_64/include/QtCore/QObject \
 		../../../../Qt/5.15.2/mingw81_64/include/QtWidgets/QGraphicsPixmapItem \
+		../../../../Qt/5.15.2/mingw81_64/include/QtWidgets/qgraphicsitem.h \
+		../../../../Qt/5.15.2/mingw81_64/include/QtGui/qpainterpath.h \
 		../Proyecto_final/personaje.h \
 		../../../../Qt/5.15.2/mingw81_64/include/QtWidgets/QApplication \
 		../../../../Qt/5.15.2/mingw81_64/include/QtWidgets/qapplication.h \
@@ -771,18 +759,12 @@ debug/mainwindow.o: ../Proyecto_final/mainwindow.cpp ../Proyecto_final/mainwindo
 		../../../../Qt/5.15.2/mingw81_64/include/QtWidgets/qgraphicsscene.h \
 		../../../../Qt/5.15.2/mingw81_64/include/QtGui/qpen.h \
 		../../../../Qt/5.15.2/mingw81_64/include/QtGui/QKeyEvent \
-		../../../../Qt/5.15.2/mingw81_64/include/QtCore/QList \
-		../../../../Qt/5.15.2/mingw81_64/include/QtCore/QTimer \
-		../../../../Qt/5.15.2/mingw81_64/include/QtCore/qtimer.h \
-		../../../../Qt/5.15.2/mingw81_64/include/QtCore/qbasictimer.h \
-		../../../../Qt/5.15.2/mingw81_64/include/QtCore/QDebug \
-		../../../../Qt/5.15.2/mingw81_64/include/QtWidgets/QGraphicsItem \
-		../../../../Qt/5.15.2/mingw81_64/include/QtWidgets/qgraphicsitem.h \
-		../../../../Qt/5.15.2/mingw81_64/include/QtGui/qpainterpath.h \
 		../Proyecto_final/escenario.h \
 		../../../../Qt/5.15.2/mingw81_64/include/QtGui/QPixmap \
 		../../../../Qt/5.15.2/mingw81_64/include/QtCore/QObject \
 		../../../../Qt/5.15.2/mingw81_64/include/QtWidgets/QGraphicsPixmapItem \
+		../../../../Qt/5.15.2/mingw81_64/include/QtWidgets/qgraphicsitem.h \
+		../../../../Qt/5.15.2/mingw81_64/include/QtGui/qpainterpath.h \
 		../Proyecto_final/personaje.h \
 		ui_mainwindow.h \
 		../../../../Qt/5.15.2/mingw81_64/include/QtCore/QVariant \
