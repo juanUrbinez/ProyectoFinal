@@ -2,76 +2,72 @@
 #define PERSONAJE_H
 
 #include <QGraphicsPixmapItem>
-#include <QMainWindow>
+#include <QPixmap>
 #include <QObject>
+#include <QTimer>
+#include <math.h>
+#include <QPainter>
 
-class personaje :  public QObject, public QGraphicsPixmapItem
+//#define peso 40
+
+class personaje : public QObject, public QGraphicsPixmapItem
 {
-    Q_OBJECT
 public:
-    personaje();
-
-    void Mover_A_Derecha(bool flag);
-    void Mover_A_Izquierda(bool flag);
-
-
-    void ActualizarMovimiento();
-    void setVx(float valor);
-    float getVx();
-
-
-    void AumentarVelocidadDerecha();
-    void AumentarVelocidadIzquierda();
-    void Saltar();
-
-
-    void BajarVelocidadX();
-    void setVy(float valor);
-    float getVy();
-    void AumentarVelocidadenY();
-
-
-    bool getMoviendo_Derecha();
-    bool getMoviendo_Izquierda();
-
-
-
-    int getHeight();
-    int getWidth();
-
-    bool getVolando();
-    bool getSaltando();
-    bool getEnElAire();
-
-
-
-
-protected:
-
-    bool Moviendo_Derecha;
-    bool Moviendo_Izquierda;
-    float Vx;
-    float Vy;
-    float aceleracionX;
-    int maxVx;
-
-    int height;
-    int width;
-
-    bool cayendo;
-    bool saltando;
-
-    bool EnElAire;
-
-
+    unsigned int Vel_mov=50;
+    int sprite=0,monedas=0;
+    bool live=true;
+    personaje(int x, int y);
+    void cambio_imagen(short a);
+   // QRectF boundingRect() const;
+    //void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+    //void salto(int width,int heigth);
+    //int get_h();
+    ~personaje();
+    int get_Px();
+    int get_Py();
+    int get_Vx();
+    int get_Vy();
+    void posicion(int a,int b);
+    //void MRU(int x,int v);
+    //void lan_very(int h,int vy);
 
 private:
-    QPixmap per;
+    int peso=40;
+    QPixmap per,cam,img;
+    int scaleperx=peso,scalepery=peso;
+    //int w,h;
+    //int H;
+    double angulo, pi=3.1416;
+    QTimer *timesalto,*timecaida;
+    int v_caida,Px,Py,Pb,Vx,Vy;
+    float g=10,t=0.1,vel;
+    float Ax,Ay,A;
+    bool caida,Pbase;
+
+//public slots:
+    //para que el jugador salte y caiga
+    //void fricion();  no
+    //void salto();
+    //void caida_libre();
 
 
+    //mov parabolico
+/*public:
+    void pelota(int width, int heigth);
+    int get_h();
 
-signals:
+private:
+    int w,h;*/
 
+    //laznzamiento vertical hacia arriba
+   /* y=H+v0*t−0.5*g*t*t
+    v=v0−g⋅t
+    a=−g*/
+
+    //caida libre
+   /* y=H−0.5*t*t
+    v=−g*t
+    a=−g*/
 };
 
 #endif // PERSONAJE_H

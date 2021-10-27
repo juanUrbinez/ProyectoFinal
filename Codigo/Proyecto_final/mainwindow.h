@@ -1,23 +1,15 @@
-﻿#ifndef MAINWINDOW_H
+#ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include <QJsonArray>
 #include <QMainWindow>
 #include <QGraphicsScene>
-#include <iostream>
-#include "fstream"
-#include <string>
 #include <QKeyEvent>
-#include <QList>
 #include <QTimer>
-#include <QDebug>
-#include <QGraphicsItem>
-
-
-using namespace std;
 
 #include "escenario.h"
 #include "personaje.h"
+#include "registro.h"
+#include "niveles.h"
 
 #define tam 40
 
@@ -33,16 +25,37 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     void set_window();
+    void keyPressEvent(QKeyEvent *i);
+    bool colisiones(QGraphicsItem *item, QGraphicsItem *item2);
+    //void timeEvent(QTimerEvent);
 
-private  slots:
-    void ActualizarPosicionPersonaje();
+private slots:
+   // void simulacion();
+    void temporizador();
+    void Mov_per();
+
+    void on_anterior_clicked();
+
+    //void on_siguiente_clicked();
+
+    void on_inicio_clicked();
+
+    void on_salir_clicked();
+
+    void on_partida_clicked();
+
+    void on_aceptar_clicked();
+
+    void on_nivel_clicked();
 
 private:
     void generar_mapa();
-    string mapa1="../Proyecto_final/Mapa/mapa1.txt";
+    void jugador();
+    //void colision();
+
     short int nivel1[14][50]=
     {
-        {1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+        {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
         {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
         {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
         {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,2,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
@@ -50,38 +63,36 @@ private:
         {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,4,0,0,0,0,0,0,0,0,0,0,0,1},
         {1,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,2,2,2,2,0,0,0,0,0,0,0,0,0,0,1},
         {1,0,0,0,0,0,0,0,0,0,0,0,2,2,2,2,0,0,0,0,0,0,2,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-        {1,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-        {1,0,0,0,0,0,0,0,4,4,2,0,0,0,0,0,0,4,4,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,2,2,2,2,0,0,0,0,0,0,1},
+        {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+        {1,0,0,0,0,0,0,0,4,4,0,0,0,0,0,0,0,4,4,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,2,2,2,2,0,0,0,0,0,0,1},
         {1,0,0,0,0,0,0,2,2,2,2,0,0,0,0,0,2,2,2,2,0,0,0,0,0,0,0,0,0,0,2,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
         {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-        {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,5,5,5,5,5,5,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6,6,1},
+        {1,0,0,0,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,5,5,5,5,5,5,5,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6,1},
         {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,5,5,5,5,5,5,5,5,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
     };
-    //presionar tecla
-    void keyPressEvent(QKeyEvent * event) override;
-    //soltar tecla
-    void keyReleaseEvent(QKeyEvent *event) override;
-
-    void EvaluaColision();
 
 
     Ui::MainWindow *ui;
-    QGraphicsScene *scene;
-    escenario *plataforma;
+    QGraphicsScene *scene, *menu,*option;//,*login;
+    //QGraphicsScene *scene, *scene2;
+    //QMainWindow *now;
+//    QGraphicsView *news;
 
-    QList<escenario*>plataformas;
+    QList<escenario *>plataforma;
+    personaje *player;
 
+    int tecla;
+    //int w_limite;
+    QTimer *time,*tempo,*timfis;
+    int T=10;
+    float vxo,vyo,Py,g=9.8;
+    float x,y;
+    unsigned long long n=0;
 
-
-
-    personaje * player;
-    personaje *getPlayer() const;
-
-    QTimer * refreshTimer;
-
-
-
-    //colision
-    bool colision;
+    //mov parabolico
+    /*QTimer *time;
+    float xo,yo,vxo,vyo,g;
+    int T=50, h;
+    unsigned long long n=0;*/
 };
 #endif // MAINWINDOW_H
