@@ -20,6 +20,8 @@ QRectF disparo::boundingRect() const
 void disparo::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     painter->drawPixmap(-ancho/2,-alto/2,*pixmap,columnas,filas,ancho,alto);
+    Q_UNUSED(option);
+    Q_UNUSED(widget);
 }
 
 void disparo::disparar()

@@ -27,7 +27,10 @@ niveles::niveles(QWidget *parent) :
     connect(mov1,SIGNAL(timeout()),this,SLOT(Movim_per2()));
     mov2=new QTimer;
     connect(mov2,SIGNAL(timeout()),this,SLOT(Movim_per3()));
-    //act=new QTimer;
+    act=new QTimer;
+    connect(act,SIGNAL(timeout()),this,SLOT(actualizar()));
+    act->start(7);
+
 
     set_widow();
     generar_nivel2();
@@ -316,50 +319,56 @@ void niveles::on_siguiente_clicked()
     scena->removeItem(jugador);
 }
 
-//void niveles::actualizar()
-//{//disparo    ->mago=platafor->torreta
-    /*for(int i=0;i<platafor.size();i++){
-        estado = 500 / dificultad;
-        shoot.push_back(new disparo);
-        shoot.back()->posx = magos[m]->posx;
-        shoot.back()->posy = magos[m]->posy;
-        shoot.back()->setPos(shoot.back()->posx,shoot.back()->posy);
-        scena->addItem(shoot.back());
-        est_mago = 800; //tiempo_disparo_del_mago
+void niveles::actualizar() //dismag->shoot
+{//disparo    ->mago=platafor->torreta
+    //float torre;
+   // if ( estado != 0){estado -= 1;}
+    if(est_dis!=0){est_dis-=1;}
+
+    for(int i=0;i<platafor.size();i++){
+        //estado = 500 / dificultad;
+        if(platafor.at(i)->getClase()=="torreta"){
+            shoot.push_back(new disparo);
+            shoot.back()->posx=4*tam;
+            shoot.back()->posy=8*tam;
+            shoot.back()->setPos(shoot.back()->posx,shoot.back()->posy);
+            scena->addItem(shoot.back());
+            est_dis = 800; //tiempo_disparo_del_mago
+        }
     }
 
-    for(int e=0; e<dismag.size(); e++){ // disparos del mago
+    for(int e=0; e<shoot.size(); e++){ // disparos del mago
     //b->elemnto.>todas las ecuaciones->colisiones
-            if(b->getPX()<dismag[e]->posx){
-                dismag[e]->posx -= 0.6 * dificultad;
-                dismag[e]->setPos(dismag[e]->posx,dismag[e]->posy);
+            if(jugador->get_Px()<shoot[e]->posx){
+                shoot[e]->posx -= 0.4 * dificultad;
+                shoot[e]->setPos(shoot[e]->posx,shoot[e]->posy);
             }
-            else if(b->getPX() > dismag[e]->posx){
-                dismag[e]->posx += 0.6 * dificultad;
-                dismag[e]->setPos(dismag[e]->posx,dismag[e]->posy);
+            else if(jugador->get_Px() > shoot[e]->posx){
+                shoot[e]->posx += 0.4 * dificultad;
+                shoot[e]->setPos(shoot[e]->posx,shoot[e]->posy);
             }
-            if(720 - b->getPY() < dismag[e]->posy){
-                dismag[e]->posy -= 0.6 * dificultad;
-                dismag[e]->setPos(dismag[e]->posx,dismag[e]->posy);
-            }
-
-            else if (720 - b->getPY() > dismag[e]->posy){
-                dismag[e]->posy += 0.6 * dificultad;
-                dismag[e]->setPos(dismag[e]->posx,dismag[e]->posy);
+            if(642 + jugador->get_Py() < shoot[e]->posy){
+                shoot[e]->posy -= 0.4 * dificultad;
+                shoot[e]->setPos(shoot[e]->posx,shoot[e]->posy);
             }
 
-            if (dismag[e]->collidesWithItem(jug)){
-                vida_one -= 6;
-                ui->vida->setText(QString::number(vida_one));
-                scene->removeItem(dismag[e]);
-                dismag.removeAt(e);
+            else if (642 + jugador->get_Py() > shoot[e]->posy){
+                shoot[e]->posy += 0.4 * dificultad;
+                shoot[e]->setPos(shoot[e]->posx,shoot[e]->posy);
             }
-            else if (est_mago <= 0){
-                scene->removeItem(dismag[0]);
-                dismag.removeAt(0);
-            }
-        }*/
 
-//}
+            if (shoot[e]->collidesWithItem(jugador)){
+                scena->removeItem(jugador);
+                scena->removeItem(shoot[e]);
+                shoot.removeAt(e);
+                generar_nivel2();
+            }
+            else if (est_dis <= 0){
+                scena->removeItem(shoot[e]);
+                shoot.removeAt(e);
+            }
+        }
+
+}
 
 

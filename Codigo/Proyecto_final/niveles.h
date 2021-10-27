@@ -8,7 +8,7 @@
 
 #include"escenario.h"
 #include "personaje.h"
-//#include "disparo.h"
+#include "disparo.h"
 
 #define tam 40
 
@@ -29,7 +29,7 @@ public:
     void set_widow();
     void set_widow2();
 
-    int estado=0,est_mago=0;
+    int estado=0,est_dis=0;
     float dificultad=1;
 
 private slots:
@@ -42,7 +42,7 @@ private slots:
     void on_anterior_clicked();
 
     void on_siguiente_clicked();
-    //void actualizar();
+    void actualizar();
 
 private:
     void play();
@@ -52,10 +52,10 @@ private:
     Ui::niveles *ui;
     QGraphicsScene *scena,*segundo;
     QList<escenario *>platafor;
-    QTimer *timer,*time,*mov1,*mov2;//,*act;
+    QTimer *timer,*time,*mov1,*mov2,*act;
     personaje *jugador,*jug;
     int press;
-    //QList<disparo *> shoot;//dismag
+    QList<disparo *> shoot;//dismag
 
 
          short int nivel2[14][50]=
