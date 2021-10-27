@@ -128,6 +128,9 @@ compiler_rcc_clean:
 	-$(DEL_FILE) debug\qrc_recursos.cpp
 debug/qrc_recursos.cpp: ../Proyecto_final/recursos.qrc \
 		D:/QT/6.1.0/mingw81_64/bin/rcc.exe \
+		../Proyecto_final/Personaje/corriendoizq.png \
+		../Proyecto_final/Personaje/corriendo.png \
+		../Proyecto_final/Personaje/Quieto.png \
 		../Proyecto_final/escenario/puerta.png \
 		../Proyecto_final/escenario/muro1.png \
 		../Proyecto_final/escenario/escenario.png \
@@ -314,6 +317,8 @@ debug/moc_mainwindow.cpp: ../Proyecto_final/mainwindow.h \
 		D:/QT/6.1.0/mingw81_64/include/QtWidgets/qdialog.h \
 		D:/QT/6.1.0/mingw81_64/include/QtCore/QTextStream \
 		../Proyecto_final/niveles.h \
+		../Proyecto_final/disparo.h \
+		D:/QT/6.1.0/mingw81_64/include/QtWidgets/QGraphicsItem \
 		debug/moc_predefs.h \
 		D:/QT/6.1.0/mingw81_64/bin/moc.exe
 	D:\QT\6.1.0\mingw81_64\bin\moc.exe $(DEFINES) --include "D:/UNIVERSIDAD DE ANTIOQUIA/SEMESTRE 2021-1/INFORMATICA II/repositorio_Proyecto Final/ProyectoFinal/Codigo/build-Proyecto_final-Desktop_Qt_6_1_0_MinGW_64_bit-Debug/debug/moc_predefs.h" -ID:/QT/6.1.0/mingw81_64/mkspecs/win32-g++ -I"D:/UNIVERSIDAD DE ANTIOQUIA/SEMESTRE 2021-1/INFORMATICA II/repositorio_Proyecto Final/ProyectoFinal/Codigo/Proyecto_final" -ID:/QT/6.1.0/mingw81_64/include -ID:/QT/6.1.0/mingw81_64/include/QtWidgets -ID:/QT/6.1.0/mingw81_64/include/QtGui -ID:/QT/6.1.0/mingw81_64/include/QtCore -I. -ID:/QT/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++ -ID:/QT/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32 -ID:/QT/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward -ID:/QT/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include -ID:/QT/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed -ID:/QT/Tools/mingw810_64/x86_64-w64-mingw32/include ..\Proyecto_final\mainwindow.h -o debug\moc_mainwindow.cpp
@@ -461,6 +466,8 @@ debug/moc_niveles.cpp: ../Proyecto_final/niveles.h \
 		D:/QT/6.1.0/mingw81_64/include/QtGui/qpainter.h \
 		D:/QT/6.1.0/mingw81_64/include/QtGui/qtextoption.h \
 		../Proyecto_final/personaje.h \
+		../Proyecto_final/disparo.h \
+		D:/QT/6.1.0/mingw81_64/include/QtWidgets/QGraphicsItem \
 		debug/moc_predefs.h \
 		D:/QT/6.1.0/mingw81_64/bin/moc.exe
 	D:\QT\6.1.0\mingw81_64\bin\moc.exe $(DEFINES) --include "D:/UNIVERSIDAD DE ANTIOQUIA/SEMESTRE 2021-1/INFORMATICA II/repositorio_Proyecto Final/ProyectoFinal/Codigo/build-Proyecto_final-Desktop_Qt_6_1_0_MinGW_64_bit-Debug/debug/moc_predefs.h" -ID:/QT/6.1.0/mingw81_64/mkspecs/win32-g++ -I"D:/UNIVERSIDAD DE ANTIOQUIA/SEMESTRE 2021-1/INFORMATICA II/repositorio_Proyecto Final/ProyectoFinal/Codigo/Proyecto_final" -ID:/QT/6.1.0/mingw81_64/include -ID:/QT/6.1.0/mingw81_64/include/QtWidgets -ID:/QT/6.1.0/mingw81_64/include/QtGui -ID:/QT/6.1.0/mingw81_64/include/QtCore -I. -ID:/QT/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++ -ID:/QT/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32 -ID:/QT/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward -ID:/QT/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include -ID:/QT/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed -ID:/QT/Tools/mingw810_64/x86_64-w64-mingw32/include ..\Proyecto_final\niveles.h -o debug\moc_niveles.cpp
@@ -1030,6 +1037,8 @@ debug/main.o: ../Proyecto_final/main.cpp ../Proyecto_final/mainwindow.h \
 		D:/QT/6.1.0/mingw81_64/include/QtWidgets/qdialog.h \
 		D:/QT/6.1.0/mingw81_64/include/QtCore/QTextStream \
 		../Proyecto_final/niveles.h \
+		../Proyecto_final/disparo.h \
+		D:/QT/6.1.0/mingw81_64/include/QtWidgets/QGraphicsItem \
 		D:/QT/6.1.0/mingw81_64/include/QtWidgets/QApplication \
 		D:/QT/6.1.0/mingw81_64/include/QtWidgets/qapplication.h \
 		D:/QT/6.1.0/mingw81_64/include/QtCore/qcoreapplication.h \
@@ -1196,6 +1205,8 @@ debug/mainwindow.o: ../Proyecto_final/mainwindow.cpp ../Proyecto_final/mainwindo
 		D:/QT/6.1.0/mingw81_64/include/QtWidgets/qdialog.h \
 		D:/QT/6.1.0/mingw81_64/include/QtCore/QTextStream \
 		../Proyecto_final/niveles.h \
+		../Proyecto_final/disparo.h \
+		D:/QT/6.1.0/mingw81_64/include/QtWidgets/QGraphicsItem \
 		ui_mainwindow.h \
 		D:/QT/6.1.0/mingw81_64/include/QtCore/QVariant \
 		D:/QT/6.1.0/mingw81_64/include/QtWidgets/QApplication \
@@ -1370,6 +1381,8 @@ debug/niveles.o: ../Proyecto_final/niveles.cpp ../Proyecto_final/niveles.h \
 		D:/QT/6.1.0/mingw81_64/include/QtGui/qpainter.h \
 		D:/QT/6.1.0/mingw81_64/include/QtGui/qtextoption.h \
 		../Proyecto_final/personaje.h \
+		../Proyecto_final/disparo.h \
+		D:/QT/6.1.0/mingw81_64/include/QtWidgets/QGraphicsItem \
 		ui_niveles.h \
 		D:/QT/6.1.0/mingw81_64/include/QtCore/QVariant \
 		D:/QT/6.1.0/mingw81_64/include/QtWidgets/QApplication \
