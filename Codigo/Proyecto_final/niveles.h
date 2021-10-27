@@ -33,8 +33,8 @@ public:
     float dificultad=1;
 
 private slots:
-    void Movim_per2();
-    void Movim_per3();
+//    void Movim_per2();
+//    void Movim_per3();
 
     void temporizador();
     void tempor();

@@ -28,6 +28,8 @@ MainWindow::MainWindow(QWidget *parent)
     //connect(timfis,SIGNAL(timeout()),this,SLOT(simulacion()));
 
 
+
+
     ui->inicio->setGeometry(600,200,100,40);
     ui->salir->setGeometry(600,300,100,40);
    // ui->newpartida->hide();
@@ -96,18 +98,20 @@ void MainWindow::set_window()
 
 void MainWindow::generar_mapa()
 {
-
-    jugador();
+    player = new personaje();
+    player->setPos(tam+40,13*tam);
+    scene->addItem(player);
 
     for(int i=0;i<14;i++){
         for(int j=0;j<50;j++){
             if(nivel1[i][j]==1){
-                plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"muro"));
-                scene->addItem(plataforma.last());
+                plataformas.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"muro"));
+                scene->addItem(plataformas.last());
+
             }
             else if(nivel1[i][j]==2){
-                plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"plataforma"));
-                scene->addItem(plataforma.last());
+                plataformas.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"plataforma"));
+                scene->addItem(plataformas.last());
             }
             else if(nivel1[i][j]==3){
                 plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"orbe"));
@@ -124,72 +128,13 @@ void MainWindow::generar_mapa()
         }        
     }
 
-    time->start(player->Vel_mov);
     tempo->start(1000);
     ui->lcdNumber->display(30);
 
 }
 
-void MainWindow::keyPressEvent(QKeyEvent *i)
-{
-    tecla=i->key();
-}
 
-void MainWindow::jugador()
-{
-    player=new personaje(tam,14*tam);
-   // player->setPos(tam,14*tam);
-    scene->addItem(player);
-    //if(ui->lcdNumber->intValue()==0) scene->removeItem(player);
-     //player->focusItem();
 
-}
-
-/*void MainWindow::colision()
-{
-    //int X=player->x(),Y=player->y();
-   //for (int f=0;f<14;f++){
-        //for (int c=0;c<50;c++){
-
-            for(int i=0;i<plataforma.size();i++){
-
-                //scene->items().count(plataforma.at(i));
-                //if(colisiones(scene->items().count(plataforma.at(i)->getClase()=="moneda"),player)){
-
-                if(plataforma.at(i)->getClase()=="moneda" && plataforma.at(i)->collidesWithItem(player)){
-
-                //if(plataforma.at(i)->getClase()=="moneda" && player->collidesWithItem(plataforma.at(i))){
-                    player->monedas+=100;
-                    scene->removeItem(plataforma.at(i));
-                    plataforma.removeAt(i);
-
-                    //nivel1[f][c]=0;
-                    //plataforma.clear();
-                    //nivel1[(Y/tam)-2][(X-8)/tam]=0;*/
-                    //nivel1[((Y+tam-1)/tam)-2][(X-8)/tam]=0;
-                    /*if(nivel1[(Y/tam)-2][(X-8)/tam]==4 && nivel1[((Y+tam-1)/tam)-2][(X-8)/tam]==4){
-                        nivel1[X][Y]=0;
-                    }*/
-                /*}
-                else if( plataforma.at(i)->collidesWithItem(player) && plataforma.at(i)->getClase()=="orbe"){
-                    ui->lcdNumber->display((ui->lcdNumber->intValue())+20);
-                    scene->removeItem(plataforma.at(i));
-                }
-            }
-
-       //}
-    //}
-
-}*/
-
-bool MainWindow::colisiones(QGraphicsItem *item, QGraphicsItem *item2){
-    QList<QGraphicsItem *> coll=scene->collidingItems(item);
-    if(coll.count(item2)>0){
-        return true;
-    }
-    else return false;
-
-}
 
 void MainWindow::temporizador()
 {//se puede modificar cuando se tenga las escenas de muerte del personaje
@@ -204,134 +149,154 @@ void MainWindow::temporizador()
     }
 }
 
-void MainWindow::Mov_per()
+void MainWindow::keyPressEvent(QKeyEvent *event)
 {
-    int X=player->x(),Y=player->y();
-    int monedas=player->monedas;
-    ui->monedas->display(monedas);
-    if(player->live){
+    if (event->key() == Qt::Key_A)
+    {
+        //if(!EvaluaColision())
+        getPlayer()->Mover_A_Izquierda(true);
 
-        if(tecla==Qt::Key_A && nivel1[(Y/tam)-2][(X-8)/tam]==0 && nivel1[((Y+tam-1)/tam)-2][(X-8)/tam]==0){
-            player->cambio_imagen('a');
-            player->sprite++;
-            player->setX(player->x()-8);
-            player->posicion(player->x(),player->y());
+    }
+    else if (event->key() == Qt::Key_D)
+    {
+        //if(!EvaluaColision())
+        getPlayer()->Mover_A_Derecha(true);
+    }
+    else if (event->key() == Qt::Key_W)
+    {
+        if(!getPlayer()->getEnElAire())
+        {
+        getPlayer()->Saltar();
+        qDebug()<<"enttro";
         }
-        else if(tecla==Qt::Key_D && nivel1[(Y/tam)-2][(X+tam-1+8)/tam]==0 && nivel1[((Y+tam-1)/tam)-2][(X+tam-1+8)/tam]==0){
-            player->cambio_imagen('d');
-            player->sprite++;
-            player->setX(player->x()+8);
-            player->posicion(player->x(),player->y());
-            ui->graphicsView->focusWidget();
-        }
-        if(tecla==Qt::Key_S && nivel1[((Y+tam-1+8)/tam)-2][(X+tam-1)/tam]==0 && nivel1[((Y+tam-1+8)/tam)-2][X/tam]==0){
-            player->cambio_imagen('s');
-            player->setY(player->y()+8);
-        }
-        else if(tecla==Qt::Key_W && nivel1[((Y-8)/tam)-2][X/tam]==0 && nivel1[((Y-8)/tam)-2][(X+tam-1)/tam]==0){
-            player->cambio_imagen('w');
-            player->setY(player->y()-8);
-        }
-        /*else if(tecla==Qt::Key_Space){
-            player->cambio_imagen('j');
-            //timfis->start(player->Vel_mov);
-           // player->salto();
-           //player->MRU(player->x(),player->Vel_mov);
-            //player->lan_very(player->y()+12*tam,player->Vel_mov);
-            //player->caida_libre(player->y());
-           // player->setY(player->y()-3*tam);
-           // Py=-player->y()-(0.5*g*T*T);
-            //player->Vel_mov=g*T;
-            //player->setY(Py);
-            //simulacion();
-        }*/
-        tecla=0;
-        time->start(player->Vel_mov);
+    }
 
-        /*if(player->get_Py()+22>(w_limit+2002)/2 && player->get_Px()<4000){
-            w_limit+=2002/2;
-            player->posicion(player->x()+60,player->y());
-            scene->setSceneRect(w_limit,0,tam*50+2,tam*(14+2)+2);
-        }
-        else if(player->get_Px()-22<w_limit && player->get_Px()>200){
-           w_limit-=2002/2;
-           player->posicion(player->x()-60,player->y());
-           scene->setSceneRect(w_limit,0,tam*50+2,tam*(14+2)+2);
-        }*/
+}
 
+void MainWindow::keyReleaseEvent(QKeyEvent *event)
+{
+    if (event->key() == Qt::Key_A){
+        getPlayer()->Mover_A_Izquierda(false);
+    }
+    else if (event->key() == Qt::Key_D){
+        getPlayer()->Mover_A_Derecha(false);
     }
 }
 
-/*void MainWindow::timeEvent(QTimerEvent i)
-{
-    if(Qt::Key_J){
-        player->cambio_imagen('j');
-        player->salto();
-    }
-}*/
 
-//void MainWindow::simulacion()
-//{
-    /*bool saltando=true;
-    int prog_salto=0;
-    int dur_salto=1000;
-    int X=player->x(),Y=player->y();//no me sirven para la posicion en salto()
-    if(tecla==Qt::Key_M){
-        if(saltando){
-            prog_salto+=100;
-            if(prog_salto>dur_salto){
-                prog_salto=dur_salto;
+void MainWindow::EvaluaColision()
+{
+
+    getPlayer()->ActualizarMovimiento();
+
+    int next_x = getPlayer()->x();
+    int next_y = getPlayer()->y();
+
+    colision=false;
+
+    escenario *BloqueColision;
+
+    QList<escenario*>plataformasColicion;
+
+    QList<escenario*>::Iterator it;
+    for (it=plataformas.begin();it!=plataformas.end() ;it++ )
+    {
+        if ((*it)->collidesWithItem(player))
+        {
+            plataformasColicion.append(*it);
+            colision=true;
+
+        }
+    }
+
+    if (colision)
+    {
+
+        for(int i = 0 ; i < plataformasColicion.count() ; i ++)
+        {
+            BloqueColision=plataformasColicion[i];
+
+            int bloc_x = BloqueColision->x();
+            int bloc_y = BloqueColision->y();
+
+            //qDebug()<<bloc_y;
+
+            bool cArriba = false;
+            bool cAbajo = false;
+            bool cDerecha = false;
+            bool cIzquierda = false;
+
+            ////
+            qDebug()<<"cArriba "<<getPlayer()->y()<<" "<<bloc_y;
+            qDebug()<<"cAbajo "<<getPlayer()->y()<<" "<<bloc_y;
+            if( getPlayer()->y()<= bloc_y)
+            {
+                cArriba = true;qDebug()<<"cArriba: "<<cArriba;
+            }
+
+            if( getPlayer()->y() >= bloc_y)
+                cAbajo = true;qDebug()<<"cAbajo: "<<cAbajo;
+
+            if( getPlayer()->x() > bloc_x )
+            {
+                cDerecha = true;qDebug()<<"cDerecha: "<<cDerecha;
+            }
+            if( getPlayer()->x()<= bloc_x)
+            {
+                cIzquierda = true;qDebug()<<"cIzquierda: "<<cIzquierda;
+            }
+
+
+            ////
+            //qDebug()<<"izquierda: " << cIzquierda;
+            //qDebug()<<"derecha: " << cDerecha;
+
+            //qDebug()<<"arriba: " << cArriba;
+
+
+            if(cArriba && !cAbajo)
+            {
+                next_y = bloc_y - 40;
+                getPlayer()->setVy(0);
+
+            }
+
+            else if (cAbajo && getPlayer()->getEnElAire())
+            {
+
+                next_y = bloc_y + 40 ;
+                qDebug()<<"2- "<<next_y<<" "<<bloc_y;
+                getPlayer()->setVy(  - getPlayer()->getVy() );
+
+            }
+
+            else if(cIzquierda)
+            {
+                next_x = bloc_x - getPlayer()->getWidth();
+                getPlayer()->setVx(0);
+            }
+            else if(cDerecha)
+            {
+                next_x = bloc_x + getPlayer()->getWidth();
+                getPlayer()->setVx(0);
+                //qDebug() <<"1" <<next_x;
+
+
             }
         }
-        //player->salto(X,Y);
+        qDebug()<<plataformasColicion.count();
+        //qDebug()<<next_x;
+        getPlayer()->setPos(next_x,next_y);
+        plataformasColicion.pop_back();
 
-        x = X+vxo*n*(0.001*T);
-        y = Y+vyo*n*(0.001*T)-0.5*g*n*(0.001*T)*n*(0.001*T);
-
-        player->setPos(int(x),int(ui->graphicsView->height()-y-player->get_h()));//invierte eje y
-        n++;
-
-        if(prog_salto==dur_salto){
-            prog_salto=0;
-            saltando=false;
-        }
-       // time->start(player->Vel_mov);
     }
-    time->stop();
-    //tecla=0;
-    //time->start(player->Vel_mov);*/
-//}
 
 
-/*void MainWindow::simulacion()//no funciona
-{
-    float x,y;
-   // player->setY(player->y()-3*tam);
-    int xo=player->x(),yo=player->y() ;
-    vxo=50;
-    vyo=-50;
+
+}
 
 
-        x = xo+vxo*cos(45)*(0.1*T);
-    //x=xo+vxo*(0.01*T);
-        y = yo+vyo*sin(45)*(0.1*T)+0.5*g*(0.1*T)*(0.1*T);
-       // T++;
-    //y=yo+0.5*g*(0.1*T)*(0.01*T);
-    //x=xo;*/
 
-        /*if(y>player->y()-3*tam){
-            vxo=-50;
-            vyo=50;
-            y = yo+vyo*sin(45)*(0.1*T)-0.5*g*(0.1*T)*(0.1*T);
-        }*/
-        //yo=player->y();
-
-        /*player->setPos(int(x),int(y));
-        //n++;
-
-    timfis->stop();
-
-}*/
 
 void MainWindow::on_anterior_clicked()
 {
@@ -467,10 +432,67 @@ void MainWindow::on_aceptar_clicked()
 
     set_window();
     generar_mapa();
+
+    refreshTimer = new QTimer(this);
+    connect(refreshTimer,SIGNAL(timeout()),this,SLOT(ActualizarPosicionPersonaje()));
+    refreshTimer->start(1000/60);
+
+
+
 }
 
 
+personaje *MainWindow::getPlayer() const
+{
+    return player;
 
+}
+
+void MainWindow::ActualizarPosicionPersonaje()
+{
+    EvaluaColision();
+    //getPlayer()->ActualizarMovimiento();
+    int next_x = getPlayer()->x();
+    int next_y = getPlayer()->y();
+
+
+    if(getPlayer()->getEnElAire() == true)
+    {
+        next_y += getPlayer()->getVy() * 1/60;
+        float dt = 1/(float)60;
+        getPlayer()->setVy( getPlayer()->getVy() + 250 * 10 * dt);
+    }
+
+
+    if(getPlayer()->getMoviendo_Derecha())
+    {
+        getPlayer()->AumentarVelocidadDerecha();
+         //player->setPos(500,500);
+
+    }
+    else if(getPlayer()->getMoviendo_Izquierda())
+    {
+        getPlayer()->AumentarVelocidadIzquierda();
+         //player->setPos(500,500);
+    }
+    else
+    {
+        getPlayer()->BajarVelocidadX();
+//        if(!colision)
+//        {
+//            if(getPlayer()->getVy() == 0)
+//                getPlayer()->setVy(getPlayer()->getVy() + 100);
+//        }
+    }
+    next_x += getPlayer()->getVx();
+    getPlayer()->setPos(next_x,next_y);
+    //EvaluaColision();
+
+
+
+
+
+}
 
 
 void MainWindow::on_nivel_clicked()
