@@ -1,0 +1,10 @@
+debug/escenario.o
+debug/main.o
+debug/mainwindow.o
+debug/niveles.o
+debug/personaje.o
+debug/registro.o
+debug/qrc_recursos.o
+debug/moc_mainwindow.o
+debug/moc_niveles.o
+debug/moc_registro.o

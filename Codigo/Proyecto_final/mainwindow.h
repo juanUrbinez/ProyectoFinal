@@ -9,6 +9,7 @@
 #include "escenario.h"
 #include "personaje.h"
 #include "registro.h"
+#include "niveles.h"
 
 #define tam 40
 
@@ -45,6 +46,8 @@ private slots:
 
     void on_aceptar_clicked();
 
+    void on_nivel_clicked();
+
 private:
     void generar_mapa();
     void jugador();
@@ -72,8 +75,8 @@ private:
     Ui::MainWindow *ui;
     QGraphicsScene *scene, *menu,*option;//,*login;
     //QGraphicsScene *scene, *scene2;
-    QMainWindow *now;
-    QGraphicsView *news;
+    //QMainWindow *now;
+//    QGraphicsView *news;
 
     QList<escenario *>plataforma;
     personaje *player;

@@ -9,11 +9,17 @@
         <file>escenario/puerta.png</file>
         <file>escenario/menu.png</file>
         <file>escenario/option.png</file>
+        <file>Bonos/item.png</file>
     </qresource>
     <qresource prefix="/personaje">
         <file>Personaje/Quieto.png</file>
         <file>Personaje/corriendo.png</file>
         <file>Personaje/corriendoizq.png</file>
         <file>Personaje/icon.png</file>
+    </qresource>
+    <qresource prefix="/obstaculos">
+        <file>obstaculo/zona de muerte.png</file>
+        <file>obstaculo/torreta.png</file>
+        <file>obstaculo/torretader.png</file>
     </qresource>
 </RCC>

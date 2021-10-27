@@ -36,6 +36,7 @@ public:
     QPushButton *anterior;
     QPushButton *salir;
     QPushButton *aceptar;
+    QPushButton *nivel;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -77,6 +78,9 @@ public:
         aceptar = new QPushButton(centralwidget);
         aceptar->setObjectName(QString::fromUtf8("aceptar"));
         aceptar->setGeometry(QRect(190, 270, 75, 23));
+        nivel = new QPushButton(centralwidget);
+        nivel->setObjectName(QString::fromUtf8("nivel"));
+        nivel->setGeometry(QRect(360, 70, 75, 23));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
@@ -101,6 +105,7 @@ public:
         anterior->setText(QCoreApplication::translate("MainWindow", "Anterior", nullptr));
         salir->setText(QCoreApplication::translate("MainWindow", "SALIR", nullptr));
         aceptar->setText(QCoreApplication::translate("MainWindow", "ACEPTAR", nullptr));
+        nivel->setText(QCoreApplication::translate("MainWindow", "nivel", nullptr));
     } // retranslateUi
 
 };

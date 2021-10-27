@@ -24,8 +24,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(time,SIGNAL(timeout()),this,SLOT(Mov_per()));
     tempo=new QTimer;
     connect(tempo,SIGNAL(timeout()),this,SLOT(temporizador()));
-    timfis=new QTimer;
-    connect(timfis,SIGNAL(timeout()),this,SLOT(simulacion()));
+    //timfis=new QTimer;
+    //connect(timfis,SIGNAL(timeout()),this,SLOT(simulacion()));
 
 
     ui->inicio->setGeometry(600,200,100,40);
@@ -38,6 +38,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->lcdNumber->hide();
     ui->monedas->hide();
     ui->aceptar->hide();
+    ui->nivel->hide();
 
 
    // ui->salir->setStyleSheet("font: 75 18pt ;color: rgb(80,170,58);");
@@ -58,7 +59,7 @@ MainWindow::~MainWindow()
     delete ui;
     delete time;
     delete tempo;
-    delete timfis;
+    //delete timfis;
     delete player;
     delete scene;
     delete option;
@@ -461,7 +462,7 @@ void MainWindow::on_aceptar_clicked()
     ui->lcdNumber->show();
     ui->monedas->show();
     ui->aceptar->hide();
-
+    ui->nivel->show();
     ui->graphicsView->setScene(scene);
 
     set_window();
@@ -470,4 +471,11 @@ void MainWindow::on_aceptar_clicked()
 
 
 
+
+
+void MainWindow::on_nivel_clicked()
+{
+    niveles *level= new niveles(0);
+    level->show();
+}
 

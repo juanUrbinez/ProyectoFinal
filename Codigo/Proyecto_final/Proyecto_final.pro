@@ -12,17 +12,20 @@ SOURCES += \
     escenario.cpp \
     main.cpp \
     mainwindow.cpp \
+    niveles.cpp \
     personaje.cpp \
     registro.cpp
 
 HEADERS += \
     escenario.h \
     mainwindow.h \
+    niveles.h \
     personaje.h \
     registro.h
 
 FORMS += \
     mainwindow.ui \
+    niveles.ui \
     registro.ui
 
 # Default rules for deployment.

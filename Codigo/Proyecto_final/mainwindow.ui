@@ -138,6 +138,19 @@
      <string>ACEPTAR</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="nivel">
+    <property name="geometry">
+     <rect>
+      <x>360</x>
+      <y>70</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>nivel</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
