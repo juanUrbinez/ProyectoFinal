@@ -29,7 +29,7 @@ public:
     int get_Vy();
     void posicion(int a,int b);
     //void MRU(int x,int v);
-    void lan_very(int h,int vy);
+    //void lan_very(int h,int vy);
 
 private:
     int peso=40;
@@ -44,11 +44,11 @@ private:
     float Ax,Ay,A;
     bool caida,Pbase;
 
-public slots:
+//public slots:
     //para que el jugador salte y caiga
     //void fricion();  no
-    void salto();
-    void caida_libre();
+    //void salto();
+    //void caida_libre();
 
 
     //mov parabolico

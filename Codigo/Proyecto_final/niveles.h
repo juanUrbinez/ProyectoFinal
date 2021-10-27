@@ -8,6 +8,7 @@
 
 #include"escenario.h"
 #include "personaje.h"
+//#include "disparo.h"
 
 #define tam 40
 
@@ -28,6 +29,9 @@ public:
     void set_widow();
     void set_widow2();
 
+    int estado=0,est_mago=0;
+    float dificultad=1;
+
 private slots:
     void Movim_per2();
     void Movim_per3();
@@ -38,18 +42,21 @@ private slots:
     void on_anterior_clicked();
 
     void on_siguiente_clicked();
+    //void actualizar();
 
 private:
     void play();
     void play2();
-
+    //void borderCollision(elemento *b);
 
     Ui::niveles *ui;
     QGraphicsScene *scena,*segundo;
     QList<escenario *>platafor;
-    QTimer *timer,*time,*mov1,*mov2;
+    QTimer *timer,*time,*mov1,*mov2;//,*act;
     personaje *jugador,*jug;
     int press;
+    //QList<disparo *> shoot;//dismag
+
 
          short int nivel2[14][50]=
             {

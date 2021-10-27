@@ -21,5 +21,6 @@
         <file>obstaculo/zona de muerte.png</file>
         <file>obstaculo/torreta.png</file>
         <file>obstaculo/torretader.png</file>
+        <file>obstaculo/bala.png</file>
     </qresource>
 </RCC>

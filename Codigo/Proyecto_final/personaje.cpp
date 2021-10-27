@@ -117,27 +117,27 @@ void personaje::posicion(int a, int b)
    //timesalto->start(100);
 }
 
-void personaje::lan_very(int h, int vy)
+/*void personaje::lan_very(int h, int vy)
 {
     Py=h+vy*t-(0.5*g*t*t);
     Vy=vy-g*t;
     A=-g;
 
     setY(Py);
-}
+}*/
 
 /*void personaje::MRU(int x, int v)
 {
     Px=x+v*t;//x=x0+v*t
 }*/
 
-void personaje::salto()
+//void personaje::salto()
 //meter un mov retilinep uniforme
 //space salta con un angulo inicial
 // solo dar una veloci al movimiento
 // mov rec univ y caida libre
 //determinar el angulo con el que va a saltar y la aceleracion
-{
+//{
    // timesalto->start(10);
     /*Vx=vel*cos(angulo);
     Vy=vel*sin(angulo)-g*t;
@@ -160,7 +160,7 @@ void personaje::salto()
 
    // setPos(Px,Py);
     //timesalto->stop();
-    timesalto->start(18);
+   /* timesalto->start(18);
     Pbase=false;
 
     if(Vy>=0) {
@@ -182,11 +182,11 @@ void personaje::salto()
         setY(Py);
         Vy=-50;
     }
-}
+}*/
 
-void personaje::caida_libre()
+/*void personaje::caida_libre()
 {
-    timecaida->start(18);
+    timecaida->start(18);*/
 
     /*Py=Py-(0.5*t*t);
     Vy=-g*t;
@@ -194,7 +194,7 @@ void personaje::caida_libre()
 
     setY(Py);*/
 
-    v_caida+=g*t;
+   /* v_caida+=g*t;
     Pbase=false;
     Py+=v_caida*sin(45)*t;
     setY(Py);
@@ -207,7 +207,7 @@ void personaje::caida_libre()
         setY(Py);
         v_caida=0;
     }
-}
+}*/
 
 //mov parabolico
 /*pelota::pelota(int width, int heigth)

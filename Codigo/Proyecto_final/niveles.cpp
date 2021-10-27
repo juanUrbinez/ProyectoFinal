@@ -27,6 +27,7 @@ niveles::niveles(QWidget *parent) :
     connect(mov1,SIGNAL(timeout()),this,SLOT(Movim_per2()));
     mov2=new QTimer;
     connect(mov2,SIGNAL(timeout()),this,SLOT(Movim_per3()));
+    //act=new QTimer;
 
     set_widow();
     generar_nivel2();
@@ -42,6 +43,7 @@ niveles::~niveles()
     delete timer;
     delete mov1;
     delete mov2;
+    //delete act;
 }
 
 void niveles::temporizador()
@@ -313,4 +315,51 @@ void niveles::on_siguiente_clicked()
     generar_nivel3();
     scena->removeItem(jugador);
 }
+
+//void niveles::actualizar()
+//{//disparo    ->mago=platafor->torreta
+    /*for(int i=0;i<platafor.size();i++){
+        estado = 500 / dificultad;
+        shoot.push_back(new disparo);
+        shoot.back()->posx = magos[m]->posx;
+        shoot.back()->posy = magos[m]->posy;
+        shoot.back()->setPos(shoot.back()->posx,shoot.back()->posy);
+        scena->addItem(shoot.back());
+        est_mago = 800; //tiempo_disparo_del_mago
+    }
+
+    for(int e=0; e<dismag.size(); e++){ // disparos del mago
+    //b->elemnto.>todas las ecuaciones->colisiones
+            if(b->getPX()<dismag[e]->posx){
+                dismag[e]->posx -= 0.6 * dificultad;
+                dismag[e]->setPos(dismag[e]->posx,dismag[e]->posy);
+            }
+            else if(b->getPX() > dismag[e]->posx){
+                dismag[e]->posx += 0.6 * dificultad;
+                dismag[e]->setPos(dismag[e]->posx,dismag[e]->posy);
+            }
+            if(720 - b->getPY() < dismag[e]->posy){
+                dismag[e]->posy -= 0.6 * dificultad;
+                dismag[e]->setPos(dismag[e]->posx,dismag[e]->posy);
+            }
+
+            else if (720 - b->getPY() > dismag[e]->posy){
+                dismag[e]->posy += 0.6 * dificultad;
+                dismag[e]->setPos(dismag[e]->posx,dismag[e]->posy);
+            }
+
+            if (dismag[e]->collidesWithItem(jug)){
+                vida_one -= 6;
+                ui->vida->setText(QString::number(vida_one));
+                scene->removeItem(dismag[e]);
+                dismag.removeAt(e);
+            }
+            else if (est_mago <= 0){
+                scene->removeItem(dismag[0]);
+                dismag.removeAt(0);
+            }
+        }*/
+
+//}
+
 
