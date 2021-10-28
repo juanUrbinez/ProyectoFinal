@@ -67,7 +67,7 @@ private:
 
     Ui::MainWindow *ui;
     QGraphicsScene *scene;
-    escenario *plataforma;
+    //escenario *plataforma;
 
     QList<escenario*>plataformas;
 
