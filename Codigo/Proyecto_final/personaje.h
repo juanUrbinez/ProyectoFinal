@@ -2,62 +2,80 @@
 #define PERSONAJE_H
 
 #include <QGraphicsPixmapItem>
-#include <QPixmap>
+#include <QMainWindow>
 #include <QObject>
-#include <QTimer>
-#include <math.h>
-#include <QPainter>
+#include <QDebug>
 
-//#define peso 40
-
-class personaje : public QObject, public QGraphicsPixmapItem
+class personaje :  public QObject, public QGraphicsPixmapItem
 {
+    Q_OBJECT
 public:
-    unsigned int Vel_mov=50;
-    int sprite=0,monedas=0;
+    personaje();
+    int sprite,monedas;
     bool live=true;
-    personaje(int x, int y);
     void cambio_imagen(short a);
-    ~personaje();
-    float get_Px();
-    float get_Py();
-    float get_Vx();
-    float get_Vy();
-    //float get_radio();
-   // float get_e();
-    void posicion(int a,int b);
-    //void actualizarmov();
-    //void set_vel(float vx, float vy, float px, float py);
+
+    void Mover_A_Derecha(bool flag);
+    void Mover_A_Izquierda(bool flag);
+
+
+    void ActualizarMovimiento();
+    void setVx(float valor);
+    float getVx();
+
+
+    void AumentarVelocidadDerecha();
+    void AumentarVelocidadIzquierda();
+    void Saltar();
+
+
+    void BajarVelocidadX();
+    void setVy(float valor);
+    float getVy();
+    void AumentarVelocidadenY();
+
+
+    bool getMoviendo_Derecha();
+    bool getMoviendo_Izquierda();
+
+
+
+    int getHeight();
+    int getWidth();
+
+    bool getVolando();
+    bool getSaltando();
+    bool getEnElAire();
+    bool getRebotando();
+    void setRebotando(bool valor);
+
+
+
+protected:
+
+    bool Moviendo_Derecha;
+    bool Moviendo_Izquierda;
+    float Vx;
+    float Vy;
+    float aceleracionX;
+    int maxVx;
+
+    int height;
+    int width;
+
+    bool cayendo;
+    bool saltando;
+
+    bool EnElAire;
+    bool rebotando;
+
 
 
 private:
-    int peso=40;
-    QPixmap per,cam,img;
-    int scaleperx=peso,scalepery=peso;
-    float angulo;
-
-    float Px,Py,Vx,Vy;
-    float g=9.81,t=0.1,vel;
-    float Ax,Ay;
-    float masa,radio,k,e;
+    QPixmap per;
 
 
 
 };
 
-#endif // PERSONAJE_H
-
-/*
-
-    float getV() const;
-    float getAX() const;
-    float getAY() const;
-
-    float getMass() const;
-    float getR() const;
-
-    float getE() const;
-
-
-};
-*/
+#endif 

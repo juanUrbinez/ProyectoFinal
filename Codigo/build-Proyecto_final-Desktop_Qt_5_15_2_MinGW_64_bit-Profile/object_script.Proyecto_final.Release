@@ -1,0 +1,11 @@
+release/disparo.o
+release/escenario.o
+release/main.o
+release/mainwindow.o
+release/niveles.o
+release/personaje.o
+release/registro.o
+release/qrc_recursos.o
+release/moc_mainwindow.o
+release/moc_niveles.o
+release/moc_registro.o

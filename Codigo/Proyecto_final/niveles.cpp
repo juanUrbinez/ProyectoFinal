@@ -25,7 +25,7 @@ niveles::niveles(QWidget *parent) :
 
 
     set_widow();
-    generar_nivel2();
+    //generar_nivel2();
 
     ui->temp->hide();
 }
@@ -46,7 +46,7 @@ void niveles::temporizador()
 {
     if(ui->lcdNumber->intValue()==0){
         scena->removeItem(jugador);
-        generar_nivel2();
+        //generar_nivel2();
         ui->lcdNumber->display(30);
         scena->addItem(jugador);
 
@@ -60,7 +60,7 @@ void niveles::tempor()
 {
      if(ui->temp->intValue()==0){
          segundo->removeItem(jug);
-         generar_nivel3();
+         //generar_nivel3();
          ui->temp->display(30);
          segundo->addItem(jug);
      }
@@ -110,7 +110,6 @@ void niveles::generar_nivel2()
           }
        }
     timer->start(1000);
-    mov1->start(jugador->Vel_mov);
     ui->lcdNumber->display(30);
     act->start(10);
 }
@@ -163,7 +162,6 @@ void niveles::generar_nivel3()
           }
        }
     time->start(1000);
-    mov2->start(jug->Vel_mov);
     ui->temp->display(30);
 
 }
@@ -195,77 +193,11 @@ void niveles::set_widow2()
     setWindowIcon(QIcon(":/personaje/Personaje/icon.png"));
 }
 
-void niveles::Movim_per2()
-{
-    int X=jugador->x(),Y=jugador->y();
-    int monedas=jugador->monedas;
-    ui->monedas->display(monedas);
-    if(jugador->live){
 
-        if(press==Qt::Key_A && nivel2[(Y/tam)-2][(X-8)/tam]==0 && nivel2[((Y+tam-1)/tam)-2][(X-8)/tam]==0 ){
-            jugador->cambio_imagen('a');
-            jugador->sprite++;
-            jugador->setX(jugador->x()-8);
-            jugador->posicion(jugador->x(),jugador->y());
-        }
-        else if(press==Qt::Key_D && nivel2[(Y/tam)-2][(X+tam-1+8)/tam]==0 && nivel2[((Y+tam-1)/tam)-2][(X+tam-1+8)/tam]==0){
-            jugador->cambio_imagen('d');
-            jugador->sprite++;
-            jugador->setX(jugador->x()+8);
-           jugador->posicion(jugador->x(),jugador->y());
-            ui->graphicsView->focusWidget();
-        }
-        if(press==Qt::Key_S && nivel2[((Y+tam-1+8)/tam)-2][(X+tam-1)/tam]==0 && nivel2[((Y+tam-1+8)/tam)-2][X/tam]==0){
-            jugador->cambio_imagen('s');
-            jugador->setY(jugador->y()+8);
-        }
-        else if(press==Qt::Key_W && nivel2[((Y-8)/tam)-2][X/tam]==0 && nivel2[((Y-8)/tam)-2][(X+tam-1)/tam]==0){
-            jugador->cambio_imagen('w');
-            jugador->setY(jugador->y()-8);
-        }
-
-        press=0;
-        mov1->start(jugador->Vel_mov);
-
-
-    }
-}
-
-void niveles::Movim_per3()
-{
-    int X=jug->x(),Y=jug->y();
-    int monedas=jug->monedas;
-    ui->monedas->display(monedas);
-    if(jug->live){
-        if(press==Qt::Key_A && nivel3[(Y/tam)-2][(X-8)/tam]==0 && nivel3[((Y+tam-1)/tam)-2][(X-8)/tam]==0 ){
-            jug->cambio_imagen('a');
-            jug->sprite++;
-            jug->setX(jug->x()-8);
-            jug->posicion(jug->x(),jug->y());
-        }
-        else if(press==Qt::Key_D && nivel3[(Y/tam)-2][(X+tam-1+8)/tam]==0 && nivel3[((Y+tam-1)/tam)-2][(X+tam-1+8)/tam]==0){
-            jug->cambio_imagen('d');
-            jug->sprite++;
-            jug->setX(jug->x()+8);
-           jug->posicion(jug->x(),jug->y());
-            ui->graphicsView->focusWidget();
-        }
-        if(press==Qt::Key_S && nivel3[((Y+tam-1+8)/tam)-2][(X+tam-1)/tam]==0 && nivel3[((Y+tam-1+8)/tam)-2][X/tam]==0){
-            jug->cambio_imagen('s');
-            jug->setY(jug->y()+8);
-        }
-        else if(press==Qt::Key_W && nivel3[((Y-8)/tam)-2][X/tam]==0 && nivel3[((Y-8)/tam)-2][(X+tam-1)/tam]==0){
-            jug->cambio_imagen('w');
-            jug->setY(jug->y()-8);
-        }
-
-        press=0;
-        mov2->start(jug->Vel_mov);
-    }
-}
 
 void niveles::play()
 {
+
     jugador= new personaje(tam,14*tam);
     scena->addItem(jugador);
 
@@ -273,8 +205,8 @@ void niveles::play()
 
 void niveles::play2()
 {
-    jug= new personaje(tam,14*tam);
-    segundo->addItem(jug);
+//    jug= new personaje(tam,14*tam);
+//    segundo->addItem(jug);
 }
 
 /*void niveles::Colisionbord(personaje *b)

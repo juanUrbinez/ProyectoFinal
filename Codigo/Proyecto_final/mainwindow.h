@@ -12,6 +12,18 @@
 #include "registro.h"
 #include "niveles.h"
 
+
+#include <QJsonArray>
+#include <QMainWindow>
+#include <QGraphicsScene>
+#include <iostream>
+#include "fstream"
+#include <string>
+#include <QKeyEvent>
+#include <QList>
+#include <QTimer>
+#include <QDebug>
+#include <QGraphicsItem>
 #define tam 40
 
 QT_BEGIN_NAMESPACE
@@ -26,14 +38,28 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     void set_window();
-    void keyPressEvent(QKeyEvent *i);
-    //bool colisiones(QGraphicsItem *item, QGraphicsItem *item2);
 
+
+
+    //presionar tecla
+    void keyPressEvent(QKeyEvent * event) override;
+    //soltar tecla
+    void keyReleaseEvent(QKeyEvent *event) override;
+    //colision
+    void EvaluaColisionMovimiento();
+    void EvaluaColisionPoderes();
+    bool colision;
+    QList<escenario*>plataformas;
+
+
+
+    //void timeEvent(QTimerEvent);
 
 private slots:
-
+    void ActualizarPosicionPersonaje();
+   // void simulacion();
     void temporizador();
-    void Mov_per();
+    //void Mov_per();
 
     void on_anterior_clicked();
 
@@ -49,7 +75,6 @@ private slots:
 
 private:
     void generar_mapa();
-    void jugador();
     //void colision();
 
     short int nivel1[14][50]=
@@ -75,8 +100,13 @@ private:
     QGraphicsScene *scene, *menu,*option;
 
     QList<escenario *>plataforma;
+    personaje *getPlayer() const;
     personaje *player;
+
     registro *datos;
+
+     QTimer * refreshTimer;
+
 
     int tecla;
     QTimer *time,*tempo,*timfis;

@@ -1,119 +1,148 @@
 #include "personaje.h"
 
-personaje::personaje(int x,int y)
+personaje::personaje()
 {
-    per.load(":/personaje/Personaje/Quieto.png");
-    setPixmap(per.scaled(scaleperx,scalepery));
-
-    Px=x;
-    Py=y;
-    Vx=50;
+    per.load(":/Personaje/Personaje/Quieto.png");
+    setPixmap(per.scaled(40,40));
+    this->setShapeMode(QGraphicsPixmapItem::BoundingRectShape);
+    width=40;
+    height=40;
+    Vx=0;
     Vy=0;
-    angulo=0;
-    vel=0;
-    radio=20;
-    masa=50;
-    k=0.4;
-    e=0.2;
-    Ax=0;
-    Ay=0;
+    maxVx=10;
+    aceleracionX=0.5;
+    Moviendo_Derecha=false;
+    Moviendo_Izquierda=false;
+    cayendo=false;
+    saltando=false;
+    EnElAire=false;
+    //rebotando=false;
+    monedas=0;
 
-    setPos(Px,Py);
 }
 
-void personaje::cambio_imagen(short a)
+void personaje::Mover_A_Derecha(bool flag)
 {
-    switch (a)
+    Moviendo_Derecha=flag;
+}
+
+void personaje::Mover_A_Izquierda(bool flag)
+{
+    Moviendo_Izquierda=flag;
+}
+
+void personaje::ActualizarMovimiento()
+{
+    if(Vy > 0 )
+        cayendo = true;
+    else
+        cayendo = false;
+
+    if(Vy < 0){
+        saltando = true;
+    }
+    else{
+        saltando = false;
+    }
+
+    if(Vy == 0)
     {
-        case 'd':
+        EnElAire = false;
 
-            if(sprite==8) sprite=0;
-            cam.load(":/personaje/Personaje/corriendo.png");
-            img=cam.copy(50*sprite,0,50,55);
-            setPixmap(img.scaled(scaleperx,scalepery));
-
-        break;
-
-        case 'a':
-
-            if(sprite==8) sprite=0;
-            cam.load(":/personaje/Personaje/corriendoizq.png");
-            img=cam.copy(50*sprite,0,50,55);
-            setPixmap(img.scaled(scaleperx,scalepery));
-
-        break;
-
-        case 'j':
-
-            cam.load(":/personaje/Personaje/Quieto.png");
-            setPixmap(per.scaled(scaleperx,scalepery));
-
-        break;
+    }
+    else{
+        EnElAire = true;
 
     }
 }
 
-
-personaje::~personaje()
+void personaje::setVx(float valor)
 {
-
+    Vx=valor;
 }
 
-float personaje::get_Px()
-{
-    return Px;
-}
-
-float personaje::get_Py()
-{
-    return Py;
-}
-
-float personaje::get_Vx()
+float personaje::getVx()
 {
     return Vx;
 }
 
-float personaje::get_Vy()
+void personaje::AumentarVelocidadDerecha()
+{
+    if(Vx <  maxVx){
+        Vx += 1 * aceleracionX;
+    }
+}
+
+
+void personaje::AumentarVelocidadIzquierda()
+{
+    if(Vx > - maxVx){
+        Vx -= 1 * aceleracionX;
+    }
+}
+
+void personaje::Saltar()
+
+{
+    if(EnElAire == false)
+    {
+        Vy = -900;
+        ActualizarMovimiento();
+
+    }
+
+}
+
+void personaje::BajarVelocidadX()
+{
+    if(Vx > 0)
+        Vx -= 1 * aceleracionX;
+    if(Vx < 0)
+        Vx += 1 * aceleracionX;
+}
+
+void personaje::setVy(float valor)
+{
+    Vy=valor;
+    ActualizarMovimiento();
+}
+
+float personaje::getVy()
 {
     return Vy;
 }
 
-/*float personaje::get_radio()
+bool personaje::getMoviendo_Derecha()
 {
-    return radio;
+    return Moviendo_Derecha;
 }
 
-float personaje::get_e()
+bool personaje::getMoviendo_Izquierda()
 {
-    return e;
-}*/
-
-void personaje::posicion(int a, int b)
-{
-    Px=a;
-    Py=b;
-    Px=Px+Vx*t;
-    Py=Py+Vy*t-(0.5*g*t*t);
-
+    return Moviendo_Izquierda;
 }
 
-/*void personaje::actualizarmov()
+int personaje::getHeight()
 {
-    vel = pow(((Vx*Vx)+(Vy*Vy)),(1/2));
-    angulo = atan2(Vy,Vx);
-    Ax = -((k*(vel*vel)*(radio*radio))/masa)*cos(angulo);
-    Ay = (-((k*(vel*vel)*(radio*radio))/masa)*sin(angulo))-g;
-    Px = Px + ((Vx*(t)))+(((Ax*(t*t)))/2);
-    Py = Py + ((Vy*(t)))+(((Ay*(t*t)))/2);
-    Vx = Vx + Ax*t;
-    Vy = Vy + Ay*t;
+    return height;
 }
 
-void personaje::set_vel(float vx, float vy, float px, float py)
+int personaje::getWidth()
 {
-    Vx=vx;
-    Vy=vy;
-    Px=px;
-    Py=py;
-}*/
+    return width;
+}
+
+bool personaje::getEnElAire()
+{
+    return EnElAire;
+}
+
+bool personaje::getRebotando()
+{
+    return rebotando;
+}
+
+void personaje::setRebotando(bool valor)
+{
+    rebotando=valor;
+}
