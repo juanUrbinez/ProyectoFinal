@@ -18,56 +18,46 @@ public:
     bool live=true;
     personaje(int x, int y);
     void cambio_imagen(short a);
-   // QRectF boundingRect() const;
-    //void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
-    //void salto(int width,int heigth);
-    //int get_h();
     ~personaje();
-    int get_Px();
-    int get_Py();
-    int get_Vx();
-    int get_Vy();
+    float get_Px();
+    float get_Py();
+    float get_Vx();
+    float get_Vy();
+    //float get_radio();
+   // float get_e();
     void posicion(int a,int b);
-    //void MRU(int x,int v);
-    //void lan_very(int h,int vy);
+    //void actualizarmov();
+    //void set_vel(float vx, float vy, float px, float py);
+
 
 private:
     int peso=40;
     QPixmap per,cam,img;
     int scaleperx=peso,scalepery=peso;
-    //int w,h;
-    //int H;
-    double angulo, pi=3.1416;
-    QTimer *timesalto,*timecaida;
-    int v_caida,Px,Py,Pb,Vx,Vy;
-    float g=10,t=0.1,vel;
-    float Ax,Ay,A;
-    bool caida,Pbase;
+    float angulo;
 
-//public slots:
-    //para que el jugador salte y caiga
-    //void fricion();  no
-    //void salto();
-    //void caida_libre();
+    float Px,Py,Vx,Vy;
+    float g=9.81,t=0.1,vel;
+    float Ax,Ay;
+    float masa,radio,k,e;
 
 
-    //mov parabolico
-/*public:
-    void pelota(int width, int heigth);
-    int get_h();
 
-private:
-    int w,h;*/
-
-    //laznzamiento vertical hacia arriba
-   /* y=H+v0*t−0.5*g*t*t
-    v=v0−g⋅t
-    a=−g*/
-
-    //caida libre
-   /* y=H−0.5*t*t
-    v=−g*t
-    a=−g*/
 };
 
 #endif // PERSONAJE_H
+
+/*
+
+    float getV() const;
+    float getAX() const;
+    float getAY() const;
+
+    float getMass() const;
+    float getR() const;
+
+    float getE() const;
+
+
+};
+*/

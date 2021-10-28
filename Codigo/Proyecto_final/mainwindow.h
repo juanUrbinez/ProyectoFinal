@@ -5,6 +5,7 @@
 #include <QGraphicsScene>
 #include <QKeyEvent>
 #include <QTimer>
+#include <QDebug>
 
 #include "escenario.h"
 #include "personaje.h"
@@ -26,17 +27,15 @@ public:
     ~MainWindow();
     void set_window();
     void keyPressEvent(QKeyEvent *i);
-    bool colisiones(QGraphicsItem *item, QGraphicsItem *item2);
-    //void timeEvent(QTimerEvent);
+    //bool colisiones(QGraphicsItem *item, QGraphicsItem *item2);
+
 
 private slots:
-   // void simulacion();
+
     void temporizador();
     void Mov_per();
 
     void on_anterior_clicked();
-
-    //void on_siguiente_clicked();
 
     void on_inicio_clicked();
 
@@ -73,26 +72,18 @@ private:
 
 
     Ui::MainWindow *ui;
-    QGraphicsScene *scene, *menu,*option;//,*login;
-    //QGraphicsScene *scene, *scene2;
-    //QMainWindow *now;
-//    QGraphicsView *news;
+    QGraphicsScene *scene, *menu,*option;
 
     QList<escenario *>plataforma;
     personaje *player;
+    registro *datos;
 
     int tecla;
-    //int w_limite;
     QTimer *time,*tempo,*timfis;
     int T=10;
     float vxo,vyo,Py,g=9.8;
     float x,y;
     unsigned long long n=0;
 
-    //mov parabolico
-    /*QTimer *time;
-    float xo,yo,vxo,vyo,g;
-    int T=50, h;
-    unsigned long long n=0;*/
 };
 #endif // MAINWINDOW_H

@@ -10,14 +10,6 @@ niveles::niveles(QWidget *parent) :
     scena=new QGraphicsScene;
     segundo=new QGraphicsScene;
 
-    /*ui->graphicsView->setGeometry(0,0,tam*50+2,tam*(14+2)+2);
-    ui->graphicsView->setScene(scena);
-    ui->graphicsView->setBackgroundBrush(QImage(":/escenario/escenario/escenario.png").scaled(tam*50,tam*(14+2)));
-    scena->setSceneRect(0,0,tam*50,tam*(14+2));//tamaño de la escena
-    setFixedSize(tam*50+2,tam*(14+2)+2);
-    setWindowTitle("Poison Run");
-   // setWindowIcon(QIcon(":/personaje/Personaje/icon.png"));
-        //setWindowIcon(QIcon(":/personaje/Personaje/icon.png"));*/
 
     timer=new QTimer;
     connect(timer,SIGNAL(timeout()),this,SLOT(temporizador()));
@@ -29,7 +21,7 @@ niveles::niveles(QWidget *parent) :
     connect(mov2,SIGNAL(timeout()),this,SLOT(Movim_per3()));
     act=new QTimer;
     connect(act,SIGNAL(timeout()),this,SLOT(actualizar()));
-    act->start(7);
+
 
 
     set_widow();
@@ -46,7 +38,8 @@ niveles::~niveles()
     delete timer;
     delete mov1;
     delete mov2;
-    //delete act;
+    delete act;
+    //delete shoot;
 }
 
 void niveles::temporizador()
@@ -119,7 +112,7 @@ void niveles::generar_nivel2()
     timer->start(1000);
     mov1->start(jugador->Vel_mov);
     ui->lcdNumber->display(30);
-
+    act->start(10);
 }
 
 void niveles::generar_nivel3()
@@ -188,8 +181,7 @@ void niveles::set_widow()
     scena->setSceneRect(0,0,tam*50,tam*(14+2));//tamaño de la escena
     setFixedSize(tam*50+2,tam*(14+2)+2);
     setWindowTitle("Poison Run");
-   // setWindowIcon(QIcon(":/personaje/Personaje/icon.png"));
-    //setWindowIcon(QIcon(":/personaje/Personaje/icon.png"));*/
+    setWindowIcon(QIcon(":/personaje/Personaje/icon.png"));
 }
 
 void niveles::set_widow2()
@@ -200,10 +192,7 @@ void niveles::set_widow2()
     segundo->setSceneRect(0,0,tam*50,tam*(14+2));//tamaño de la escena
     setFixedSize(tam*50+2,tam*(14+2)+2);
     setWindowTitle("Poison Run");
-   // setWindowIcon(QIcon(":/personaje/Personaje/icon.png"));
-        //setWindowIcon(QIcon(":/personaje/Personaje/icon.png"));*/
-    //connect(time,SIGNAL(timeout()),this,SLOT(tempor()));
-
+    setWindowIcon(QIcon(":/personaje/Personaje/icon.png"));
 }
 
 void niveles::Movim_per2()
@@ -279,7 +268,7 @@ void niveles::play()
 {
     jugador= new personaje(tam,14*tam);
     scena->addItem(jugador);
-    //segundo->addItem(jugador);
+
 }
 
 void niveles::play2()
@@ -287,6 +276,19 @@ void niveles::play2()
     jug= new personaje(tam,14*tam);
     segundo->addItem(jug);
 }
+
+/*void niveles::Colisionbord(personaje *b)
+{
+    if(b->get_Px()<b->get_radio()){
+        b->set_vel(-1*b->get_e()*b->get_Vx(),b->get_Vy(),b->get_radio(),b->get_Py());
+    }
+    if(b->get_Px()>5120-b->get_radio()){
+        b->set_vel(-1*b->get_e()*b->get_Vx(),b->get_Py(),5120-b->get_radio(),b->get_Py());
+    }
+    if(b->get_Px()<b->get_radio()){
+        b->set_vel(b->get_Vx(),-1*b->get_e()*b->get_Vy(),b->get_Px(),b->get_radio());
+    }
+}*/
 
 void niveles::on_anterior_clicked()
 {
@@ -297,7 +299,6 @@ void niveles::on_anterior_clicked()
     set_widow();
     generar_nivel2();
     segundo->removeItem(jug);
-
 }
 
 
@@ -307,14 +308,7 @@ void niveles::on_siguiente_clicked()
     ui->lcdNumber->hide();
     ui->temp->show();
     set_widow2();
-   /* ui->graphicsView->setGeometry(0,0,tam*50+2,tam*(14+2)+2);
-    ui->graphicsView->setScene(segundo);
-    ui->graphicsView->setBackgroundBrush(QImage(":/escenario/escenario/escenario.png").scaled(tam*50,tam*(14+2)));
-    segundo->setSceneRect(0,0,tam*50,tam*(14+2));//tamaño de la escena
-        //setFixedSize(tam*50+2,tam*(14+2)+2);
-    setWindowTitle("Poison Run");
-   // setWindowIcon(QIcon(":/personaje/Personaje/icon.png"));
-        //setWindowIcon(QIcon(":/personaje/Personaje/icon.png"));*/
+
     generar_nivel3();
     scena->removeItem(jugador);
 }
@@ -322,53 +316,112 @@ void niveles::on_siguiente_clicked()
 void niveles::actualizar() //dismag->shoot
 {//disparo    ->mago=platafor->torreta
     //float torre;
-   // if ( estado != 0){estado -= 1;}
+    //int cont=0;
+    //jugador->actualizarmov();
+    //jugador->setPos(jugador->get_Px(),720-jugador->get_Py());
+    //Colisionbord(jugador);
+
+
+    if ( estado != 0){estado -= 1;}
     if(est_dis!=0){est_dis-=1;}
 
-    for(int i=0;i<platafor.size();i++){
+
+    /*shoot= new disparo();
+    shoot->posx=4*tam;
+    shoot->posy=7.5*tam;
+    shoot->setPos(shoot->posx,shoot->posy);
+    scena->addItem(shoot);
+    est_dis=80;
+
+    if(jugador->get_Px()<shoot->posx){
+        shoot->posx -= 0.6 * dificultad;
+        shoot->setPos(shoot->posx,shoot->posy);
+    }
+    else if(jugador->get_Px() > shoot->posx){
+        shoot->posx += 0.6 * dificultad;
+        shoot->setPos(shoot->posx,shoot->posy);
+    }
+    if(40 + jugador->get_Py() < shoot->posy){
+        shoot->posy -= 0.6 * dificultad;
+        shoot->setPos(shoot->posx,shoot->posy);
+    }
+
+    else if (40 + jugador->get_Py() > shoot->posy){
+        shoot->posy += 0.6 * dificultad;
+        shoot->setPos(shoot->posx,shoot->posy);
+    }
+
+    if (shoot->collidesWithItem(jugador)){
+        scena->removeItem(shoot);
+        //shoot.removeAt(e);
+        scena->removeItem(jugador);
+        generar_nivel2();
+    }
+    else if (est_dis <= 0){
+        scena->removeItem(shoot);
+        //shoot.removeAt(0);
+    }
+*/
+
+
+
+/****************************************************************************************************/
+
+    //for(int i=0;i<platafor.size();i++){
         //estado = 500 / dificultad;
-        if(platafor.at(i)->getClase()=="torreta"){
+        //if(platafor.at(i)->getClase()=="torreta"){
+            //estado = 500 / dificultad;
             shoot.push_back(new disparo);
             shoot.back()->posx=4*tam;
             shoot.back()->posy=8*tam;
             shoot.back()->setPos(shoot.back()->posx,shoot.back()->posy);
-            scena->addItem(shoot.back());
+
+
+            /*else{
+                shoot.back()->setPos(shoot.back()->x(),shoot.back()->y());
+                scena->addItem(shoot.back());
+            }*/
             est_dis = 800; //tiempo_disparo_del_mago
-        }
-    }
+       // }
+        //cont+=10;
+   // }
+     scena->addItem(shoot.back());
 
     for(int e=0; e<shoot.size(); e++){ // disparos del mago
     //b->elemnto.>todas las ecuaciones->colisiones
             if(jugador->get_Px()<shoot[e]->posx){
-                shoot[e]->posx -= 0.4 * dificultad;
+                shoot[e]->posx -= 0.6 * 1;
                 shoot[e]->setPos(shoot[e]->posx,shoot[e]->posy);
+
             }
             else if(jugador->get_Px() > shoot[e]->posx){
-                shoot[e]->posx += 0.4 * dificultad;
+                shoot[e]->posx += 0.6 * 1;
                 shoot[e]->setPos(shoot[e]->posx,shoot[e]->posy);
+
             }
-            if(642 + jugador->get_Py() < shoot[e]->posy){
-                shoot[e]->posy -= 0.4 * dificultad;
+            if(40 + jugador->get_Py() < shoot[e]->posy){
+                shoot[e]->posy -= 0.6 * 1;
                 shoot[e]->setPos(shoot[e]->posx,shoot[e]->posy);
+
             }
 
-            else if (642 + jugador->get_Py() > shoot[e]->posy){
-                shoot[e]->posy += 0.4 * dificultad;
+            else if (40 + jugador->get_Py() > shoot[e]->posy){
+                shoot[e]->posy += 0.6 * 1;
                 shoot[e]->setPos(shoot[e]->posx,shoot[e]->posy);
+
             }
 
             if (shoot[e]->collidesWithItem(jugador)){
-                scena->removeItem(jugador);
                 scena->removeItem(shoot[e]);
                 shoot.removeAt(e);
+                scena->removeItem(jugador);
                 generar_nivel2();
             }
             else if (est_dis <= 0){
-                scena->removeItem(shoot[e]);
-                shoot.removeAt(e);
+                scena->removeItem(shoot[0]);
+                shoot.removeAt(0);
             }
         }
-
 }
 
 

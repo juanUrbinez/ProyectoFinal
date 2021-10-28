@@ -47,7 +47,7 @@ private slots:
 private:
     void play();
     void play2();
-    //void borderCollision(elemento *b);
+    //void Colisionbord(personaje *b);
 
     Ui::niveles *ui;
     QGraphicsScene *scena,*segundo;
@@ -56,6 +56,7 @@ private:
     personaje *jugador,*jug;
     int press;
     QList<disparo *> shoot;//dismag
+    //disparo * shoot;
 
 
          short int nivel2[14][50]=
