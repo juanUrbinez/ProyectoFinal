@@ -73,6 +73,7 @@ void personaje::AumentarVelocidadDerecha()
     }
 }
 
+
 void personaje::AumentarVelocidadIzquierda()
 {
     if(Vx > - maxVx){
@@ -81,6 +82,7 @@ void personaje::AumentarVelocidadIzquierda()
 }
 
 void personaje::Saltar()
+
 {
     if(EnElAire == false)
     {

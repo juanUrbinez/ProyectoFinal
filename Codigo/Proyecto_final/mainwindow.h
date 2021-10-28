@@ -5,6 +5,7 @@
 #include <QGraphicsScene>
 #include <QKeyEvent>
 #include <QTimer>
+#include <QDebug>
 
 #include "escenario.h"
 #include "personaje.h"
@@ -38,6 +39,8 @@ public:
     ~MainWindow();
     void set_window();
 
+
+
     //presionar tecla
     void keyPressEvent(QKeyEvent * event) override;
     //soltar tecla
@@ -59,8 +62,6 @@ private slots:
     //void Mov_per();
 
     void on_anterior_clicked();
-
-    //void on_siguiente_clicked();
 
     void on_inicio_clicked();
 
@@ -96,24 +97,23 @@ private:
 
 
     Ui::MainWindow *ui;
-    QGraphicsScene *scene, *menu,*option;//,*login;
-    //QGraphicsScene *scene, *scene2;
-    //QMainWindow *now;
-//    QGraphicsView *news;
+    QGraphicsScene *scene, *menu,*option;
 
     QList<escenario *>plataforma;
     personaje *getPlayer() const;
     personaje *player;
+
+    registro *datos;
+
      QTimer * refreshTimer;
 
+
     int tecla;
-    //int w_limite;
     QTimer *time,*tempo,*timfis;
     int T=10;
     float vxo,vyo,Py,g=9.8;
     float x,y;
     unsigned long long n=0;
-
 
 };
 #endif // MAINWINDOW_H

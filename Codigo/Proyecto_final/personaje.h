@@ -76,8 +76,6 @@ private:
 
 
 
-signals:
-
 };
 
-#endif // PERSONAJE_H
+#endif 

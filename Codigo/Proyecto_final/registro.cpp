@@ -12,19 +12,25 @@ registro::registro(QWidget *parent) :
     ui->graphicsView->setScene(scene);
     ui->graphicsView->setBackgroundBrush(QImage(":/escenario/escenario/menu.png").scaled(1550,820));
     scene->setSceneRect(0,0,1898,1003);//tamaño de la escena
-    //setFixedSize(tam*50+2,tam*(14+2)+2);
     setWindowTitle("Poison Run");
     setWindowIcon(QIcon(":/personaje/Personaje/icon.png"));
 
-    ui->regist->setGeometry(300,300,100,40);//pushbotton  (registrar)
-    ui->crear->setGeometry(300,350,100,40);//pushbotton  (login)
-    ui->contrasena->hide();//label (label_2)
-    ui->usuario->hide();//label (label)
-    ui->enviar->hide();//pushbotton
-    ui->volver->hide();//pushbotton
-    ui->entrar->hide();//commandlinkbotton
-    ui->login->hide();//lineEdit usuario  (usuario)
-    ui->pass->hide();//lineEdit contraseña (contrasena)
+    ui->regist->setGeometry(600,300,120,80);
+    ui->crear->setGeometry(600,400,120,80);
+
+    ui->contrasena->hide();
+    ui->usuario->hide();
+    ui->enviar->hide();
+    ui->volver->hide();
+    ui->entrar->hide();
+    ui->login->hide();
+    ui->pass->hide();
+
+    ui->regist->setStyleSheet("color: rgb(255, 255, 255);background-color: rgb(80,170,58);");
+    ui->crear->setStyleSheet("color: rgb(255, 255, 255);background-color: rgb(80,170,58);");
+    ui->enviar->setStyleSheet("color: rgb(255, 255, 255);background-color: rgb(80,170,58);");
+    ui->volver->setStyleSheet("color: rgb(255, 255, 255);background-color: rgb(80,170,58);");
+    ui->entrar->setStyleSheet("color: rgb(255, 255, 255);background-color: rgb(80,170,58);");
 
 }
 
@@ -35,15 +41,11 @@ registro::~registro()
 
 }
 
-bool registro::get_verif()
-{
-    return correcto;
-}
-
 void registro::on_volver_clicked()
 {
     ui->regist->show();
     ui->crear->show();
+
     ui->pass->hide();
     ui->login->hide();
     ui->enviar->hide();
@@ -107,15 +109,12 @@ void registro::on_entrar_clicked()
      else{
          QMessageBox::warning(this,"Iniciar sesion","Usuario y Contraseña Existen");
          correcto=true;
-        // get_verif();
-         //MainWindow *principal=new MainWindow;
-        //principal->show();
+
      }
      cont =0;
      file.close();
 
 }
-
 
 void registro::on_enviar_clicked()
 {
@@ -143,6 +142,7 @@ void registro::on_regist_clicked()
 {
     ui->regist->hide();
     ui->crear->hide();
+
     ui->contrasena->show();
     ui->usuario->show();
     ui->enviar->show();
@@ -158,12 +158,6 @@ void registro::on_regist_clicked()
     ui->enviar->setGeometry(300,400,100,40);
     ui->volver->setGeometry(0,0,100,40);
 
-    /*ui->graphicsView->setGeometry(0,0,800,800);
-    regist->setSceneRect(0,0,800,800);
-   // registro->setBackgroundBrush(QImage(":/escenario/escenario/menu.png").scaled(1550,820));
-    ui->graphicsView->setScene(regist);
-    setWindowTitle("Poison Run");
-   // setWindowIcon(QIcon(":/personaje/Personaje/icon.png"));*/
 }
 
 

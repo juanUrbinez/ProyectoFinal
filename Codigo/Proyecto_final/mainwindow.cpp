@@ -10,7 +10,6 @@ MainWindow::MainWindow(QWidget *parent)
     menu=new QGraphicsScene;
     scene = new QGraphicsScene;
     option = new QGraphicsScene;
-    //login = new QGraphicsScene;
 
    //setGeometry(0,0,1002,1002);
     ui->graphicsView->setGeometry(0,0,1900,1005);
@@ -28,11 +27,8 @@ MainWindow::MainWindow(QWidget *parent)
     //connect(timfis,SIGNAL(timeout()),this,SLOT(simulacion()));
 
 
-
-
-    ui->inicio->setGeometry(600,200,100,40);
-    ui->salir->setGeometry(600,300,100,40);
-   // ui->newpartida->hide();
+    ui->inicio->setGeometry(600,200,120,80);
+    ui->salir->setGeometry(600,350,120,80);
     ui->partida->hide();
     ui->anterior->hide();
     ui->label->hide();
@@ -42,18 +38,12 @@ MainWindow::MainWindow(QWidget *parent)
     ui->aceptar->hide();
     ui->nivel->hide();
 
+    ui->inicio->setStyleSheet("color: rgb(255, 255, 255);background-color: rgb(80,170,58);");
+    ui->salir->setStyleSheet("color: rgb(255, 255, 255);background-color: rgb(80,170,58);");
+    ui->partida->setStyleSheet("color: rgb(255, 255, 255);background-color: rgb(80,170,58);");
+    ui->anterior->setStyleSheet("color: rgb(255, 255, 255);background-color: rgb(80,170,58);");
+    ui->aceptar->setStyleSheet("color: rgb(255, 255, 255);background-color: rgb(80,170,58);");
 
-   // ui->salir->setStyleSheet("font: 75 18pt ;color: rgb(80,170,58);");
-    //QPalette::button(1);
-    //ui->salir->setBackgroundRole(ui->salir(1));
-    /*QPixmap pixmap(":/escenario/escenario/menu.png");
-    QIcon ButtonIcon(pixmap);
-    ui->salir->setIcon(ButtonIcon);
-    ui->salir->setIconSize(pixmap.rect().size());*/ //pone al boton igual al icon, no se ve la letra
-    //jugador();
-
-    //set_window();
-    //generar_mapa();
 }
 
 MainWindow::~MainWindow()
@@ -66,12 +56,10 @@ MainWindow::~MainWindow()
     delete scene;
     delete option;
     delete menu;
-    //delete login;
 }
 
 void MainWindow::set_window()
 {
-   // w_limit=0;
     ui->graphicsView->setGeometry(0,0,tam*50+2,tam*(14+2)+2);
     ui->graphicsView->setScene(scene);
     ui->graphicsView->setBackgroundBrush(QImage(":/escenario/escenario/escenario.png").scaled(tam*50,tam*(14+2)));
@@ -79,21 +67,6 @@ void MainWindow::set_window()
     setFixedSize(tam*50+2,tam*(14+2)+2);
     setWindowTitle("Poison Run");
     setWindowIcon(QIcon(":/personaje/Personaje/icon.png"));
-
-
-    //generar_mapa();
-    //ventana  nueva
-   //now=new QMainWindow(this);
-    //login=new QGraphicsScene; ya
-
-   // news=new QGraphicsView(login,now);
-   // news->setGeometry(0,0,tam*20,tam*20);
-
-    //ventana emergente
-    //now->setGeometry(100,200,50,50);
-   // now->show();
-
-
 }
 
 void MainWindow::generar_mapa()
@@ -133,8 +106,33 @@ void MainWindow::generar_mapa()
 
 }
 
+void MainWindow::keyPressEvent(QKeyEvent *i)
+{
+    tecla=i->key();
+}
+
+void MainWindow::jugador()
+{
+    player=new personaje(tam,14*tam);
+    //ui->graphicsView->translate(player->x(),0);
+    //scene->setFocusItem(player);
+    //player->setFlag(QGraphicsItem::ItemIsFocusable);
+    //player->setFocus();
+   // player->setPos(tam,14*tam);
+    scene->addItem(player);
+     //player->focusItem();
+
+}
 
 
+/*bool MainWindow::colisiones(QGraphicsItem *item, QGraphicsItem *item2){
+    QList<QGraphicsItem *> coll=scene->collidingItems(item);
+    if(coll.count(item2)>0){
+        return true;
+    }
+    else return false;
+
+}*/
 
 void MainWindow::temporizador()
 {//se puede modificar cuando se tenga las escenas de muerte del personaje
@@ -151,6 +149,7 @@ void MainWindow::temporizador()
 
 void MainWindow::keyPressEvent(QKeyEvent *event)
 {
+
     if (event->key() == Qt::Key_A)
     {
         //if(!EvaluaColision())
@@ -328,9 +327,6 @@ void MainWindow::EvaluaColisionPoderes()
 
 }
 
-
-
-
 void MainWindow::on_anterior_clicked()
 {
     ui->graphicsView->setScene(menu);
@@ -341,19 +337,12 @@ void MainWindow::on_anterior_clicked()
 }
 
 
-/*void MainWindow::on_siguiente_clicked()
-{
-    ui->graphicsView->setScene(scene);
-
-}*/
-
-
 void MainWindow::on_inicio_clicked()
 {
     ui->anterior->show();
     ui->partida->show();
-    ui->anterior->setGeometry(600,250,100,40);
-    ui->partida->setGeometry(600,200,100,40);
+    ui->anterior->setGeometry(600,300,120,80);
+    ui->partida->setGeometry(600,200,120,80);
     ui->inicio->hide();
     ui->salir->hide();
 
@@ -363,6 +352,7 @@ void MainWindow::on_inicio_clicked()
     ui->graphicsView->setScene(option);
     setWindowTitle("Poison Run");
     setWindowIcon(QIcon(":/personaje/Personaje/icon.png"));
+
 }
 
 
@@ -377,91 +367,30 @@ void MainWindow::on_partida_clicked()
     ui->anterior->hide();
     ui->partida->hide();
     ui->aceptar->show();
-    ui->aceptar->setEnabled(false);
-   /* ui->label->show();
-    ui->label_2->show();
-    ui->lcdNumber->show();
-    ui->monedas->show();
+    ui->aceptar->setGeometry(450,300,400,120);
 
-
-    ui->graphicsView->setScene(scene);
-
-    set_window();
-    generar_mapa();*/
-
-    registro *datos=new registro(0);
+    datos=new registro(0);
     datos->show();
- //on_aceptar_clicked();
 
-    if(datos->get_verif()){
-        ui->aceptar->setEnabled(true);
-    }
+}
 
-    /*if(datos->correcto){
+
+void MainWindow::on_aceptar_clicked()
+{
+    if(datos->correcto){
+
         ui->label->show();
         ui->label_2->show();
         ui->lcdNumber->show();
         ui->monedas->show();
-
-
+        ui->aceptar->hide();
+        ui->nivel->show();
         ui->graphicsView->setScene(scene);
 
         set_window();
-        //generar_mapa();
-    }*/
-   /* ui->label->show();
-    ui->label_2->show();
-    ui->lcdNumber->show();
-    ui->monedas->show();
-    ui->graphicsView->setScene(scene);*/
-   // ui->graphicsView->setScene(login);
+        generar_mapa();
+    }
 
-    //set_window();
-    //generar_mapa();
-
-    //ventana  nueva
-   //now=new QMainWindow(this);
-    //login=new QGraphicsScene; ya
-
-    //news=new QGraphicsView(login,now);
-    //news->setGeometry(0,0,tam*20,tam*20);
-
-    //ventana emergente
-    //now->setGeometry(600,600,500,500);
-    //now->show();
-
-
-
-}
-
-
-/*void MainWindow::on_cancelar_clicked()
-{
-    //close();
-    ui->graphicsView->setScene(option);
-    ui->partida->show();
-    ui->anterior->show();
-    ui->aceptar->hide();
-    ui->cancelar->hide();
-    ui->login->hide();
-    ui->password->hide();
-    ui->contrasena->hide();
-    ui->usuario->hide();
-
-    //ui->inicio->show();
-    //ui->salir->show();
-}
-*/
-
-void MainWindow::on_aceptar_clicked()
-{
-    ui->label->show();
-    ui->label_2->show();
-    ui->lcdNumber->show();
-    ui->monedas->show();
-    ui->aceptar->hide();
-    ui->nivel->show();
-    ui->graphicsView->setScene(scene);
 
     set_window();
     generar_mapa();
@@ -469,8 +398,6 @@ void MainWindow::on_aceptar_clicked()
     refreshTimer = new QTimer(this);
     connect(refreshTimer,SIGNAL(timeout()),this,SLOT(ActualizarPosicionPersonaje()));
     refreshTimer->start(1000/60);
-
-
 
 }
 
@@ -536,5 +463,7 @@ void MainWindow::on_nivel_clicked()
 {
     niveles *level= new niveles(0);
     level->show();
+    hide();
 }
+
 
