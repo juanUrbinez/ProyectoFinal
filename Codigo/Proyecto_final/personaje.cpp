@@ -16,6 +16,8 @@ personaje::personaje()
     cayendo=false;
     saltando=false;
     EnElAire=false;
+    rebotando=false;
+    monedas=0;
 
 }
 
@@ -83,6 +85,7 @@ void personaje::Saltar()
         Vy = -900;
         ActualizarMovimiento();
     }
+
 }
 
 void personaje::BajarVelocidadX()
@@ -130,4 +133,14 @@ int personaje::getWidth()
 bool personaje::getEnElAire()
 {
     return EnElAire;
+}
+
+bool personaje::getRebotando()
+{
+    return rebotando;
+}
+
+void personaje::setRebotando(bool valor)
+{
+    rebotando=valor;
 }

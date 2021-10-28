@@ -43,7 +43,8 @@ public:
     //soltar tecla
     void keyReleaseEvent(QKeyEvent *event) override;
     //colision
-    void EvaluaColision();
+    void EvaluaColisionMovimiento();
+    void EvaluaColisionPoderes();
     bool colision;
     QList<escenario*>plataformas;
 
