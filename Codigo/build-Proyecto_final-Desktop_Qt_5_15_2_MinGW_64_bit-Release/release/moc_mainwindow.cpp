@@ -23,7 +23,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MainWindow_t {
     QByteArrayData data[10];
-    char stringdata0[163];
+    char stringdata0[159];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -41,14 +41,14 @@ QT_MOC_LITERAL(5, 73, 17), // "on_inicio_clicked"
 QT_MOC_LITERAL(6, 91, 16), // "on_salir_clicked"
 QT_MOC_LITERAL(7, 108, 18), // "on_partida_clicked"
 QT_MOC_LITERAL(8, 127, 18), // "on_aceptar_clicked"
-QT_MOC_LITERAL(9, 146, 16) // "on_nivel_clicked"
+QT_MOC_LITERAL(9, 146, 12) // "disparoCanon"
 
     },
     "MainWindow\0ActualizarPosicionPersonaje\0"
     "\0temporizador\0on_anterior_clicked\0"
     "on_inicio_clicked\0on_salir_clicked\0"
     "on_partida_clicked\0on_aceptar_clicked\0"
-    "on_nivel_clicked"
+    "disparoCanon"
 };
 #undef QT_MOC_LITERAL
 
@@ -101,7 +101,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 4: _t->on_salir_clicked(); break;
         case 5: _t->on_partida_clicked(); break;
         case 6: _t->on_aceptar_clicked(); break;
-        case 7: _t->on_nivel_clicked(); break;
+        case 7: _t->disparoCanon(); break;
         default: ;
         }
     }

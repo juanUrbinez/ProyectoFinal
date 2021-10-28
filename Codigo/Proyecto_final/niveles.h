@@ -28,7 +28,6 @@ public:
     void keyPressEvent(QKeyEvent *i);
     void set_widow();
     void set_widow2();
-
     int estado=0,est_dis=0;
     float dificultad=1;
 

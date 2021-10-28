@@ -47,7 +47,7 @@
      </rect>
     </property>
     <property name="intValue" stdset="0">
-     <number>30</number>
+     <number>10</number>
     </property>
    </widget>
    <widget class="QLabel" name="label_2">
@@ -145,19 +145,6 @@ p, li { white-space: pre-wrap; }
      <string>ENTRAR A LA PARTIDA</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="nivel">
-    <property name="geometry">
-     <rect>
-      <x>360</x>
-      <y>70</y>
-      <width>75</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>nivel</string>
-    </property>
-   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -165,7 +152,7 @@ p, li { white-space: pre-wrap; }
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>21</height>
+     <height>25</height>
     </rect>
    </property>
   </widget>

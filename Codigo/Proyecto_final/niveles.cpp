@@ -25,7 +25,7 @@ niveles::niveles(QWidget *parent) :
 
 
     set_widow();
-    //generar_nivel2();
+    generar_nivel2();
 
     ui->temp->hide();
 }
@@ -71,7 +71,9 @@ void niveles::tempor()
 
 void niveles::generar_nivel2()
 {
-    play();
+    jugador = new personaje();
+    jugador->setPos(tam+40,13*tam);
+    scena->addItem(jugador);
     for(int i=0;i<14;i++){
            for(int j=0;j<50;j++){
                if(nivel2[i][j]==1){
@@ -116,7 +118,9 @@ void niveles::generar_nivel2()
 
 void niveles::generar_nivel3()
 {
-    play2();
+    jugador = new personaje();
+    jugador->setPos(tam+40,13*tam);
+    scena->addItem(jugador);
     for(int i=0;i<14;i++){
            for(int j=0;j<50;j++){
                if(nivel3[i][j]==1){
@@ -198,7 +202,7 @@ void niveles::set_widow2()
 void niveles::play()
 {
 
-    jugador= new personaje(tam,14*tam);
+    jugador= new personaje();
     scena->addItem(jugador);
 
 }
@@ -245,99 +249,47 @@ void niveles::on_siguiente_clicked()
     scena->removeItem(jugador);
 }
 
-void niveles::actualizar() //dismag->shoot
-{//disparo    ->mago=platafor->torreta
-    //float torre;
-    //int cont=0;
-    //jugador->actualizarmov();
-    //jugador->setPos(jugador->get_Px(),720-jugador->get_Py());
-    //Colisionbord(jugador);
-
-
-    if ( estado != 0){estado -= 1;}
-    if(est_dis!=0){est_dis-=1;}
-
-
-    /*shoot= new disparo();
-    shoot->posx=4*tam;
-    shoot->posy=7.5*tam;
-    shoot->setPos(shoot->posx,shoot->posy);
-    scena->addItem(shoot);
-    est_dis=80;
-
-    if(jugador->get_Px()<shoot->posx){
-        shoot->posx -= 0.6 * dificultad;
-        shoot->setPos(shoot->posx,shoot->posy);
+void niveles::actualizar()
+{
+    if(estado!=0)
+    {
+        estado-=1;
     }
-    else if(jugador->get_Px() > shoot->posx){
-        shoot->posx += 0.6 * dificultad;
-        shoot->setPos(shoot->posx,shoot->posy);
-    }
-    if(40 + jugador->get_Py() < shoot->posy){
-        shoot->posy -= 0.6 * dificultad;
-        shoot->setPos(shoot->posx,shoot->posy);
+    if(est_dis!=0)
+    {
+        est_dis-=1;
     }
 
-    else if (40 + jugador->get_Py() > shoot->posy){
-        shoot->posy += 0.6 * dificultad;
-        shoot->setPos(shoot->posx,shoot->posy);
-    }
-
-    if (shoot->collidesWithItem(jugador)){
-        scena->removeItem(shoot);
-        //shoot.removeAt(e);
-        scena->removeItem(jugador);
-        generar_nivel2();
-    }
-    else if (est_dis <= 0){
-        scena->removeItem(shoot);
-        //shoot.removeAt(0);
-    }
-*/
 
 
-
-/****************************************************************************************************/
-
-    //for(int i=0;i<platafor.size();i++){
-        //estado = 500 / dificultad;
-        //if(platafor.at(i)->getClase()=="torreta"){
-            //estado = 500 / dificultad;
             shoot.push_back(new disparo);
             shoot.back()->posx=4*tam;
             shoot.back()->posy=8*tam;
             shoot.back()->setPos(shoot.back()->posx,shoot.back()->posy);
 
+            est_dis = 800;
 
-            /*else{
-                shoot.back()->setPos(shoot.back()->x(),shoot.back()->y());
-                scena->addItem(shoot.back());
-            }*/
-            est_dis = 800; //tiempo_disparo_del_mago
-       // }
-        //cont+=10;
-   // }
      scena->addItem(shoot.back());
 
-    for(int e=0; e<shoot.size(); e++){ // disparos del mago
-    //b->elemnto.>todas las ecuaciones->colisiones
-            if(jugador->get_Px()<shoot[e]->posx){
+    for(int e=0; e<shoot.size(); e++){
+
+            if(jugador->x()<shoot[e]->posx){
                 shoot[e]->posx -= 0.6 * 1;
                 shoot[e]->setPos(shoot[e]->posx,shoot[e]->posy);
 
             }
-            else if(jugador->get_Px() > shoot[e]->posx){
+            else if(jugador->x() > shoot[e]->posx){
                 shoot[e]->posx += 0.6 * 1;
                 shoot[e]->setPos(shoot[e]->posx,shoot[e]->posy);
 
             }
-            if(40 + jugador->get_Py() < shoot[e]->posy){
+            if(40 + jugador->y() < shoot[e]->posy){
                 shoot[e]->posy -= 0.6 * 1;
                 shoot[e]->setPos(shoot[e]->posx,shoot[e]->posy);
 
             }
 
-            else if (40 + jugador->get_Py() > shoot[e]->posy){
+            else if (40 + jugador->y() > shoot[e]->posy){
                 shoot[e]->posy += 0.6 * 1;
                 shoot[e]->setPos(shoot[e]->posx,shoot[e]->posy);
 
@@ -346,12 +298,13 @@ void niveles::actualizar() //dismag->shoot
             if (shoot[e]->collidesWithItem(jugador)){
                 scena->removeItem(shoot[e]);
                 shoot.removeAt(e);
-                scena->removeItem(jugador);
-                generar_nivel2();
+                //scena->removeItem(jugador);
+                //generar_nivel2();
             }
-            else if (est_dis <= 0){
-                scena->removeItem(shoot[0]);
-                shoot.removeAt(0);
+            else{
+//                scena->removeItem(shoot[0]);
+//                shoot.removeAt(0);
+
             }
         }
 }

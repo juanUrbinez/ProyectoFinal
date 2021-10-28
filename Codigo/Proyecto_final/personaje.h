@@ -11,7 +11,7 @@ class personaje :  public QObject, public QGraphicsPixmapItem
     Q_OBJECT
 public:
     personaje();
-    int sprite,monedas;
+    int sprite, monedas;
     bool live=true;
     void cambio_imagen(short a);
 

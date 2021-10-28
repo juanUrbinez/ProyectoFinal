@@ -17,7 +17,6 @@ personaje::personaje()
     saltando=false;
     EnElAire=false;
     //rebotando=false;
-    monedas=0;
 
 }
 
