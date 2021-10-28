@@ -21,7 +21,7 @@ MainWindow::MainWindow(QWidget *parent)
     setWindowTitle("Poison Run");
     setWindowIcon(QIcon(":/personaje/Personaje/icon.png"));
 
-
+    mundo= new QGraphicsItemGroup;
 
 
     time = new QTimer;
@@ -98,7 +98,9 @@ void MainWindow::set_window(int MAPA)
         setWindowIcon(QIcon(":/personaje/Personaje/icon.png"));
         }
 
+
 }
+
 
 void MainWindow::generar_mapa(int a)
 {
@@ -129,6 +131,11 @@ if(variable==1)
                 plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"moneda"));
                 scene->addItem(plataforma.last());
             }
+            else if(nivel1[i][j]==5){
+                plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"VacioVenenoso"));
+                scene->addItem(plataforma.last());
+            }
+
             else if(nivel1[i][j]==6){
                 plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"puerta"));
                 scene->addItem(plataforma.last());
@@ -159,6 +166,11 @@ else if(variable==2)
                }
                else if(nivel2[i][j]==4){
                    plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"moneda"));
+                   scene2->addItem(plataforma.last());
+               }
+
+               else if(nivel2[i][j]==5){
+                   plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"VacioVenenoso"));
                    scene2->addItem(plataforma.last());
                }
                else if(nivel2[i][j]==6){
@@ -205,6 +217,10 @@ else if (variable==3)
                }
                else if(nivel3[i][j]==4){
                    plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"moneda"));
+                   scene3->addItem(plataforma.last());
+               }
+               else if(nivel3[i][j]==5){
+                   plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"VacioVenenoso"));
                    scene3->addItem(plataforma.last());
                }
                else if(nivel3[i][j]==6){
@@ -254,11 +270,30 @@ else if (variable==3)
 
 void MainWindow::temporizador()
 {//se puede modificar cuando se tenga las escenas de muerte del personaje
-    if(ui->lcdNumber->intValue()==0){
-        scene->removeItem(player);
-        generar_mapa(variable);
-        ui->lcdNumber->display(10);
-        scene->addItem(player);
+    if(ui->lcdNumber->intValue()<=0)
+    {
+        if(variable==1)
+        {
+            scene->removeItem(player);
+            generar_mapa(variable);
+            ui->lcdNumber->display(10);
+            scene->addItem(player);
+        }
+        if(variable==2)
+        {
+            scene2->removeItem(player);
+            generar_mapa(variable);
+            ui->lcdNumber->display(10);
+            scene2->addItem(player);
+        }
+        if(variable==3)
+        {
+            scene3->removeItem(player);
+            generar_mapa(variable);
+            ui->lcdNumber->display(10);
+            scene->addItem(player);
+        }
+
     }
     else{
      ui->lcdNumber->display((ui->lcdNumber->intValue())-1);
@@ -439,6 +474,15 @@ void MainWindow::EvaluaColisionPoderes()
             plataforma.removeAt(i);
             ui->lcdNumber->display((ui->lcdNumber->intValue())+5);
         }
+
+        if(plataforma.at(i)->getClase() == "zonaM" && plataforma.at(i)->collidesWithItem(player))
+        {
+            ui->lcdNumber->display((ui->lcdNumber->intValue())-1);
+        }
+        if(plataforma.at(i)->getClase() == "VacioVenenoso" && plataforma.at(i)->collidesWithItem(player))
+        {
+            ui->lcdNumber->display(0);
+        }
         if(plataforma.at(i)->getClase() == "puerta" && plataforma.at(i)->collidesWithItem(player))
         {
             scene->removeItem(player);
@@ -447,11 +491,8 @@ void MainWindow::EvaluaColisionPoderes()
             variable++;
             generar_mapa(variable);
             set_window(variable);
-
-
-
-
         }
+
 
 
 

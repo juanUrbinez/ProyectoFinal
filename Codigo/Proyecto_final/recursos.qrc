@@ -22,6 +22,7 @@
         <file>obstaculo/torreta.png</file>
         <file>obstaculo/torretader.png</file>
         <file>obstaculo/bala.png</file>
+        <file>obstaculo/Vacio.png</file>
     </qresource>
     <qresource prefix="/Personaje">
         <file>Personaje/corriendo.png</file>

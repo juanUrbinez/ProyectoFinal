@@ -95,6 +95,7 @@ private:
 
             };
 
+
 };
 
 #endif // NIVELES_H

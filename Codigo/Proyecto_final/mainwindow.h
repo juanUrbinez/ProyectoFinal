@@ -154,6 +154,7 @@ private:
     unsigned long long n=0;
     int est_dis=0,estado=0;
     QList<disparo *> shoot;
+    QGraphicsItemGroup * mundo;
 
 };
 #endif // MAINWINDOW_H
