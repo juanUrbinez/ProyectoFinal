@@ -313,8 +313,14 @@ void MainWindow::EvaluaColisionPoderes()
         {
             scene->removeItem(plataforma.at(i));
             plataforma.removeAt(i);
-
         }
+        if(plataforma.at(i)->getClase() == "puerta" && plataforma.at(i)->collidesWithItem(player))
+        {
+
+            scene->removeItem(plataforma.at(i));
+            plataforma.removeAt(i);
+        }
+
 
 
 
