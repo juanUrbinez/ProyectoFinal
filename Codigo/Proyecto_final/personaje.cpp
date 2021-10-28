@@ -8,7 +8,7 @@ personaje::personaje()
     width=40;
     height=40;
     Vx=0;
-    Vy=1;
+    Vy=0;
     maxVx=10;
     aceleracionX=0.5;
     Moviendo_Derecha=false;
@@ -16,6 +16,8 @@ personaje::personaje()
     cayendo=false;
     saltando=false;
     EnElAire=false;
+    //rebotando=false;
+    monedas=0;
 
 }
 
@@ -42,7 +44,9 @@ void personaje::ActualizarMovimiento()
     else{
         saltando = false;
     }
-    if(Vy == 0){
+
+    if(Vy == 0)
+    {
         EnElAire = false;
 
     }
@@ -82,7 +86,9 @@ void personaje::Saltar()
     {
         Vy = -900;
         ActualizarMovimiento();
+
     }
+
 }
 
 void personaje::BajarVelocidadX()
@@ -114,9 +120,6 @@ bool personaje::getMoviendo_Izquierda()
     return Moviendo_Izquierda;
 }
 
-
-
-
 int personaje::getHeight()
 {
     return height;
@@ -130,4 +133,14 @@ int personaje::getWidth()
 bool personaje::getEnElAire()
 {
     return EnElAire;
+}
+
+bool personaje::getRebotando()
+{
+    return rebotando;
+}
+
+void personaje::setRebotando(bool valor)
+{
+    rebotando=valor;
 }

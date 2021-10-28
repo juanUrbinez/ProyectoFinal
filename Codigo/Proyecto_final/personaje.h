@@ -4,13 +4,14 @@
 #include <QGraphicsPixmapItem>
 #include <QMainWindow>
 #include <QObject>
+#include <QDebug>
 
 class personaje :  public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
 public:
     personaje();
-    int sprite=0,monedas=0;
+    int sprite,monedas;
     bool live=true;
     void cambio_imagen(short a);
 
@@ -45,7 +46,8 @@ public:
     bool getVolando();
     bool getSaltando();
     bool getEnElAire();
-
+    bool getRebotando();
+    void setRebotando(bool valor);
 
 
 
@@ -65,6 +67,7 @@ protected:
     bool saltando;
 
     bool EnElAire;
+    bool rebotando;
 
 
 
