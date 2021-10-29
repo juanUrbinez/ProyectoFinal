@@ -72,26 +72,47 @@ void registro::on_entrar_clicked()
          return;
      }
      QTextStream strem(&file);
-     while(!strem.atEnd()){
+     while(!strem.atEnd())
+     {
          linea=strem.readLine();
-         for(int i=0;i<linea.size();i++){
-             if(linea[i]== ' ' or linea[i]== '\n'){
-                 if(espacio==0){
-                     if(usuario==work){
+         for(int i=0;i<linea.size();i++)
+         {
+             if(linea[i]== ' ' or linea[i]== '*')
+             {
+                 if(espacio==0)
+                 {
+                     if(usuario==work)
+                     {
                          cont++;
                          dec=true;
                      }
                  }
-                 else if(espacio==1){
-                     if(contrasena==work){
+                 else if(espacio==1)
+                 {
+                     if(contrasena==work)
+                     {
                          cont++;
                          dec=false;
                      }
                  }
+                  else if(espacio==2)
+                  {
+                      nivel=work;
+                  }
+
+                 else if(espacio==3)
+                 {
+                     score=work;
+                 }
+                 qDebug()<<nivel;
+                 qDebug()<<score;
+
+
                  espacio+=1;
                  work= "";
              }
-             else{
+             else
+             {
                  work+=linea[i];
              }
          }
@@ -128,6 +149,8 @@ void registro::on_enviar_clicked()
 {
     QString usuario=ui->login->text();
     QString contrasena=ui->pass->text();
+    QString nivel="*1";
+    QString score="*0 ";
     qDebug()<<usuario;
     qDebug()<<contrasena;
 
@@ -140,7 +163,7 @@ void registro::on_enviar_clicked()
     }
 
     QTextStream stream(&file);
-    stream<<usuario<<" "<<contrasena<<" "<<"\r\n";
+    stream<<usuario<<" "<<contrasena<<nivel<<score<<"\r\n";
     QMessageBox::warning(this,"Iniciar sesion","Usuario creado");
 
     file.close();
@@ -192,3 +215,78 @@ void registro::on_crear_clicked()
     ui->volver->setGeometry(0,0,100,40);
 }
 
+
+/*
+void registro::guardarProgreso()
+{
+    QString usuario=ui->login->text();
+    QString contrasena=ui->pass->text();
+
+     QString linea="",work="";
+
+     QFile file("../Proyecto_final/texto.txt");
+     if(!file.exists()){
+         qCritical()<<"Archivo no encontrado";
+     }
+     if(!file.open(QIODevice::ReadWrite | QIODevice::Text)){
+         return;
+     }
+     QTextStream strem(&file);
+     while(!strem.atEnd())
+     {
+         linea=strem.readLine();
+         for(int i=0;i<linea.size();i++)
+         {
+             if(linea[i]== ' ' or linea[i]== '*')
+             {
+                 if(espacio==0)
+                 {
+                     if(usuario==work)
+                     {
+                         cont++;
+                         dec=true;
+                     }
+                 }
+
+                 espacio+=1;
+                 work= "";
+             }
+             else
+             {
+                 work+=linea[i];
+             }
+         }
+         espacio=0;
+
+     }
+     if(cont==1){
+         if(dec)
+         {
+
+
+         }
+         else
+         {
+             QMessageBox::warning(this,"Iniciar sesion","Usuario Incorrecto");
+         }
+     }
+     else if(cont==2)
+     {
+         QMessageBox::warning(this,"Iniciar sesion","Sesion Iniciada");
+         correcto=true;
+
+     }
+     else
+     {
+         QMessageBox::warning(this,"Iniciar sesion","Usuario y contraseña incorrecto");
+     }
+     cont =0;
+     file.close();
+
+}
+
+
+
+
+
+*/

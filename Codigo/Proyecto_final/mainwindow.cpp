@@ -825,6 +825,7 @@ void MainWindow::EvaluaColisionPoderes()
         }
         if(plataforma.at(i)->getClase() == "puerta" && plataforma.at(i)->collidesWithItem(player))
         {
+
             if(variable==1)
             {
                 scene->removeItem(player);
@@ -963,17 +964,71 @@ void MainWindow::on_partida_clicked()
 
 void MainWindow::on_aceptar_clicked()
 {
-    if(datos->correcto){
-
+    if(datos->correcto)
+    {
+        variable=(datos->nivel.toInt());
         ui->label->show();
         ui->label_2->show();
         ui->lcdNumber->show();
         ui->monedas->show();
         ui->aceptar->hide();
-        ui->graphicsView->setScene(scene);
 
-        set_window(variable);
-        generar_mapa(variable);
+        if(variable==1)
+        {
+            ui->graphicsView->setScene(scene);
+            set_window(variable);
+            generar_mapa(variable);
+
+        }
+        else if(variable==2)
+        {
+            ui->graphicsView->setScene(scene2);
+            set_window(variable);
+            generar_mapa(variable);
+
+        }
+        else if(variable==3)
+        {
+            ui->graphicsView->setScene(scene3);
+            set_window(variable);
+            generar_mapa(variable);
+
+        }
+        else if(variable==4)
+        {
+            ui->graphicsView->setScene(scene4);
+            set_window(variable);
+            generar_mapa(variable);
+
+        }
+        else if(variable==5)
+        {
+            ui->graphicsView->setScene(scene5);
+            set_window(variable);
+            generar_mapa(variable);
+
+        }
+        else if(variable==6)
+        {
+            ui->graphicsView->setScene(scene3);
+            set_window(variable);
+            generar_mapa(variable);
+
+        }
+        else if(variable==7)
+        {
+            ui->graphicsView->setScene(scene4);
+            set_window(variable);
+            generar_mapa(variable);
+
+        }
+        else if(variable==8)
+        {
+            ui->graphicsView->setScene(scene5);
+            set_window(variable);
+            generar_mapa(variable);
+        }
+
 
         refreshTimer = new QTimer();
         connect(refreshTimer,SIGNAL(timeout()),this,SLOT(ActualizarPosicionPersonaje()));

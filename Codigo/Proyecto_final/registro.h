@@ -24,6 +24,7 @@ public:
     explicit registro(QWidget *parent = nullptr);
     ~registro();
     bool correcto;
+    QString nivel,score,usuario;
 
 private slots:
     void on_volver_clicked();
@@ -35,6 +36,9 @@ private slots:
     void on_regist_clicked();
 
     void on_crear_clicked();
+
+    //void guardarProgreso();
+
 
 private:
     Ui::registro *ui;
