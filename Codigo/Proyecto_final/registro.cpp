@@ -99,18 +99,25 @@ void registro::on_entrar_clicked()
 
      }
      if(cont==1){
-         if(dec){
-             QMessageBox::warning(this,"Iniciar sesion","Usuario Existente");
+         if(dec)
+         {
+             QMessageBox::warning(this,"Iniciar sesion","Contraseña incorrecta");
 
          }
-         else{
-             QMessageBox::warning(this,"Iniciar sesion","Constraseña  Existente");
+         else
+         {
+             QMessageBox::warning(this,"Iniciar sesion","Usuario Incorrecto");
          }
      }
-     else{
-         QMessageBox::warning(this,"Iniciar sesion","Usuario y Contraseña Existen");
+     else if(cont==2)
+     {
+         QMessageBox::warning(this,"Iniciar sesion","Sesion Iniciada");
          correcto=true;
 
+     }
+     else
+     {
+         QMessageBox::warning(this,"Iniciar sesion","Usuario y contraseña incorrecto");
      }
      cont =0;
      file.close();
@@ -126,7 +133,8 @@ void registro::on_enviar_clicked()
 
 
     QFile file("../Proyecto_final/texto.txt");
-    if(!file.open(QIODevice::WriteOnly | QIODevice::Text)){
+    if(!file.open(QIODevice::Append| QIODevice::Text))
+    {
         qCritical()<<file.errorString();
         return;
     }
