@@ -63,7 +63,7 @@ void registro::on_entrar_clicked()
 
      QString linea="",work="";
 
-     QFile file("TExto.txt");
+     QFile file("../Proyecto_final/texto.txt");
      if(!file.exists()){
          qCritical()<<"Archivo no encontrado";
      }
@@ -124,7 +124,7 @@ void registro::on_enviar_clicked()
     qDebug()<<contrasena;
 
 
-    QFile file("Texto.txt");
+    QFile file("../Proyecto_final/texto.txt");
     if(!file.open(QIODevice::WriteOnly | QIODevice::Text)){
         qCritical()<<file.errorString();
         return;

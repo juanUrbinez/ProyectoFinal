@@ -12,6 +12,10 @@ MainWindow::MainWindow(QWidget *parent)
     option = new QGraphicsScene;
     scene2 = new QGraphicsScene;
     scene3 = new QGraphicsScene;
+    scene4 = new QGraphicsScene;
+    scene5 = new QGraphicsScene;
+    scene6 = new QGraphicsScene;
+    scene7 = new QGraphicsScene;
 
    //setGeometry(0,0,1002,1002);
     ui->graphicsView->setGeometry(0,0,1900,1005);
@@ -24,11 +28,11 @@ MainWindow::MainWindow(QWidget *parent)
     mundo= new QGraphicsItemGroup;
 
 
-    time = new QTimer;
-    connect(time,SIGNAL(timeout()),this,SLOT(Mov_per()));
     tempo=new QTimer;
     connect(tempo,SIGNAL(timeout()),this,SLOT(temporizador()));
-    refreshTimer = new QTimer();
+    //refreshTimer = new QTimer();
+    sprite=1;
+    sprite2=1;
 
 
 
@@ -67,7 +71,9 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::set_window(int MAPA)
-{   if(MAPA==1)
+{
+    MAPA=variable;
+    if(MAPA==1)
     {
         ui->graphicsView->setGeometry(0,0,tam*50+2,tam*(14+2)+2);
         ui->graphicsView->setScene(scene);
@@ -77,20 +83,60 @@ void MainWindow::set_window(int MAPA)
         setWindowTitle("Poison Run");
         setWindowIcon(QIcon(":/personaje/Personaje/icon.png"));
     }
-    if(MAPA==2)
+    else if(MAPA==2)
         {
         ui->graphicsView->setGeometry(0,0,tam*50+2,tam*(14+2)+2);
         ui->graphicsView->setScene(scene2);
+        ui->graphicsView->setBackgroundBrush(QImage(":/escenario/escenario/escenario.png").scaled(tam*50,tam*(14+2)));
+        scene2->setSceneRect(0,0,tam*50,tam*(14+2));//tamaño de la escena
+        setFixedSize(tam*50+2,tam*(14+2)+2);
+        setWindowTitle("Poison Run");
+        setWindowIcon(QIcon(":/personaje/Personaje/icon.png"));
+        }
+    else if(MAPA==3)
+        {
+        ui->graphicsView->setGeometry(0,0,tam*50+2,tam*(14+2)+2);
+        ui->graphicsView->setScene(scene3);
         ui->graphicsView->setBackgroundBrush(QImage(":/escenario/escenario/escenario.png").scaled(tam*50,tam*(14+2)));
         scene->setSceneRect(0,0,tam*50,tam*(14+2));//tamaño de la escena
         setFixedSize(tam*50+2,tam*(14+2)+2);
         setWindowTitle("Poison Run");
         setWindowIcon(QIcon(":/personaje/Personaje/icon.png"));
         }
-    if(MAPA==3)
+    else if(MAPA==4)
         {
         ui->graphicsView->setGeometry(0,0,tam*50+2,tam*(14+2)+2);
-        ui->graphicsView->setScene(scene3);
+        ui->graphicsView->setScene(scene4);
+        ui->graphicsView->setBackgroundBrush(QImage(":/escenario/escenario/escenario.png").scaled(tam*50,tam*(14+2)));
+        scene->setSceneRect(0,0,tam*50,tam*(14+2));//tamaño de la escena
+        setFixedSize(tam*50+2,tam*(14+2)+2);
+        setWindowTitle("Poison Run");
+        setWindowIcon(QIcon(":/personaje/Personaje/icon.png"));
+        }
+    else if(MAPA==5)
+        {
+        ui->graphicsView->setGeometry(0,0,tam*50+2,tam*(14+2)+2);
+        ui->graphicsView->setScene(scene5);
+        ui->graphicsView->setBackgroundBrush(QImage(":/escenario/escenario/escenario.png").scaled(tam*50,tam*(14+2)));
+        scene->setSceneRect(0,0,tam*50,tam*(14+2));//tamaño de la escena
+        setFixedSize(tam*50+2,tam*(14+2)+2);
+        setWindowTitle("Poison Run");
+        setWindowIcon(QIcon(":/personaje/Personaje/icon.png"));
+        }
+    else if(MAPA==5)
+        {
+        ui->graphicsView->setGeometry(0,0,tam*50+2,tam*(14+2)+2);
+        ui->graphicsView->setScene(scene5);
+        ui->graphicsView->setBackgroundBrush(QImage(":/escenario/escenario/escenario.png").scaled(tam*50,tam*(14+2)));
+        scene->setSceneRect(0,0,tam*50,tam*(14+2));//tamaño de la escena
+        setFixedSize(tam*50+2,tam*(14+2)+2);
+        setWindowTitle("Poison Run");
+        setWindowIcon(QIcon(":/personaje/Personaje/icon.png"));
+        }
+    else if(MAPA==6)
+        {
+        ui->graphicsView->setGeometry(0,0,tam*50+2,tam*(14+2)+2);
+        ui->graphicsView->setScene(scene6);
         ui->graphicsView->setBackgroundBrush(QImage(":/escenario/escenario/escenario.png").scaled(tam*50,tam*(14+2)));
         scene->setSceneRect(0,0,tam*50,tam*(14+2));//tamaño de la escena
         setFixedSize(tam*50+2,tam*(14+2)+2);
@@ -106,150 +152,369 @@ void MainWindow::generar_mapa(int a)
 {
     variable=a;
 
-if(variable==1)
-{
-    player = new personaje();
-    player->setPos(tam+40,13*tam);
-    scene->addItem(player);
-    for(int i=0;i<14;i++){
-        for(int j=0;j<50;j++){
-            if(nivel1[i][j]==1)
-            {
-                plataformas.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"muro"));
-                scene->addItem(plataformas.last());
+    if(variable==1)
+    {
+        player = new personaje();
+        player->setPos(tam+40,13*tam);
+        scene->addItem(player);
+        for(int i=0;i<14;i++){
+            for(int j=0;j<50;j++){
+                if(nivel1[i][j]==1)
+                {
+                    plataformas.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"muro"));
+                    scene->addItem(plataformas.last());
 
-            }
-            else if(nivel1[i][j]==2){
-                plataformas.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"plataforma"));
-                scene->addItem(plataformas.last());
-            }
-            else if(nivel1[i][j]==3){
-                plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"orbe"));
-                scene->addItem(plataforma.last());
-            }
-            else if(nivel1[i][j]==4){
-                plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"moneda"));
-                scene->addItem(plataforma.last());
-            }
-            else if(nivel1[i][j]==5){
-                plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"VacioVenenoso"));
-                scene->addItem(plataforma.last());
-            }
+                }
+                else if(nivel1[i][j]==2){
+                    plataformas.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"plataforma"));
+                    scene->addItem(plataformas.last());
+                }
+                else if(nivel1[i][j]==3){
+                    plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"orbe"));
+                    scene->addItem(plataforma.last());
+                }
+                else if(nivel1[i][j]==4){
+                    plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"moneda"));
+                    scene->addItem(plataforma.last());
+                }
+                else if(nivel1[i][j]==5){
+                    plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"VacioVenenoso"));
+                    scene->addItem(plataforma.last());
+                }
 
-            else if(nivel1[i][j]==6){
-                plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"puerta"));
-                scene->addItem(plataforma.last());
+                else if(nivel1[i][j]==6){
+                    plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"puerta"));
+                    scene->addItem(plataforma.last());
+                }
             }
-        }        
+        }
     }
-}
-else if(variable==2)
-{
-    player = new personaje();
-    player->setPos(tam+40,13*tam);
-    scene2->addItem(player);
-    for(int i=0;i<14;i++){
-           for(int j=0;j<50;j++){
-               if(nivel2[i][j]==1)
-               {
-                   plataformas.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"muro"));
-                   scene2->addItem(plataformas.last());
+    else if(variable==2)
+    {
+        player = new personaje();
+        player->setPos(tam+40,13*tam);
+        scene2->addItem(player);
+        for(int i=0;i<14;i++){
+               for(int j=0;j<50;j++){
+                   if(nivel2[i][j]==1)
+                   {
+                       plataformas.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"muro"));
+                       scene2->addItem(plataformas.last());
 
-               }
-               else if(nivel2[i][j]==2){
-                   plataformas.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"plataforma"));
-                   scene2->addItem(plataformas.last());
-               }
-               else if(nivel2[i][j]==3){
-                   plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"orbe"));
-                   scene2->addItem(plataforma.last());
-               }
-               else if(nivel2[i][j]==4){
-                   plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"moneda"));
-                   scene2->addItem(plataforma.last());
-               }
+                   }
+                   else if(nivel2[i][j]==2){
+                       plataformas.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"plataforma"));
+                       scene2->addItem(plataformas.last());
+                   }
+                   else if(nivel2[i][j]==3){
+                       plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"orbe"));
+                       scene2->addItem(plataforma.last());
+                   }
+                   else if(nivel2[i][j]==4){
+                       plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"moneda"));
+                       scene2->addItem(plataforma.last());
+                   }
 
-               else if(nivel2[i][j]==5){
-                   plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"VacioVenenoso"));
-                   scene2->addItem(plataforma.last());
-               }
-               else if(nivel2[i][j]==6){
-                   plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"puerta"));
-                   scene2->addItem(plataforma.last());
-               }
-               else if(nivel2[i][j]==7){
-                   plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"torreta"));
-                   scene2->addItem(plataforma.last());
-               }
-               else if(nivel2[i][j]==8){
-                   plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"zonaM"));
-                    scene2->addItem(plataforma.last());
-               }
-               else if(nivel2[i][j]==11){
-                   plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"item"));
-                    scene2->addItem(plataforma.last());
-               }
+                   else if(nivel2[i][j]==5){
+                       plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"VacioVenenoso"));
+                       scene2->addItem(plataforma.last());
+                   }
+                   else if(nivel2[i][j]==6){
+                       plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"puerta"));
+                       scene2->addItem(plataforma.last());
+                   }
+                   else if(nivel2[i][j]==7){
+                       plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"torreta"));
+                       scene2->addItem(plataforma.last());
+                   }
+                   else if(nivel2[i][j]==8){
+                       plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"zonaM"));
+                        scene2->addItem(plataforma.last());
+                   }
+                   else if(nivel2[i][j]==11){
+                       plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"item"));
+                        scene2->addItem(plataforma.last());
+                   }
 
-          }
-       }
-    //act->start(10);
-}
+              }
+           }
+    }
 
 
-else if (variable==3)
-{
-    player = new personaje();
-    player->setPos(tam+40,13*tam);
-    scene3->addItem(player);
-    for(int i=0;i<14;i++){
-           for(int j=0;j<50;j++){
-               if(nivel3[i][j]==1){
-                   plataformas.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"muro3"));
-                   scene3->addItem(plataformas.last());
-               }
-               else if(nivel3[i][j]==2){
-                   plataformas.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"plataforma3"));
-                   scene3->addItem(plataformas.last());
-               }
-               else if(nivel3[i][j]==3){
-                   plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"orbe"));
-                   scene3->addItem(plataforma.last());
-               }
-               else if(nivel3[i][j]==4){
-                   plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"moneda"));
-                   scene3->addItem(plataforma.last());
-               }
-               else if(nivel3[i][j]==5){
-                   plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"VacioVenenoso"));
-                   scene3->addItem(plataforma.last());
-               }
-               else if(nivel3[i][j]==6){
-                   plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"puerta"));
-                   scene3->addItem(plataforma.last());
-               }
-               else if(nivel3[i][j]==7){
-                   plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"torreta"));
-                   scene3->addItem(plataforma.last());
-               }
-               else if(nivel3[i][j]==8){
-                   plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"zonaM"));
-                   scene3->addItem(plataforma.last());
-               }
-               else if(nivel3[i][j]==11){
-                   plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"item"));
-                   scene3->addItem(plataforma.last());
-               }
-               else if(nivel3[i][j]==12){
-                   plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"item2"));
-                   scene3->addItem(plataforma.last());
-               }
-               else if(nivel3[i][j]==13){
-                   plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"torreta2"));
-                   scene3->addItem(plataforma.last());
-               }
-          }
-       }
-}
+    else if (variable==3)
+    {
+        player = new personaje();
+        player->setPos(tam+40,13*tam);
+        scene3->addItem(player);
+        for(int i=0;i<14;i++){
+               for(int j=0;j<50;j++){
+                   if(nivel3[i][j]==1){
+                       plataformas.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"muro3"));
+                       scene3->addItem(plataformas.last());
+                   }
+                   else if(nivel3[i][j]==2){
+                       plataformas.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"plataforma3"));
+                       scene3->addItem(plataformas.last());
+                   }
+                   else if(nivel3[i][j]==3){
+                       plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"orbe"));
+                       scene3->addItem(plataforma.last());
+                   }
+                   else if(nivel3[i][j]==4){
+                       plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"moneda"));
+                       scene3->addItem(plataforma.last());
+                   }
+                   else if(nivel3[i][j]==5){
+                       plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"VacioVenenoso"));
+                       scene3->addItem(plataforma.last());
+                   }
+                   else if(nivel3[i][j]==6){
+                       plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"puerta"));
+                       scene3->addItem(plataforma.last());
+                   }
+                   else if(nivel3[i][j]==7){
+                       plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"torreta"));
+                       scene3->addItem(plataforma.last());
+                   }
+                   else if(nivel3[i][j]==8){
+                       plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"zonaM"));
+                       scene3->addItem(plataforma.last());
+                   }
+                   else if(nivel3[i][j]==11){
+                       plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"item"));
+                       scene3->addItem(plataforma.last());
+                   }
+                   else if(nivel3[i][j]==12){
+                       plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"item2"));
+                       scene3->addItem(plataforma.last());
+                   }
+                   else if(nivel3[i][j]==13){
+                       plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"torreta2"));
+                       scene3->addItem(plataforma.last());
+                   }
+              }
+           }
+    }
+
+    else if (variable==4)
+    {
+        player = new personaje();
+        player->setPos(tam+40,13*tam);
+        scene4->addItem(player);
+        for(int i=0;i<14;i++){
+               for(int j=0;j<50;j++){
+                   if(nivel4[i][j]==1){
+                       plataformas.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"muro3"));
+                       scene4->addItem(plataformas.last());
+                   }
+                   else if(nivel4[i][j]==2){
+                       plataformas.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"plataforma3"));
+                       scene4->addItem(plataformas.last());
+                   }
+                   else if(nivel4[i][j]==3){
+                       plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"orbe"));
+                       scene4->addItem(plataforma.last());
+                   }
+                   else if(nivel4[i][j]==4){
+                       plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"moneda"));
+                       scene4->addItem(plataforma.last());
+                   }
+                   else if(nivel4[i][j]==5){
+                       plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"VacioVenenoso"));
+                       scene4->addItem(plataforma.last());
+                   }
+                   else if(nivel4[i][j]==6){
+                       plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"puerta"));
+                       scene4->addItem(plataforma.last());
+                   }
+                   else if(nivel4[i][j]==7){
+                       plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"torreta"));
+                       scene4->addItem(plataforma.last());
+                   }
+                   else if(nivel4[i][j]==8){
+                       plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"zonaM"));
+                       scene4->addItem(plataforma.last());
+                   }
+                   else if(nivel4[i][j]==11){
+                       plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"item"));
+                       scene4->addItem(plataforma.last());
+                   }
+                   else if(nivel4[i][j]==12){
+                       plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"item2"));
+                       scene4->addItem(plataforma.last());
+                   }
+                   else if(nivel4[i][j]==13){
+                       plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"torreta2"));
+                       scene4->addItem(plataforma.last());
+                   }
+              }
+           }
+    }
+    else if (variable==5)
+    {
+        player = new personaje();
+        player->setPos(tam+40,13*tam);
+        scene5->addItem(player);
+        for(int i=0;i<14;i++){
+               for(int j=0;j<50;j++){
+                   if(nivel5[i][j]==1){
+                       plataformas.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"muro3"));
+                       scene5->addItem(plataformas.last());
+                   }
+                   else if(nivel5[i][j]==2){
+                       plataformas.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"plataforma3"));
+                       scene5->addItem(plataformas.last());
+                   }
+                   else if(nivel5[i][j]==3){
+                       plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"orbe"));
+                       scene5->addItem(plataforma.last());
+                   }
+                   else if(nivel5[i][j]==4){
+                       plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"moneda"));
+                       scene5->addItem(plataforma.last());
+                   }
+                   else if(nivel5[i][j]==5){
+                       plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"VacioVenenoso"));
+                       scene5->addItem(plataforma.last());
+                   }
+                   else if(nivel5[i][j]==6){
+                       plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"puerta"));
+                       scene5->addItem(plataforma.last());
+                   }
+                   else if(nivel5[i][j]==7){
+                       plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"torreta"));
+                       scene5->addItem(plataforma.last());
+                   }
+                   else if(nivel5[i][j]==8){
+                       plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"zonaM"));
+                       scene5->addItem(plataforma.last());
+                   }
+                   else if(nivel5[i][j]==11){
+                       plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"item"));
+                       scene5->addItem(plataforma.last());
+                   }
+                   else if(nivel5[i][j]==12){
+                       plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"item2"));
+                       scene5->addItem(plataforma.last());
+                   }
+                   else if(nivel5[i][j]==13){
+                       plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"torreta2"));
+                       scene5->addItem(plataforma.last());
+                   }
+              }
+           }
+    }
+    else if (variable==6)
+    {
+        player = new personaje();
+        player->setPos(tam+40,13*tam);
+        scene6->addItem(player);
+        for(int i=0;i<14;i++){
+               for(int j=0;j<50;j++){
+                   if(nivel6[i][j]==1){
+                       plataformas.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"muro3"));
+                       scene6->addItem(plataformas.last());
+                   }
+                   else if(nivel6[i][j]==2){
+                       plataformas.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"plataforma3"));
+                       scene6->addItem(plataformas.last());
+                   }
+                   else if(nivel6[i][j]==3){
+                       plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"orbe"));
+                       scene6->addItem(plataforma.last());
+                   }
+                   else if(nivel6[i][j]==4){
+                       plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"moneda"));
+                       scene6->addItem(plataforma.last());
+                   }
+                   else if(nivel6[i][j]==5){
+                       plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"VacioVenenoso"));
+                       scene6->addItem(plataforma.last());
+                   }
+                   else if(nivel6[i][j]==6){
+                       plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"puerta"));
+                       scene6->addItem(plataforma.last());
+                   }
+                   else if(nivel6[i][j]==7){
+                       plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"torreta"));
+                       scene6->addItem(plataforma.last());
+                   }
+                   else if(nivel6[i][j]==8){
+                       plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"zonaM"));
+                       scene6->addItem(plataforma.last());
+                   }
+                   else if(nivel6[i][j]==11){
+                       plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"item"));
+                       scene6->addItem(plataforma.last());
+                   }
+                   else if(nivel6[i][j]==12){
+                       plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"item2"));
+                       scene6->addItem(plataforma.last());
+                   }
+                   else if(nivel6[i][j]==13){
+                       plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"torreta2"));
+                       scene6->addItem(plataforma.last());
+                   }
+              }
+           }
+    }
+
+    else if (variable==7)
+    {
+        player = new personaje();
+        player->setPos(tam+40,13*tam);
+        scene7->addItem(player);
+        for(int i=0;i<14;i++){
+               for(int j=0;j<50;j++){
+                   if(nivel7[i][j]==1){
+                       plataformas.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"muro3"));
+                       scene7->addItem(plataformas.last());
+                   }
+                   else if(nivel7[i][j]==2){
+                       plataformas.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"plataforma3"));
+                       scene7->addItem(plataformas.last());
+                   }
+                   else if(nivel7[i][j]==3){
+                       plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"orbe"));
+                       scene7->addItem(plataforma.last());
+                   }
+                   else if(nivel7[i][j]==4){
+                       plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"moneda"));
+                       scene7->addItem(plataforma.last());
+                   }
+                   else if(nivel7[i][j]==5){
+                       plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"VacioVenenoso"));
+                       scene7->addItem(plataforma.last());
+                   }
+                   else if(nivel7[i][j]==6){
+                       plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"puerta"));
+                       scene7->addItem(plataforma.last());
+                   }
+                   else if(nivel7[i][j]==7){
+                       plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"torreta"));
+                       scene7->addItem(plataforma.last());
+                   }
+                   else if(nivel7[i][j]==8){
+                       plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"zonaM"));
+                       scene7->addItem(plataforma.last());
+                   }
+                   else if(nivel7[i][j]==11){
+                       plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"item"));
+                       scene7->addItem(plataforma.last());
+                   }
+                   else if(nivel7[i][j]==12){
+                       plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"item2"));
+                       scene7->addItem(plataforma.last());
+                   }
+                   else if(nivel7[i][j]==13){
+                       plataforma.push_back(new escenario(j*tam,(2+i)*tam,tam,tam,"torreta2"));
+                       scene7->addItem(plataforma.last());
+                   }
+              }
+           }
+    }
+
+
 
 
     tempo->start(1000);
@@ -259,19 +524,11 @@ else if (variable==3)
 
 
 
-/*bool MainWindow::colisiones(QGraphicsItem *item, QGraphicsItem *item2){
-    QList<QGraphicsItem *> coll=scene->collidingItems(item);
-    if(coll.count(item2)>0){
-        return true;
-    }
-    else return false;
-
-}*/
-
 void MainWindow::temporizador()
-{//se puede modificar cuando se tenga las escenas de muerte del personaje
+{
     if(ui->lcdNumber->intValue()<=0)
     {
+        cantidad=0;
         if(variable==1)
         {
             scene->removeItem(player);
@@ -279,19 +536,47 @@ void MainWindow::temporizador()
             ui->lcdNumber->display(10);
             scene->addItem(player);
         }
-        if(variable==2)
+        else if(variable==2)
         {
             scene2->removeItem(player);
             generar_mapa(variable);
             ui->lcdNumber->display(10);
             scene2->addItem(player);
         }
-        if(variable==3)
+        else if(variable==3)
         {
             scene3->removeItem(player);
             generar_mapa(variable);
             ui->lcdNumber->display(10);
-            scene->addItem(player);
+            scene3->addItem(player);
+        }
+        else if(variable==4)
+        {
+            scene4->removeItem(player);
+            generar_mapa(variable);
+            ui->lcdNumber->display(10);
+            scene4->addItem(player);
+        }
+        else if(variable==5)
+        {
+            scene5->removeItem(player);
+            generar_mapa(variable);
+            ui->lcdNumber->display(10);
+            scene5->addItem(player);
+        }
+        else if(variable==6)
+        {
+            scene6->removeItem(player);
+            generar_mapa(variable);
+            ui->lcdNumber->display(10);
+            scene6->addItem(player);
+        }
+        else if(variable==7)
+        {
+            scene7->removeItem(player);
+            generar_mapa(variable);
+            ui->lcdNumber->display(10);
+            scene7->addItem(player);
         }
 
     }
@@ -371,7 +656,6 @@ void MainWindow::EvaluaColisionMovimiento()
             int bloc_x = BloqueColision->x();
             int bloc_y = BloqueColision->y();
 
-            //qDebug()<<bloc_y;
 
             bool cArriba = false;
             bool cAbajo = false;
@@ -380,37 +664,26 @@ void MainWindow::EvaluaColisionMovimiento()
 
 
             ////
-//            qDebug()<<"cArriba "<<getPlayer()->y()<<" "<<bloc_y;
-//            qDebug()<<"cAbajo "<<getPlayer()->y()<<" "<<bloc_y;
-            if( getPlayer()->y()+1<= bloc_y)
+            if( getPlayer()->y()<= bloc_y)
             {
-                cArriba = true;//qDebug()<<"cArriba: "<<cArriba;
+                cArriba = true;
             }
 
             if( getPlayer()->y() >= bloc_y)
-                cAbajo = true;//qDebug()<<"cAbajo: "<<cAbajo;
+                cAbajo = true;
 
             if( getPlayer()->x() > bloc_x )
             {
-                cDerecha = true;//qDebug()<<"cDerecha: "<<cDerecha;
+                cDerecha = true;
             }
             if( getPlayer()->x()<= bloc_x)
             {
-                cIzquierda = true;//qDebug()<<"cIzquierda: "<<cIzquierda;
+                cIzquierda = true;
             }
             if(bloc_y - getPlayer()->y()< 50)
             {
                 getPlayer()->setRebotando(true);
             }
-            //qDebug()<<bloc_y<<" "<<getPlayer()->y();
-            //qDebug()<<getPlayer()->getRebotando();
-
-
-            ////
-            //qDebug()<<"izquierda: " << cIzquierda;
-            //qDebug()<<"derecha: " << cDerecha;
-
-            //qDebug()<<"arriba: " << cArriba;
 
             if(cArriba && !cAbajo)
             {
@@ -422,7 +695,6 @@ void MainWindow::EvaluaColisionMovimiento()
             {
 
                 next_y = bloc_y + 40 ;
-                //qDebug()<<"2- "<<next_y<<" "<<bloc_y;
                 getPlayer()->setVy(  - getPlayer()->getVy() );
 
             }
@@ -436,7 +708,6 @@ void MainWindow::EvaluaColisionMovimiento()
             {
                 next_x = bloc_x + getPlayer()->getWidth();
                 getPlayer()->setVx(0);
-                //qDebug() <<"1" <<next_x;
 
 
             }
@@ -448,29 +719,81 @@ void MainWindow::EvaluaColisionMovimiento()
 
 
 
+
 }
 
 void MainWindow::EvaluaColisionPoderes()
 {
+    bool flag=false;
     for(int i=0;i<plataforma.size();i++)
     {
         if(plataforma.at(i)->getClase() == "moneda" && plataforma.at(i)->collidesWithItem(player))
         {
+            getPlayer()->monedas=100;
+            cantidad+=getPlayer()->monedas;
+            if(variable==1)
+            {
+                scene->removeItem(plataforma.at(i));
+            }
+            else if(variable==2)
+            {
+               scene2->removeItem(plataforma.at(i));
+            }
+            else if(variable==3)
+            {
+               scene3->removeItem(plataforma.at(i));
+            }
+            else if(variable==4)
+            {
+               scene4->removeItem(plataforma.at(i));
+            }
+            else if(variable==5)
+            {
+               scene5->removeItem(plataforma.at(i));
+            }
+            else if(variable==6)
+            {
+               scene6->removeItem(plataforma.at(i));
+            }
+            else if(variable==7)
+            {
+               scene7->removeItem(plataforma.at(i));
+            }
 
-        getPlayer()->monedas=100;
-        cantidad+=getPlayer()->monedas;
 
-        scene->removeItem(plataforma.at(i));
-        scene2->removeItem(plataforma.at(i));
-        scene3->removeItem(plataforma.at(i));
-        plataforma.removeAt(i);
+            plataforma.removeAt(i);
         }
         if(plataforma.at(i)->getClase() == "orbe" && plataforma.at(i)->collidesWithItem(player))
         {
 
-            scene->removeItem(plataforma.at(i));
-            scene2->removeItem(plataforma.at(i));
-            scene3->removeItem(plataforma.at(i));
+            if(variable==1)
+            {
+                scene->removeItem(plataforma.at(i));
+            }
+            else if(variable==2)
+            {
+               scene2->removeItem(plataforma.at(i));
+            }
+            else if(variable==3)
+            {
+               scene3->removeItem(plataforma.at(i));
+            }
+            else if(variable==4)
+            {
+               scene4->removeItem(plataforma.at(i));
+            }
+            else if(variable==5)
+            {
+               scene5->removeItem(plataforma.at(i));
+            }
+            else if(variable==6)
+            {
+               scene6->removeItem(plataforma.at(i));
+            }
+            else if(variable==7)
+            {
+               scene7->removeItem(plataforma.at(i));
+            }
             plataforma.removeAt(i);
             ui->lcdNumber->display((ui->lcdNumber->intValue())+5);
         }
@@ -478,14 +801,45 @@ void MainWindow::EvaluaColisionPoderes()
         if(plataforma.at(i)->getClase() == "zonaM" && plataforma.at(i)->collidesWithItem(player))
         {
             ui->lcdNumber->display((ui->lcdNumber->intValue())-1);
+            flag=true;
+
         }
         if(plataforma.at(i)->getClase() == "VacioVenenoso" && plataforma.at(i)->collidesWithItem(player))
         {
             ui->lcdNumber->display(0);
+            flag=true;
+
         }
         if(plataforma.at(i)->getClase() == "puerta" && plataforma.at(i)->collidesWithItem(player))
         {
-            scene->removeItem(player);
+            if(variable==1)
+            {
+                scene->removeItem(player);
+            }
+            else if(variable==2)
+            {
+               scene2->removeItem(player);
+            }
+            else if(variable==3)
+            {
+               scene3->removeItem(player);
+            }
+            else if(variable==4)
+            {
+               scene4->removeItem(player);
+            }
+            else if(variable==5)
+            {
+               scene5->removeItem(player);
+            }
+            else if(variable==6)
+            {
+               scene6->removeItem(player);
+            }
+            else if(variable==7)
+            {
+               scene7->removeItem(player);
+            }
             plataforma.clear();
             plataformas.clear();
             variable++;
@@ -493,11 +847,57 @@ void MainWindow::EvaluaColisionPoderes()
             set_window(variable);
         }
 
-
-
-
-
     }
+    if(flag &&getPlayer()->live)
+    {
+        cantidad=0;
+        getPlayer()->live=false;
+    }
+
+}
+
+void MainWindow::sprites()
+{
+    if(getPlayer()->getSaltando())
+    {
+        //getPlayer()->setSprite(QString(""));
+        sprite ++;
+    }
+    else if (getPlayer()->getCayendo())
+    {
+        //getPlayer()->setSprite(QString(""));
+        sprite ++;
+    }
+    else if(getPlayer()->getMoviendo_Derecha() || getPlayer()->getMoviendo_Izquierda())
+    {
+        if(sprite < 1 || sprite > 8)
+        {
+            sprite = 1;
+        }
+        getPlayer()->setSprite(QString(":/escenario/Personaje/%1.png").arg(sprite));
+        sprite ++;
+    }
+    else if(getPlayer()->getQuieto())
+    {
+        if(sprite > 16 || sprite < 14)
+        {
+            sprite = 14;
+        }
+        getPlayer()->setSprite(QString(":/escenario/Personaje/%1.png").arg(sprite));
+        sprite2 ++;
+        sprite ++;
+         if(sprite > 16 && sprite2 > 4)
+         {
+            sprite = 16;
+            sprite2 = 1;
+        }
+        else if(sprite > 16 )
+         {
+            sprite = 14;
+        }
+    }
+
+
 
 }
 
@@ -562,23 +962,24 @@ void MainWindow::on_aceptar_clicked()
 
         set_window(variable);
         generar_mapa(variable);
+
+        refreshTimer = new QTimer();
         connect(refreshTimer,SIGNAL(timeout()),this,SLOT(ActualizarPosicionPersonaje()));
         refreshTimer->start(1000/60);
 
-        //connect(act,SIGNAL(timeout()),this,SLOT(disparocanon()));
+        spriteTimer = new QTimer(this);
+        connect(spriteTimer,SIGNAL(timeout()),this,SLOT(sprites()));
+        spriteTimer->start(90);
+
     }
 
 
-//    set_window();
-//    generar_mapa();
 
 
 }
 
 void MainWindow::disparoCanon()
 {
-    qDebug()<<"entra";
-
     if(estado!=0)
     {
         estado-=1;
@@ -653,13 +1054,9 @@ void MainWindow::ActualizarPosicionPersonaje()
 {
     ui->monedas->display(cantidad);
 
-    //getPlayer()->setRebotando(false);
-
-    //getPlayer()->ActualizarMovimiento();
     int next_x = getPlayer()->x();
     int next_y = getPlayer()->y();
 
-        //qDebug()<<"en el aire "<<getPlayer()->getEnElAire();
     if(getPlayer()->getEnElAire() == true)
     {
         next_y += getPlayer()->getVy() * 1/60;
@@ -671,13 +1068,11 @@ void MainWindow::ActualizarPosicionPersonaje()
     if(getPlayer()->getMoviendo_Derecha())
     {
         getPlayer()->AumentarVelocidadDerecha();
-         //player->setPos(500,500);
 
     }
     else if(getPlayer()->getMoviendo_Izquierda())
     {
         getPlayer()->AumentarVelocidadIzquierda();
-         //player->setPos(500,500);
     }
     else
     {
@@ -686,7 +1081,6 @@ void MainWindow::ActualizarPosicionPersonaje()
     }
     if(!colision )
     {
-        qDebug()<<"entra";
         if(getPlayer()->getVy() == 0)
         {
             getPlayer()->setVy(getPlayer()->getVy() + 100);

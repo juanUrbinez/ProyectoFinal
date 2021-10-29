@@ -8,4 +8,5 @@ debug/registro.o
 debug/qrc_recursos.o
 debug/moc_mainwindow.o
 debug/moc_niveles.o
+debug/moc_personaje.o
 debug/moc_registro.o

@@ -223,6 +223,7 @@ Makefile: ../Proyecto_final/Proyecto_final.pro ../../../Qt/5.15.2/mingw81_64/mks
 		../../../Qt/5.15.2/mingw81_64/mkspecs/features/qt_config.prf \
 		../../../Qt/5.15.2/mingw81_64/mkspecs/win32-g++/qmake.conf \
 		../../../Qt/5.15.2/mingw81_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		../../../Qt/5.15.2/mingw81_64/mkspecs/features/exclusive_builds.prf \
 		../../../Qt/5.15.2/mingw81_64/mkspecs/features/toolchain.prf \
 		../../../Qt/5.15.2/mingw81_64/mkspecs/features/default_pre.prf \
@@ -254,7 +255,6 @@ Makefile: ../Proyecto_final/Proyecto_final.pro ../../../Qt/5.15.2/mingw81_64/mks
 		../../../Qt/5.15.2/mingw81_64/lib/Qt5Gui.prl \
 		../../../Qt/5.15.2/mingw81_64/lib/Qt5Core.prl \
 		../../../Qt/5.15.2/mingw81_64/lib/qtmain.prl \
-		.qmake.stash \
 		../../../Qt/5.15.2/mingw81_64/mkspecs/features/build_pass.prf \
 		../Proyecto_final/recursos.qrc
 	$(QMAKE) -o Makefile ..\Proyecto_final\Proyecto_final.pro -spec win32-g++ "CONFIG+=qml_debug" "CONFIG+=qtquickcompiler" "CONFIG+=force_debug_info" "CONFIG+=separate_debug_info"
@@ -411,6 +411,7 @@ Makefile: ../Proyecto_final/Proyecto_final.pro ../../../Qt/5.15.2/mingw81_64/mks
 ../../../Qt/5.15.2/mingw81_64/mkspecs/features/qt_config.prf:
 ../../../Qt/5.15.2/mingw81_64/mkspecs/win32-g++/qmake.conf:
 ../../../Qt/5.15.2/mingw81_64/mkspecs/features/spec_post.prf:
+.qmake.stash:
 ../../../Qt/5.15.2/mingw81_64/mkspecs/features/exclusive_builds.prf:
 ../../../Qt/5.15.2/mingw81_64/mkspecs/features/toolchain.prf:
 ../../../Qt/5.15.2/mingw81_64/mkspecs/features/default_pre.prf:
@@ -442,7 +443,6 @@ Makefile: ../Proyecto_final/Proyecto_final.pro ../../../Qt/5.15.2/mingw81_64/mks
 ../../../Qt/5.15.2/mingw81_64/lib/Qt5Gui.prl:
 ../../../Qt/5.15.2/mingw81_64/lib/Qt5Core.prl:
 ../../../Qt/5.15.2/mingw81_64/lib/qtmain.prl:
-.qmake.stash:
 ../../../Qt/5.15.2/mingw81_64/mkspecs/features/build_pass.prf:
 ../Proyecto_final/recursos.qrc:
 qmake: FORCE
