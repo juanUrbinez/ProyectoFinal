@@ -11,7 +11,8 @@ class personaje :  public QObject, public QGraphicsPixmapItem
     Q_OBJECT
 public:
     personaje();
-    int sprite,monedas;
+    int sprite, monedas;
+    void setSprite(QString ressource);
     bool live=true;
     void cambio_imagen(short a);
 
@@ -43,9 +44,10 @@ public:
     int getHeight();
     int getWidth();
 
-    bool getVolando();
+    bool getCayendo();
     bool getSaltando();
     bool getEnElAire();
+    bool getQuieto();
     bool getRebotando();
     void setRebotando(bool valor);
 
@@ -65,9 +67,11 @@ protected:
 
     bool cayendo;
     bool saltando;
-
     bool EnElAire;
     bool rebotando;
+    bool quieto;
+
+    int direccion;
 
 
 
@@ -76,8 +80,6 @@ private:
 
 
 
-signals:
-
 };
 
-#endif // PERSONAJE_H
+#endif 

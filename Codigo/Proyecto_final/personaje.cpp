@@ -2,9 +2,10 @@
 
 personaje::personaje()
 {
-    per.load(":/Personaje/Personaje/Quieto.png");
-    setPixmap(per.scaled(40,40));
-    this->setShapeMode(QGraphicsPixmapItem::BoundingRectShape);
+//    per.load(":/Personaje/Personaje/Quieto.png");
+//    setPixmap(per.scaled(40,40));
+
+    setSprite(":/escenario/Personaje/1.png");
     width=40;
     height=40;
     Vx=0;
@@ -16,19 +17,38 @@ personaje::personaje()
     cayendo=false;
     saltando=false;
     EnElAire=false;
+    direccion=true;
+    quieto=true;
     //rebotando=false;
-    monedas=0;
+
+}
+
+void personaje::setSprite(QString recursos)
+{
+    QPixmap img = QPixmap(recursos);
+    img = img.scaled(40,40);
+    if(!direccion){
+        img = img.transformed(QTransform().scale(-1, 1));
+    }
+    setPixmap(img);
+    setShapeMode(QGraphicsPixmapItem::BoundingRectShape);
+
 
 }
 
 void personaje::Mover_A_Derecha(bool flag)
 {
     Moviendo_Derecha=flag;
+    if(flag == true)
+        direccion = true;
 }
 
 void personaje::Mover_A_Izquierda(bool flag)
 {
     Moviendo_Izquierda=flag;
+    if(flag == true)
+        direccion = false;
+
 }
 
 void personaje::ActualizarMovimiento()
@@ -54,6 +74,14 @@ void personaje::ActualizarMovimiento()
         EnElAire = true;
 
     }
+    if(Vx < 1 &&  Vx > -1 && Vy < 1 &&  Vy > -1)
+    {
+        quieto = true;
+    }
+    else
+    {
+        quieto = false;
+    }
 }
 
 void personaje::setVx(float valor)
@@ -73,6 +101,7 @@ void personaje::AumentarVelocidadDerecha()
     }
 }
 
+
 void personaje::AumentarVelocidadIzquierda()
 {
     if(Vx > - maxVx){
@@ -81,6 +110,7 @@ void personaje::AumentarVelocidadIzquierda()
 }
 
 void personaje::Saltar()
+
 {
     if(EnElAire == false)
     {
@@ -130,9 +160,24 @@ int personaje::getWidth()
     return width;
 }
 
+bool personaje::getCayendo()
+{
+    return cayendo;
+}
+
+bool personaje::getSaltando()
+{
+    return saltando;
+}
+
 bool personaje::getEnElAire()
 {
     return EnElAire;
+}
+
+bool personaje::getQuieto()
+{
+    return quieto;
 }
 
 bool personaje::getRebotando()

@@ -147,6 +147,7 @@ release/qrc_recursos.cpp: ../Proyecto_final/recursos.qrc \
 		../Proyecto_final/escenario/muro1.png \
 		../Proyecto_final/escenario/escenario.png \
 		../Proyecto_final/escenario/option.png \
+		../Proyecto_final/obstaculo/Vacio.png \
 		../Proyecto_final/obstaculo/bala.png \
 		../Proyecto_final/obstaculo/torretader.png \
 		../Proyecto_final/obstaculo/zona\ de\ muerte.png \
@@ -276,6 +277,7 @@ release/moc_mainwindow.cpp: ../Proyecto_final/mainwindow.h \
 		../../../Qt/5.15.2/mingw81_64/include/QtCore/QTimer \
 		../../../Qt/5.15.2/mingw81_64/include/QtCore/qtimer.h \
 		../../../Qt/5.15.2/mingw81_64/include/QtCore/qbasictimer.h \
+		../../../Qt/5.15.2/mingw81_64/include/QtCore/QDebug \
 		../Proyecto_final/escenario.h \
 		../../../Qt/5.15.2/mingw81_64/include/QtGui/QPixmap \
 		../../../Qt/5.15.2/mingw81_64/include/QtCore/QObject \
@@ -288,13 +290,14 @@ release/moc_mainwindow.cpp: ../Proyecto_final/mainwindow.h \
 		../Proyecto_final/personaje.h \
 		../Proyecto_final/registro.h \
 		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/QWidget \
-		../../../Qt/5.15.2/mingw81_64/include/QtCore/QDebug \
 		../../../Qt/5.15.2/mingw81_64/include/QtCore/QFile \
 		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/QMessageBox \
 		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/qmessagebox.h \
 		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/qdialog.h \
 		../../../Qt/5.15.2/mingw81_64/include/QtCore/QTextStream \
 		../Proyecto_final/niveles.h \
+		../Proyecto_final/disparo.h \
+		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/QGraphicsItem \
 		../../../Qt/5.15.2/mingw81_64/include/QtCore/QJsonArray \
 		../../../Qt/5.15.2/mingw81_64/include/QtCore/qjsonarray.h \
 		../../../Qt/5.15.2/mingw81_64/include/QtCore/qjsonvalue.h \
@@ -304,7 +307,6 @@ release/moc_mainwindow.cpp: ../Proyecto_final/mainwindow.h \
 		../../../Qt/5.15.2/mingw81_64/include/QtCore/qregularexpression.h \
 		../../../Qt/5.15.2/mingw81_64/include/QtCore/quuid.h \
 		../../../Qt/5.15.2/mingw81_64/include/QtCore/QList \
-		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/QGraphicsItem \
 		release/moc_predefs.h \
 		../../../Qt/5.15.2/mingw81_64/bin/moc.exe
 	D:\Qt\5.15.2\mingw81_64\bin\moc.exe $(DEFINES) --include D:/ProyectoFinalCOPIACLON/Codigo/build-Proyecto_final-Desktop_Qt_5_15_2_MinGW_64_bit-Release/release/moc_predefs.h -ID:/Qt/5.15.2/mingw81_64/mkspecs/win32-g++ -ID:/ProyectoFinalCOPIACLON/Codigo/Proyecto_final -ID:/Qt/5.15.2/mingw81_64/include -ID:/Qt/5.15.2/mingw81_64/include/QtWidgets -ID:/Qt/5.15.2/mingw81_64/include/QtGui -ID:/Qt/5.15.2/mingw81_64/include/QtANGLE -ID:/Qt/5.15.2/mingw81_64/include/QtCore -I. -ID:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++ -ID:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32 -ID:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward -ID:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include -ID:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed -ID:/Qt/Tools/mingw810_64/x86_64-w64-mingw32/include ..\Proyecto_final\mainwindow.h -o release\moc_mainwindow.cpp
@@ -434,6 +436,9 @@ release/moc_niveles.cpp: ../Proyecto_final/niveles.h \
 		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/qmainwindow.h \
 		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/qtabwidget.h \
 		../../../Qt/5.15.2/mingw81_64/include/QtGui/qicon.h \
+		../../../Qt/5.15.2/mingw81_64/include/QtCore/QDebug \
+		../Proyecto_final/disparo.h \
+		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/QGraphicsItem \
 		release/moc_predefs.h \
 		../../../Qt/5.15.2/mingw81_64/bin/moc.exe
 	D:\Qt\5.15.2\mingw81_64\bin\moc.exe $(DEFINES) --include D:/ProyectoFinalCOPIACLON/Codigo/build-Proyecto_final-Desktop_Qt_5_15_2_MinGW_64_bit-Release/release/moc_predefs.h -ID:/Qt/5.15.2/mingw81_64/mkspecs/win32-g++ -ID:/ProyectoFinalCOPIACLON/Codigo/Proyecto_final -ID:/Qt/5.15.2/mingw81_64/include -ID:/Qt/5.15.2/mingw81_64/include/QtWidgets -ID:/Qt/5.15.2/mingw81_64/include/QtGui -ID:/Qt/5.15.2/mingw81_64/include/QtANGLE -ID:/Qt/5.15.2/mingw81_64/include/QtCore -I. -ID:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++ -ID:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32 -ID:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward -ID:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include -ID:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed -ID:/Qt/Tools/mingw810_64/x86_64-w64-mingw32/include ..\Proyecto_final\niveles.h -o release\moc_niveles.cpp
@@ -549,6 +554,7 @@ release/moc_personaje.cpp: ../Proyecto_final/personaje.h \
 		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/qtabwidget.h \
 		../../../Qt/5.15.2/mingw81_64/include/QtGui/qicon.h \
 		../../../Qt/5.15.2/mingw81_64/include/QtCore/QObject \
+		../../../Qt/5.15.2/mingw81_64/include/QtCore/QDebug \
 		release/moc_predefs.h \
 		../../../Qt/5.15.2/mingw81_64/bin/moc.exe
 	D:\Qt\5.15.2\mingw81_64\bin\moc.exe $(DEFINES) --include D:/ProyectoFinalCOPIACLON/Codigo/build-Proyecto_final-Desktop_Qt_5_15_2_MinGW_64_bit-Release/release/moc_predefs.h -ID:/Qt/5.15.2/mingw81_64/mkspecs/win32-g++ -ID:/ProyectoFinalCOPIACLON/Codigo/Proyecto_final -ID:/Qt/5.15.2/mingw81_64/include -ID:/Qt/5.15.2/mingw81_64/include/QtWidgets -ID:/Qt/5.15.2/mingw81_64/include/QtGui -ID:/Qt/5.15.2/mingw81_64/include/QtANGLE -ID:/Qt/5.15.2/mingw81_64/include/QtCore -I. -ID:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++ -ID:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32 -ID:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward -ID:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include -ID:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed -ID:/Qt/Tools/mingw810_64/x86_64-w64-mingw32/include ..\Proyecto_final\personaje.h -o release\moc_personaje.cpp
@@ -1024,6 +1030,7 @@ release/main.o: ../Proyecto_final/main.cpp ../Proyecto_final/mainwindow.h \
 		../../../Qt/5.15.2/mingw81_64/include/QtCore/QTimer \
 		../../../Qt/5.15.2/mingw81_64/include/QtCore/qtimer.h \
 		../../../Qt/5.15.2/mingw81_64/include/QtCore/qbasictimer.h \
+		../../../Qt/5.15.2/mingw81_64/include/QtCore/QDebug \
 		../Proyecto_final/escenario.h \
 		../../../Qt/5.15.2/mingw81_64/include/QtGui/QPixmap \
 		../../../Qt/5.15.2/mingw81_64/include/QtCore/QObject \
@@ -1036,13 +1043,14 @@ release/main.o: ../Proyecto_final/main.cpp ../Proyecto_final/mainwindow.h \
 		../Proyecto_final/personaje.h \
 		../Proyecto_final/registro.h \
 		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/QWidget \
-		../../../Qt/5.15.2/mingw81_64/include/QtCore/QDebug \
 		../../../Qt/5.15.2/mingw81_64/include/QtCore/QFile \
 		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/QMessageBox \
 		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/qmessagebox.h \
 		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/qdialog.h \
 		../../../Qt/5.15.2/mingw81_64/include/QtCore/QTextStream \
 		../Proyecto_final/niveles.h \
+		../Proyecto_final/disparo.h \
+		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/QGraphicsItem \
 		../../../Qt/5.15.2/mingw81_64/include/QtCore/QJsonArray \
 		../../../Qt/5.15.2/mingw81_64/include/QtCore/qjsonarray.h \
 		../../../Qt/5.15.2/mingw81_64/include/QtCore/qjsonvalue.h \
@@ -1052,7 +1060,6 @@ release/main.o: ../Proyecto_final/main.cpp ../Proyecto_final/mainwindow.h \
 		../../../Qt/5.15.2/mingw81_64/include/QtCore/qregularexpression.h \
 		../../../Qt/5.15.2/mingw81_64/include/QtCore/quuid.h \
 		../../../Qt/5.15.2/mingw81_64/include/QtCore/QList \
-		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/QGraphicsItem \
 		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/QApplication \
 		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/qapplication.h \
 		../../../Qt/5.15.2/mingw81_64/include/QtCore/qcoreapplication.h \
@@ -1176,6 +1183,7 @@ release/mainwindow.o: ../Proyecto_final/mainwindow.cpp ../Proyecto_final/mainwin
 		../../../Qt/5.15.2/mingw81_64/include/QtCore/QTimer \
 		../../../Qt/5.15.2/mingw81_64/include/QtCore/qtimer.h \
 		../../../Qt/5.15.2/mingw81_64/include/QtCore/qbasictimer.h \
+		../../../Qt/5.15.2/mingw81_64/include/QtCore/QDebug \
 		../Proyecto_final/escenario.h \
 		../../../Qt/5.15.2/mingw81_64/include/QtGui/QPixmap \
 		../../../Qt/5.15.2/mingw81_64/include/QtCore/QObject \
@@ -1188,13 +1196,14 @@ release/mainwindow.o: ../Proyecto_final/mainwindow.cpp ../Proyecto_final/mainwin
 		../Proyecto_final/personaje.h \
 		../Proyecto_final/registro.h \
 		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/QWidget \
-		../../../Qt/5.15.2/mingw81_64/include/QtCore/QDebug \
 		../../../Qt/5.15.2/mingw81_64/include/QtCore/QFile \
 		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/QMessageBox \
 		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/qmessagebox.h \
 		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/qdialog.h \
 		../../../Qt/5.15.2/mingw81_64/include/QtCore/QTextStream \
 		../Proyecto_final/niveles.h \
+		../Proyecto_final/disparo.h \
+		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/QGraphicsItem \
 		../../../Qt/5.15.2/mingw81_64/include/QtCore/QJsonArray \
 		../../../Qt/5.15.2/mingw81_64/include/QtCore/qjsonarray.h \
 		../../../Qt/5.15.2/mingw81_64/include/QtCore/qjsonvalue.h \
@@ -1204,8 +1213,34 @@ release/mainwindow.o: ../Proyecto_final/mainwindow.cpp ../Proyecto_final/mainwin
 		../../../Qt/5.15.2/mingw81_64/include/QtCore/qregularexpression.h \
 		../../../Qt/5.15.2/mingw81_64/include/QtCore/quuid.h \
 		../../../Qt/5.15.2/mingw81_64/include/QtCore/QList \
-		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/QGraphicsItem \
-		ui_mainwindow.h
+		ui_mainwindow.h \
+		../../../Qt/5.15.2/mingw81_64/include/QtCore/QVariant \
+		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/QApplication \
+		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/qapplication.h \
+		../../../Qt/5.15.2/mingw81_64/include/QtCore/qcoreapplication.h \
+		../../../Qt/5.15.2/mingw81_64/include/QtCore/qeventloop.h \
+		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/qdesktopwidget.h \
+		../../../Qt/5.15.2/mingw81_64/include/QtGui/qguiapplication.h \
+		../../../Qt/5.15.2/mingw81_64/include/QtGui/qinputmethod.h \
+		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/QGraphicsView \
+		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/qgraphicsview.h \
+		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/qscrollarea.h \
+		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/qframe.h \
+		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/QLCDNumber \
+		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/qlcdnumber.h \
+		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/QLabel \
+		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/qlabel.h \
+		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/QMenuBar \
+		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/qmenubar.h \
+		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/qmenu.h \
+		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/qaction.h \
+		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/qactiongroup.h \
+		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/QPushButton \
+		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/qpushbutton.h \
+		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/qabstractbutton.h \
+		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/QStatusBar \
+		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/qstatusbar.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\mainwindow.o ..\Proyecto_final\mainwindow.cpp
 
 release/niveles.o: ../Proyecto_final/niveles.cpp ../Proyecto_final/niveles.h \
@@ -1333,7 +1368,30 @@ release/niveles.o: ../Proyecto_final/niveles.cpp ../Proyecto_final/niveles.h \
 		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/qmainwindow.h \
 		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/qtabwidget.h \
 		../../../Qt/5.15.2/mingw81_64/include/QtGui/qicon.h \
-		ui_niveles.h
+		../../../Qt/5.15.2/mingw81_64/include/QtCore/QDebug \
+		../Proyecto_final/disparo.h \
+		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/QGraphicsItem \
+		ui_niveles.h \
+		../../../Qt/5.15.2/mingw81_64/include/QtCore/QVariant \
+		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/QApplication \
+		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/qapplication.h \
+		../../../Qt/5.15.2/mingw81_64/include/QtCore/qcoreapplication.h \
+		../../../Qt/5.15.2/mingw81_64/include/QtCore/qeventloop.h \
+		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/qdesktopwidget.h \
+		../../../Qt/5.15.2/mingw81_64/include/QtGui/qguiapplication.h \
+		../../../Qt/5.15.2/mingw81_64/include/QtGui/qinputmethod.h \
+		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/QGraphicsView \
+		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/qgraphicsview.h \
+		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/qscrollarea.h \
+		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/qframe.h \
+		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/QLCDNumber \
+		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/qlcdnumber.h \
+		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/QLabel \
+		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/qlabel.h \
+		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/QPushButton \
+		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/qpushbutton.h \
+		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/qabstractbutton.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\niveles.o ..\Proyecto_final\niveles.cpp
 
 release/personaje.o: ../Proyecto_final/personaje.cpp ../Proyecto_final/personaje.h \
@@ -1446,7 +1504,8 @@ release/personaje.o: ../Proyecto_final/personaje.cpp ../Proyecto_final/personaje
 		../../../Qt/5.15.2/mingw81_64/include/QtGui/qtouchdevice.h \
 		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/qtabwidget.h \
 		../../../Qt/5.15.2/mingw81_64/include/QtGui/qicon.h \
-		../../../Qt/5.15.2/mingw81_64/include/QtCore/QObject
+		../../../Qt/5.15.2/mingw81_64/include/QtCore/QObject \
+		../../../Qt/5.15.2/mingw81_64/include/QtCore/QDebug
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\personaje.o ..\Proyecto_final\personaje.cpp
 
 release/registro.o: ../Proyecto_final/registro.cpp ../Proyecto_final/registro.h \
@@ -1562,7 +1621,34 @@ release/registro.o: ../Proyecto_final/registro.cpp ../Proyecto_final/registro.h 
 		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/qmessagebox.h \
 		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/qdialog.h \
 		../../../Qt/5.15.2/mingw81_64/include/QtCore/QTextStream \
-		ui_registro.h
+		ui_registro.h \
+		../../../Qt/5.15.2/mingw81_64/include/QtCore/QVariant \
+		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/QApplication \
+		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/qapplication.h \
+		../../../Qt/5.15.2/mingw81_64/include/QtCore/qcoreapplication.h \
+		../../../Qt/5.15.2/mingw81_64/include/QtCore/qeventloop.h \
+		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/qdesktopwidget.h \
+		../../../Qt/5.15.2/mingw81_64/include/QtGui/qguiapplication.h \
+		../../../Qt/5.15.2/mingw81_64/include/QtGui/qinputmethod.h \
+		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/QCommandLinkButton \
+		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/qcommandlinkbutton.h \
+		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/qpushbutton.h \
+		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/qabstractbutton.h \
+		../../../Qt/5.15.2/mingw81_64/include/QtGui/qicon.h \
+		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/QGraphicsView \
+		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/qgraphicsview.h \
+		../../../Qt/5.15.2/mingw81_64/include/QtGui/qpainter.h \
+		../../../Qt/5.15.2/mingw81_64/include/QtGui/qtextoption.h \
+		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/qscrollarea.h \
+		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/qframe.h \
+		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/QLabel \
+		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/qlabel.h \
+		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/QLineEdit \
+		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/qlineedit.h \
+		../../../Qt/5.15.2/mingw81_64/include/QtGui/qtextcursor.h \
+		../../../Qt/5.15.2/mingw81_64/include/QtGui/qtextformat.h \
+		../../../Qt/5.15.2/mingw81_64/include/QtWidgets/QPushButton
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\registro.o ..\Proyecto_final\registro.cpp
 
 release/qrc_recursos.o: release/qrc_recursos.cpp 

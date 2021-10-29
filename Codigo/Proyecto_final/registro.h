@@ -8,7 +8,8 @@
 #include <QMessageBox>
 #include <QWidget>
 #include <QTextStream>
-//#include "mainwindow.h"
+
+
 
 
 namespace Ui {
@@ -22,8 +23,8 @@ class registro : public QWidget
 public:
     explicit registro(QWidget *parent = nullptr);
     ~registro();
-    bool correcto=true;
-    bool get_verif();
+    bool correcto;
+    QString nivel,score,usuario;
 
 private slots:
     void on_volver_clicked();
@@ -35,6 +36,9 @@ private slots:
     void on_regist_clicked();
 
     void on_crear_clicked();
+
+    //void guardarProgreso();
+
 
 private:
     Ui::registro *ui;

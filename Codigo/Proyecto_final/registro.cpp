@@ -8,23 +8,30 @@ registro::registro(QWidget *parent) :
     ui->setupUi(this);
     scene = new QGraphicsScene;
 
-    ui->graphicsView->setGeometry(0,0,1900,1005);
+    ui->graphicsView->setGeometry(0,0,1900/2,1150/2);
     ui->graphicsView->setScene(scene);
-    ui->graphicsView->setBackgroundBrush(QImage(":/escenario/escenario/menu.png").scaled(1550,820));
-    scene->setSceneRect(0,0,1898,1003);//tamaño de la escena
-    //setFixedSize(tam*50+2,tam*(14+2)+2);
+    ui->graphicsView->setBackgroundBrush(QImage(":/escenario/escenario/menu.png").scaled(1000,650));
+    scene->setSceneRect(0,0,1890/2,1140/2);//tamaño de la escena
+    setFixedSize(1900/2,1150/2);
     setWindowTitle("Poison Run");
     setWindowIcon(QIcon(":/personaje/Personaje/icon.png"));
 
-    ui->regist->setGeometry(300,300,100,40);//pushbotton  (registrar)
-    ui->crear->setGeometry(300,350,100,40);//pushbotton  (login)
-    ui->contrasena->hide();//label (label_2)
-    ui->usuario->hide();//label (label)
-    ui->enviar->hide();//pushbotton
-    ui->volver->hide();//pushbotton
-    ui->entrar->hide();//commandlinkbotton
-    ui->login->hide();//lineEdit usuario  (usuario)
-    ui->pass->hide();//lineEdit contraseña (contrasena)
+    ui->regist->setGeometry(400,150,120,80);
+    ui->crear->setGeometry(400,250,120,80);
+
+    ui->contrasena->hide();
+    ui->usuario->hide();
+    ui->enviar->hide();
+    ui->volver->hide();
+    ui->entrar->hide();
+    ui->login->hide();
+    ui->pass->hide();
+
+    ui->regist->setStyleSheet("color: rgb(255, 255, 255);background-color: rgb(80,170,58);");
+    ui->crear->setStyleSheet("color: rgb(255, 255, 255);background-color: rgb(80,170,58);");
+    ui->enviar->setStyleSheet("color: rgb(255, 255, 255);background-color: rgb(80,170,58);");
+    ui->volver->setStyleSheet("color: rgb(255, 255, 255);background-color: rgb(80,170,58);");
+    ui->entrar->setStyleSheet("color: rgb(255, 255, 255);background-color: rgb(80,170,58);");
 
 }
 
@@ -35,15 +42,11 @@ registro::~registro()
 
 }
 
-bool registro::get_verif()
-{
-    return correcto;
-}
-
 void registro::on_volver_clicked()
 {
     ui->regist->show();
     ui->crear->show();
+
     ui->pass->hide();
     ui->login->hide();
     ui->enviar->hide();
@@ -61,7 +64,7 @@ void registro::on_entrar_clicked()
 
      QString linea="",work="";
 
-     QFile file("TExto.txt");
+     QFile file("../Proyecto_final/texto.txt");
      if(!file.exists()){
          qCritical()<<"Archivo no encontrado";
      }
@@ -69,26 +72,47 @@ void registro::on_entrar_clicked()
          return;
      }
      QTextStream strem(&file);
-     while(!strem.atEnd()){
+     while(!strem.atEnd())
+     {
          linea=strem.readLine();
-         for(int i=0;i<linea.size();i++){
-             if(linea[i]== ' ' or linea[i]== '\n'){
-                 if(espacio==0){
-                     if(usuario==work){
+         for(int i=0;i<linea.size();i++)
+         {
+             if(linea[i]== ' ' or linea[i]== '*')
+             {
+                 if(espacio==0)
+                 {
+                     if(usuario==work)
+                     {
                          cont++;
                          dec=true;
                      }
                  }
-                 else if(espacio==1){
-                     if(contrasena==work){
+                 else if(espacio==1)
+                 {
+                     if(contrasena==work)
+                     {
                          cont++;
                          dec=false;
                      }
                  }
+                  else if(espacio==2)
+                  {
+                      nivel=work;
+                  }
+
+                 else if(espacio==3)
+                 {
+                     score=work;
+                 }
+                 qDebug()<<nivel;
+                 qDebug()<<score;
+
+
                  espacio+=1;
                  work= "";
              }
-             else{
+             else
+             {
                  work+=linea[i];
              }
          }
@@ -96,43 +120,50 @@ void registro::on_entrar_clicked()
 
      }
      if(cont==1){
-         if(dec){
-             QMessageBox::warning(this,"Iniciar sesion","Usuario Existente");
+         if(dec)
+         {
+             QMessageBox::warning(this,"Iniciar sesion","Contraseña incorrecta");
 
          }
-         else{
-             QMessageBox::warning(this,"Iniciar sesion","Constraseña  Existente");
+         else
+         {
+             QMessageBox::warning(this,"Iniciar sesion","Usuario Incorrecto");
          }
      }
-     else{
-         QMessageBox::warning(this,"Iniciar sesion","Usuario y Contraseña Existen");
+     else if(cont==2)
+     {
+         QMessageBox::warning(this,"Iniciar sesion","Sesion Iniciada");
          correcto=true;
-        // get_verif();
-         //MainWindow *principal=new MainWindow;
-        //principal->show();
+
+     }
+     else
+     {
+         QMessageBox::warning(this,"Iniciar sesion","Usuario y contraseña incorrecto");
      }
      cont =0;
      file.close();
 
 }
 
-
 void registro::on_enviar_clicked()
 {
     QString usuario=ui->login->text();
     QString contrasena=ui->pass->text();
+    QString nivel="*1";
+    QString score="*0 ";
     qDebug()<<usuario;
     qDebug()<<contrasena;
 
 
-    QFile file("Texto.txt");
-    if(!file.open(QIODevice::WriteOnly | QIODevice::Text)){
+    QFile file("../Proyecto_final/texto.txt");
+    if(!file.open(QIODevice::Append| QIODevice::Text))
+    {
         qCritical()<<file.errorString();
         return;
     }
 
     QTextStream stream(&file);
-    stream<<usuario<<" "<<contrasena<<" "<<"\r\n";
+    stream<<usuario<<" "<<contrasena<<nivel<<score<<"\r\n";
     QMessageBox::warning(this,"Iniciar sesion","Usuario creado");
 
     file.close();
@@ -143,6 +174,7 @@ void registro::on_regist_clicked()
 {
     ui->regist->hide();
     ui->crear->hide();
+
     ui->contrasena->show();
     ui->usuario->show();
     ui->enviar->show();
@@ -155,15 +187,9 @@ void registro::on_regist_clicked()
     ui->login->setGeometry(310,110,100,30);
     ui->contrasena->setGeometry(200,200,100,50);
     ui->pass->setGeometry(310,210,100,30);
-    ui->enviar->setGeometry(300,400,100,40);
+    ui->enviar->setGeometry(310,300,100,40);
     ui->volver->setGeometry(0,0,100,40);
 
-    /*ui->graphicsView->setGeometry(0,0,800,800);
-    regist->setSceneRect(0,0,800,800);
-   // registro->setBackgroundBrush(QImage(":/escenario/escenario/menu.png").scaled(1550,820));
-    ui->graphicsView->setScene(regist);
-    setWindowTitle("Poison Run");
-   // setWindowIcon(QIcon(":/personaje/Personaje/icon.png"));*/
 }
 
 
@@ -185,7 +211,82 @@ void registro::on_crear_clicked()
     ui->login->setGeometry(310,110,100,30);
     ui->contrasena->setGeometry(200,200,100,50);
     ui->pass->setGeometry(310,210,100,30);
-    ui->entrar->setGeometry(300,400,100,40);
+    ui->entrar->setGeometry(310,300,100,40);
     ui->volver->setGeometry(0,0,100,40);
 }
 
+
+/*
+void registro::guardarProgreso()
+{
+    QString usuario=ui->login->text();
+    QString contrasena=ui->pass->text();
+
+     QString linea="",work="";
+
+     QFile file("../Proyecto_final/texto.txt");
+     if(!file.exists()){
+         qCritical()<<"Archivo no encontrado";
+     }
+     if(!file.open(QIODevice::ReadWrite | QIODevice::Text)){
+         return;
+     }
+     QTextStream strem(&file);
+     while(!strem.atEnd())
+     {
+         linea=strem.readLine();
+         for(int i=0;i<linea.size();i++)
+         {
+             if(linea[i]== ' ' or linea[i]== '*')
+             {
+                 if(espacio==0)
+                 {
+                     if(usuario==work)
+                     {
+                         cont++;
+                         dec=true;
+                     }
+                 }
+
+                 espacio+=1;
+                 work= "";
+             }
+             else
+             {
+                 work+=linea[i];
+             }
+         }
+         espacio=0;
+
+     }
+     if(cont==1){
+         if(dec)
+         {
+
+
+         }
+         else
+         {
+             QMessageBox::warning(this,"Iniciar sesion","Usuario Incorrecto");
+         }
+     }
+     else if(cont==2)
+     {
+         QMessageBox::warning(this,"Iniciar sesion","Sesion Iniciada");
+         correcto=true;
+
+     }
+     else
+     {
+         QMessageBox::warning(this,"Iniciar sesion","Usuario y contraseña incorrecto");
+     }
+     cont =0;
+     file.close();
+
+}
+
+
+
+
+
+*/

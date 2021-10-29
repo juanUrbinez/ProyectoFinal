@@ -36,7 +36,6 @@ public:
     QPushButton *anterior;
     QPushButton *salir;
     QPushButton *aceptar;
-    QPushButton *nivel;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -56,7 +55,7 @@ public:
         lcdNumber = new QLCDNumber(centralwidget);
         lcdNumber->setObjectName(QString::fromUtf8("lcdNumber"));
         lcdNumber->setGeometry(QRect(140, 12, 71, 31));
-        lcdNumber->setProperty("intValue", QVariant(30));
+        lcdNumber->setProperty("intValue", QVariant(10));
         label_2 = new QLabel(centralwidget);
         label_2->setObjectName(QString::fromUtf8("label_2"));
         label_2->setGeometry(QRect(220, 20, 81, 21));
@@ -77,14 +76,11 @@ public:
         salir->setGeometry(QRect(150, 220, 158, 23));
         aceptar = new QPushButton(centralwidget);
         aceptar->setObjectName(QString::fromUtf8("aceptar"));
-        aceptar->setGeometry(QRect(190, 270, 75, 23));
-        nivel = new QPushButton(centralwidget);
-        nivel->setObjectName(QString::fromUtf8("nivel"));
-        nivel->setGeometry(QRect(360, 70, 75, 23));
+        aceptar->setGeometry(QRect(150, 270, 161, 21));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 800, 21));
+        menubar->setGeometry(QRect(0, 0, 800, 25));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
@@ -104,8 +100,14 @@ public:
         partida->setText(QCoreApplication::translate("MainWindow", "NUEVA PARTIDA", nullptr));
         anterior->setText(QCoreApplication::translate("MainWindow", "Anterior", nullptr));
         salir->setText(QCoreApplication::translate("MainWindow", "SALIR", nullptr));
-        aceptar->setText(QCoreApplication::translate("MainWindow", "ACEPTAR", nullptr));
-        nivel->setText(QCoreApplication::translate("MainWindow", "nivel", nullptr));
+#if QT_CONFIG(tooltip)
+        aceptar->setToolTip(QCoreApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:8pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:18pt;\">ENTRAR A LA PARTIDA</span></p></body></html>", nullptr));
+#endif // QT_CONFIG(tooltip)
+        aceptar->setText(QCoreApplication::translate("MainWindow", "ENTRAR A LA PARTIDA", nullptr));
     } // retranslateUi
 
 };

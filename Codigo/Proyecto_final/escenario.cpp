@@ -80,6 +80,11 @@ escenario::escenario(int x, int y,int a,int b, QString clase, QObject *parent): 
         img = original.copy(174,0,174,82);
         setPixmap(img.scaled(scalex,scaley));
     }
+    else if(Clase=="VacioVenenoso"){
+        original.load(":/obstaculos/obstaculo/Vacio.png");
+        img = original.copy(80,0,80,80);
+        setPixmap(img.scaled(scalex,scaley));
+    }
 
     setPos(Px,Py);
 }
