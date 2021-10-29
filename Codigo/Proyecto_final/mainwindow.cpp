@@ -766,6 +766,7 @@ void MainWindow::EvaluaColisionPoderes()
         }
         if(plataforma.at(i)->getClase() == "orbe" && plataforma.at(i)->collidesWithItem(player))
         {
+            ui->lcdNumber->display(((ui->lcdNumber->intValue())-5)+10);
 
             if(variable==1)
             {
@@ -796,7 +797,7 @@ void MainWindow::EvaluaColisionPoderes()
                scene7->removeItem(plataforma.at(i));
             }
             plataforma.removeAt(i);
-            ui->lcdNumber->display((ui->lcdNumber->intValue())+5);
+
         }
 
         if(plataforma.at(i)->getClase() == "zonaM" && plataforma.at(i)->collidesWithItem(player))
