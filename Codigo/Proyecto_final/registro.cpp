@@ -8,15 +8,16 @@ registro::registro(QWidget *parent) :
     ui->setupUi(this);
     scene = new QGraphicsScene;
 
-    ui->graphicsView->setGeometry(0,0,1900,1005);
+    ui->graphicsView->setGeometry(0,0,1900/2,1150/2);
     ui->graphicsView->setScene(scene);
-    ui->graphicsView->setBackgroundBrush(QImage(":/escenario/escenario/menu.png").scaled(1550,820));
-    scene->setSceneRect(0,0,1898,1003);//tamaño de la escena
+    ui->graphicsView->setBackgroundBrush(QImage(":/escenario/escenario/menu.png").scaled(1000,650));
+    scene->setSceneRect(0,0,1890/2,1140/2);//tamaño de la escena
+    setFixedSize(1900/2,1150/2);
     setWindowTitle("Poison Run");
     setWindowIcon(QIcon(":/personaje/Personaje/icon.png"));
 
-    ui->regist->setGeometry(600,300,120,80);
-    ui->crear->setGeometry(600,400,120,80);
+    ui->regist->setGeometry(400,150,120,80);
+    ui->crear->setGeometry(400,250,120,80);
 
     ui->contrasena->hide();
     ui->usuario->hide();
@@ -155,7 +156,7 @@ void registro::on_regist_clicked()
     ui->login->setGeometry(310,110,100,30);
     ui->contrasena->setGeometry(200,200,100,50);
     ui->pass->setGeometry(310,210,100,30);
-    ui->enviar->setGeometry(300,400,100,40);
+    ui->enviar->setGeometry(310,300,100,40);
     ui->volver->setGeometry(0,0,100,40);
 
 }
@@ -179,7 +180,7 @@ void registro::on_crear_clicked()
     ui->login->setGeometry(310,110,100,30);
     ui->contrasena->setGeometry(200,200,100,50);
     ui->pass->setGeometry(310,210,100,30);
-    ui->entrar->setGeometry(300,400,100,40);
+    ui->entrar->setGeometry(310,300,100,40);
     ui->volver->setGeometry(0,0,100,40);
 }
 

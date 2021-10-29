@@ -18,10 +18,11 @@ MainWindow::MainWindow(QWidget *parent)
     scene7 = new QGraphicsScene;
 
    //setGeometry(0,0,1002,1002);
-    ui->graphicsView->setGeometry(0,0,1900,1005);
-    menu->setSceneRect(0,0,1898,1003);
-    menu->setBackgroundBrush(QImage(":/escenario/escenario/option.png").scaled(1550,820));
+    ui->graphicsView->setGeometry(0,0,1900/2,1150/2);
+    menu->setSceneRect(0,0,1890/2,1140/2);
+    menu->setBackgroundBrush(QImage(":/escenario/escenario/option.png").scaled(1000,650));
     ui->graphicsView->setScene(menu);
+    setFixedSize(1900/2,1150/2);
     setWindowTitle("Poison Run");
     setWindowIcon(QIcon(":/personaje/Personaje/icon.png"));
 
@@ -40,8 +41,8 @@ MainWindow::MainWindow(QWidget *parent)
     //connect(timfis,SIGNAL(timeout()),this,SLOT(simulacion()));
 
 
-    ui->inicio->setGeometry(600,200,120,80);
-    ui->salir->setGeometry(600,350,120,80);
+    ui->inicio->setGeometry(385,200,120,80);
+    ui->salir->setGeometry(385,300,120,80);
     ui->partida->hide();
     ui->anterior->hide();
     ui->label->hide();
@@ -915,15 +916,16 @@ void MainWindow::on_inicio_clicked()
 {
     ui->anterior->show();
     ui->partida->show();
-    ui->anterior->setGeometry(600,300,120,80);
-    ui->partida->setGeometry(600,200,120,80);
+    ui->anterior->setGeometry(385,300,120,80);
+    ui->partida->setGeometry(385,200,120,80);
     ui->inicio->hide();
     ui->salir->hide();
 
-    ui->graphicsView->setGeometry(0,0,1900,1005);
-    option->setSceneRect(0,0,1898,1003);
-    option->setBackgroundBrush(QImage(":/escenario/escenario/menu.png").scaled(1550,820));
+    ui->graphicsView->setGeometry(0,0,1900/2,1150/2);
+    option->setSceneRect(0,0,1890/2,1140/2);
+    option->setBackgroundBrush(QImage(":/escenario/escenario/menu.png").scaled(1000,650));
     ui->graphicsView->setScene(option);
+    setFixedSize(1900/2,1150/2);
     setWindowTitle("Poison Run");
     setWindowIcon(QIcon(":/personaje/Personaje/icon.png"));
 
@@ -941,7 +943,7 @@ void MainWindow::on_partida_clicked()
     ui->anterior->hide();
     ui->partida->hide();
     ui->aceptar->show();
-    ui->aceptar->setGeometry(450,300,400,120);
+    ui->aceptar->setGeometry(250,240,400,120);
 
     datos=new registro(0);
     datos->show();
