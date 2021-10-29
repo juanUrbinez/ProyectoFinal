@@ -105,7 +105,6 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 5: _t->on_salir_clicked(); break;
         case 6: _t->on_partida_clicked(); break;
         case 7: _t->on_aceptar_clicked(); break;
-        case 8: _t->disparoCanon(); break;
         default: ;
         }
     }

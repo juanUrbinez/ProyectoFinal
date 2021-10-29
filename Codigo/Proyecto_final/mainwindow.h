@@ -10,8 +10,6 @@
 #include "escenario.h"
 #include "personaje.h"
 #include "registro.h"
-#include "niveles.h"
-#include "disparo.h"
 
 
 #include <QJsonArray>
@@ -226,7 +224,6 @@ private:
     float x,y;
     unsigned long long n=0;
     int est_dis=0,estado=0;
-    QList<disparo *> shoot;
     QGraphicsItemGroup * mundo;
 
 };

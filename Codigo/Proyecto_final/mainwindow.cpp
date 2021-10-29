@@ -978,71 +978,6 @@ void MainWindow::on_aceptar_clicked()
 
 }
 
-void MainWindow::disparoCanon()
-{
-    if(estado!=0)
-    {
-        estado-=1;
-    }
-        if(est_dis!=0)
-        {
-            est_dis-=1;
-        }
-
-
-
-                shoot.push_back(new disparo);
-                shoot.back()->posx=4*tam;
-                shoot.back()->posy=8*tam;
-                shoot.back()->setPos(shoot.back()->posx,shoot.back()->posy);
-
-
-
-                est_dis = 800;
-
-
-         scene2->addItem(shoot.back());
-
-        for(int e=0; e<shoot.size(); e++){
-
-                if(getPlayer()->x()<shoot[e]->posx){
-                    shoot[e]->posx -= 0.6 * 1;
-                    shoot[e]->setPos(shoot[e]->posx,shoot[e]->posy);
-
-                }
-                else if(getPlayer()->x() > shoot[e]->posx){
-                    shoot[e]->posx += 0.6 * 1;
-                    shoot[e]->setPos(shoot[e]->posx,shoot[e]->posy);
-
-                }
-                if(40 + getPlayer()->y() < shoot[e]->posy){
-                    shoot[e]->posy -= 0.6 * 1;
-                    shoot[e]->setPos(shoot[e]->posx,shoot[e]->posy);
-
-                }
-
-                else if (40 + getPlayer()->y() > shoot[e]->posy){
-                    shoot[e]->posy += 0.6 * 1;
-                    shoot[e]->setPos(shoot[e]->posx,shoot[e]->posy);
-
-                }
-
-                if (shoot[e]->collidesWithItem(getPlayer())){
-                    scene2->removeItem(shoot[e]);
-                    shoot.removeAt(e);
-                    //scena->removeItem(jugador);
-                    //generar_nivel2();
-                }
-                else{
-    //                scena->removeItem(shoot[0]);
-    //                shoot.removeAt(0);
-
-                }
-            }
-    }
-
-
-
 
 personaje *MainWindow::getPlayer() const
 {
@@ -1093,6 +1028,7 @@ void MainWindow::ActualizarPosicionPersonaje()
     EvaluaColisionMovimiento();
     EvaluaColisionPoderes();
 }
+
 
 
 
