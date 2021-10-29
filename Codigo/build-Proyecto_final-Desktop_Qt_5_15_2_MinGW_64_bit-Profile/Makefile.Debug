@@ -135,6 +135,7 @@ debug/qrc_recursos.cpp: ../Proyecto_final/recursos.qrc \
 		../Proyecto_final/Personaje/14.png \
 		../Proyecto_final/Personaje/1.png \
 		../Proyecto_final/Personaje/5.png \
+		../Proyecto_final/Personaje/subiendo.png \
 		../Proyecto_final/Personaje/4.png \
 		../Proyecto_final/Personaje/8.png \
 		../Proyecto_final/Personaje/16.png \
@@ -146,6 +147,7 @@ debug/qrc_recursos.cpp: ../Proyecto_final/recursos.qrc \
 		../Proyecto_final/escenario/menu.png \
 		../Proyecto_final/escenario/muro1.png \
 		../Proyecto_final/escenario/escenario.png \
+		../Proyecto_final/escenario/WIN.png \
 		../Proyecto_final/escenario/option.png \
 		../Proyecto_final/obstaculo/Vacio.png \
 		../Proyecto_final/obstaculo/bala.png \

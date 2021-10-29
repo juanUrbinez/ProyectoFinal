@@ -21,6 +21,8 @@
         <file>Personaje/14.png</file>
         <file>Personaje/15.png</file>
         <file>Personaje/16.png</file>
+        <file>escenario/WIN.png</file>
+        <file>Personaje/subiendo.png</file>
     </qresource>
     <qresource prefix="/personaje">
         <file>Personaje/corriendo.png</file>

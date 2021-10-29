@@ -16,6 +16,7 @@ MainWindow::MainWindow(QWidget *parent)
     scene5 = new QGraphicsScene;
     scene6 = new QGraphicsScene;
     scene7 = new QGraphicsScene;
+    scene8 = new QGraphicsScene;
 
    //setGeometry(0,0,1002,1002);
     ui->graphicsView->setGeometry(0,0,1900/2,1150/2);
@@ -99,7 +100,7 @@ void MainWindow::set_window(int MAPA)
         ui->graphicsView->setGeometry(0,0,tam*50+2,tam*(14+2)+2);
         ui->graphicsView->setScene(scene3);
         ui->graphicsView->setBackgroundBrush(QImage(":/escenario/escenario/escenario.png").scaled(tam*50,tam*(14+2)));
-        scene->setSceneRect(0,0,tam*50,tam*(14+2));//tamaño de la escena
+        scene3->setSceneRect(0,0,tam*50,tam*(14+2));//tamaño de la escena
         setFixedSize(tam*50+2,tam*(14+2)+2);
         setWindowTitle("Poison Run");
         setWindowIcon(QIcon(":/personaje/Personaje/icon.png"));
@@ -109,7 +110,7 @@ void MainWindow::set_window(int MAPA)
         ui->graphicsView->setGeometry(0,0,tam*50+2,tam*(14+2)+2);
         ui->graphicsView->setScene(scene4);
         ui->graphicsView->setBackgroundBrush(QImage(":/escenario/escenario/escenario.png").scaled(tam*50,tam*(14+2)));
-        scene->setSceneRect(0,0,tam*50,tam*(14+2));//tamaño de la escena
+        scene4->setSceneRect(0,0,tam*50,tam*(14+2));//tamaño de la escena
         setFixedSize(tam*50+2,tam*(14+2)+2);
         setWindowTitle("Poison Run");
         setWindowIcon(QIcon(":/personaje/Personaje/icon.png"));
@@ -119,17 +120,7 @@ void MainWindow::set_window(int MAPA)
         ui->graphicsView->setGeometry(0,0,tam*50+2,tam*(14+2)+2);
         ui->graphicsView->setScene(scene5);
         ui->graphicsView->setBackgroundBrush(QImage(":/escenario/escenario/escenario.png").scaled(tam*50,tam*(14+2)));
-        scene->setSceneRect(0,0,tam*50,tam*(14+2));//tamaño de la escena
-        setFixedSize(tam*50+2,tam*(14+2)+2);
-        setWindowTitle("Poison Run");
-        setWindowIcon(QIcon(":/personaje/Personaje/icon.png"));
-        }
-    else if(MAPA==5)
-        {
-        ui->graphicsView->setGeometry(0,0,tam*50+2,tam*(14+2)+2);
-        ui->graphicsView->setScene(scene5);
-        ui->graphicsView->setBackgroundBrush(QImage(":/escenario/escenario/escenario.png").scaled(tam*50,tam*(14+2)));
-        scene->setSceneRect(0,0,tam*50,tam*(14+2));//tamaño de la escena
+        scene5->setSceneRect(0,0,tam*50,tam*(14+2));//tamaño de la escena
         setFixedSize(tam*50+2,tam*(14+2)+2);
         setWindowTitle("Poison Run");
         setWindowIcon(QIcon(":/personaje/Personaje/icon.png"));
@@ -139,8 +130,28 @@ void MainWindow::set_window(int MAPA)
         ui->graphicsView->setGeometry(0,0,tam*50+2,tam*(14+2)+2);
         ui->graphicsView->setScene(scene6);
         ui->graphicsView->setBackgroundBrush(QImage(":/escenario/escenario/escenario.png").scaled(tam*50,tam*(14+2)));
-        scene->setSceneRect(0,0,tam*50,tam*(14+2));//tamaño de la escena
+        scene6->setSceneRect(0,0,tam*50,tam*(14+2));//tamaño de la escena
         setFixedSize(tam*50+2,tam*(14+2)+2);
+        setWindowTitle("Poison Run");
+        setWindowIcon(QIcon(":/personaje/Personaje/icon.png"));
+        }
+    else if(MAPA==7)
+        {
+        ui->graphicsView->setGeometry(0,0,tam*50+2,tam*(14+2)+2);
+        ui->graphicsView->setScene(scene7);
+        ui->graphicsView->setBackgroundBrush(QImage(":/escenario/escenario/escenario.png").scaled(tam*50,tam*(14+2)));
+        scene7->setSceneRect(0,0,tam*50,tam*(14+2));//tamaño de la escena
+        setFixedSize(tam*50+2,tam*(14+2)+2);
+        setWindowTitle("Poison Run");
+        setWindowIcon(QIcon(":/personaje/Personaje/icon.png"));
+        }
+    else if(MAPA==8)
+        {
+        ui->graphicsView->setGeometry(0,0,1900/2,1150/2);
+        ui->graphicsView->setScene(scene8);
+        ui->graphicsView->setBackgroundBrush(QImage(":/escenario/escenario/WIN.png").scaled(1000,650));
+        scene8->setSceneRect(0,0,1890/2,1140/2);//tamaño de la escena
+        setFixedSize(1900/2,1150/2);
         setWindowTitle("Poison Run");
         setWindowIcon(QIcon(":/personaje/Personaje/icon.png"));
         }
@@ -862,12 +873,12 @@ void MainWindow::sprites()
 {
     if(getPlayer()->getSaltando())
     {
-        //getPlayer()->setSprite(QString(""));
+        getPlayer()->setSprite(QString(":/escenario/Personaje/subiendo.png"));
         sprite ++;
     }
     else if (getPlayer()->getCayendo())
     {
-        //getPlayer()->setSprite(QString(""));
+        getPlayer()->setSprite(QString(":/escenario/Personaje/6.png"));
         sprite ++;
     }
     else if(getPlayer()->getMoviendo_Derecha() || getPlayer()->getMoviendo_Izquierda())
@@ -912,7 +923,6 @@ void MainWindow::on_anterior_clicked()
     ui->salir->show();
 }
 
-
 void MainWindow::on_inicio_clicked()
 {
     ui->anterior->show();
@@ -931,7 +941,6 @@ void MainWindow::on_inicio_clicked()
     setWindowIcon(QIcon(":/personaje/Personaje/icon.png"));
 
 }
-
 
 void MainWindow::on_salir_clicked()
 {
@@ -975,9 +984,6 @@ void MainWindow::on_aceptar_clicked()
         spriteTimer->start(90);
 
     }
-
-
-
 
 }
 

@@ -49,7 +49,7 @@ public:
     void EvaluaColisionPoderes();
     bool colision;
     QList<escenario*>plataformas;
-    QGraphicsScene *scene, *menu,*option,*scene2,*scene3,*scene4,*scene5,*scene6,*scene7;
+    QGraphicsScene *scene, *menu,*option,*scene2,*scene3,*scene4,*scene5,*scene6,*scene7,*scene8;
 
 
 
